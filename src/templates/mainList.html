@@ -6,19 +6,27 @@
             <h1>Grenfell Tower Victims</h1>
 
             <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. </p>
-        </div>    
+        </div>  
 
-            <div class="gv-detail-items-list" id="detailList">
-                {{#each floorSections}}
-                <div class="gv-section-bullet-wrapper" section-ref="{{sortOn}}">
-                    <div class="gv-section-bullet">{{sortOn}}</div>
-                </div>
-		                {{#each objArr}} 
-		                	{{> detailItem }}
-		                {{/each}} 
+        <div class="gv-share-container">
+            <button class="interactive-share" data-network="facebook"></button>
+            <button class="interactive-share" data-network="twitter"></button>
+            <button class="interactive-share" data-network="email"></button>
+        </div>
 
-                {{/each}}
+
+
+        <div class="gv-detail-items-list" id="detailList">
+            {{#each floorSections}}
+            <div class="gv-section-bullet-wrapper" section-ref="{{sortOn}}">
+                <div class="gv-section-bullet">{{sortOn}}</div>
             </div>
+	                {{#each objArr}} 
+	                	{{> detailItem }}
+	                {{/each}} 
+
+            {{/each}}
+        </div>
      </div>
 <!--         </div>
         <div class="close-overlay-btn show-mobile"></div>
