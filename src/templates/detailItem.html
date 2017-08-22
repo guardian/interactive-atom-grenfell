@@ -1,0 +1,37 @@
+<div class="gv-detail-item {{#if lastItem}}no-border{{/if}}" id="detailItem_{{ref}}">
+    <div class="gv-detail-main">
+        <div class="gv-detail-img selected" style="background-image:url({{grid_photo}})" id="detailItemImg_{{ref}}"></div>
+        <div class="gv-detail-head-text selected" id="detailItemHead_{{ref}}">
+            <h1>{{formatName}}</h1>
+            
+        </div>
+       
+    </div>
+     <div class="gv-detail-list-wrapper">
+			    <ul>
+			    <li>
+			        <strong>Age</strong>{{age}}
+			    </li>
+			    <!-- <li>
+			        <strong>Floor</strong>23
+			    </li> -->
+			    <li>
+			        <strong>Status</strong>{{status}}
+			    </li>
+			</ul>
+	</div>
+
+    <div class="gv-detail-text-wrapper">
+        <div class="gv-detail-description selected">{{bio}}</div>
+    </div>
+
+
+    {{#if related_url}}
+    <div class='cta-button-holder' data-link="{{related_url}}">
+	<div class='cta-button'>Read more</div>	
+	
+	<span class="inline-arrow-white-right inline-icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"><path fill="#333" d="M22.7,14.6L15.1,7l-0.7,0.7l5.5,6.6h-14v1.5h14l-5.5,6.6l0.7,0.7l7.6-7.6V14.6"/></svg></span>
+
+	</div>
+	{{/if}}
+</div>

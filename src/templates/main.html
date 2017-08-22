@@ -1,1 +1,65 @@
-<div>Hello world!</div>
+<div id="gv-content-container">
+
+    <section class="intro-section">
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore  {{totalCount}} people listed so far</p> 
+
+        <h3>By age</h3> 
+        <ul>
+        {{#each ageGroups}}
+            <li>
+                 {{{ html_decoder ageGroupStr }}}: 
+                 <span class="highlight-span">{{count}}</span>
+        
+            </li>{{/each}}
+
+        </ul>
+
+        <h3>By status</h3> 
+        <ul>
+        {{#each statusCounts}}
+            <li> 
+                 {{sortOn}}: <span class="highlight-span">{{ count }} </span>
+            </li>
+        {{/each}}
+        </ul>    
+
+
+    
+
+
+    </section>    
+
+    {{#each floorSections}}
+    <section class="facewall-section">
+        <div class="gv-section-bullet-wrapper main-list-bullet" section-ref="{{sortOn}}">
+            <div class="gv-section-bullet">{{sortOn}}</div>
+        </div>
+        <div class="facewall-container">
+            {{#each objArr}} 
+            	{{> gridPic }} 
+            {{/each}}
+        </div>
+    </section>
+    {{/each}}
+
+
+    <div class="gv-detail-overlay fix-pos" id="detailOverlay">
+        <div class="gv-detail-scroll-area" id="detailScroll">
+            <div class="gv-detail-items-list" id="detailList">
+                {{#each floorSections}}
+                <div class="gv-section-bullet-wrapper show-mobile" section-ref="{{sortOn}}">
+                    <div class="gv-section-bullet">{{sortOn}}</div>
+                </div>
+		                {{#each objArr}} 
+		                	{{> detailItem }}
+		                {{/each}} 
+
+                {{/each}}
+            </div>
+        </div>
+        <div class="close-overlay-btn show-mobile"></div>
+    </div>
+
+
+</div>

@@ -34,7 +34,6 @@
     "gulp-template": "^4.0.0",
     "gulp-util": "^3.0.7",
     "inquirer": "^1.2.2",
-    "request-promise-native": "^1.0.3",
     "rollup-plugin-babel": "^2.6.1",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-json": "^2.0.2",
@@ -47,5 +46,13 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "handlebars": "^4.0.10",
+    "magic-string": "^0.22.4",
+    "request-promise-native": "^1.0.4",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "svelte": "^1.30.0",
+    "xr": "^0.3.0"
+  }
 }
