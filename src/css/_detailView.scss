@@ -134,11 +134,15 @@
     height: auto;
     margin-left: 12px;
     h1 {
-        @include fs-header(1);
         color: $neutral-1;
+        @include fs-headline(4);
+        font-weight:200;
+        
         @include mq(desktop) {
-            @include fs-header(4);
+            @include fs-headline(7);
+            font-weight:200;
         }
+
     }
     @include mq(desktop) {
         margin-left: 0;

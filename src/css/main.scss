@@ -38,4 +38,9 @@ $selected-color-support: $comment-main-2;
 .gv-right-standfirst{
 	padding: 20px 10px 0 20px;
 	max-width:600px;
+
+	h1{
+		@include fs-headline(9);
+		font-weight:200;
+	}
 }
