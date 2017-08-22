@@ -1,0 +1,81 @@
+.close-overlay-btn {
+    width: 44px;
+    height: 44px;
+    background-color: $selected-color;;
+    background-image: url('<%= path %>/assets/arrow.svg');
+    border-radius: 9999px;
+    position: absolute;
+    bottom: 72px;
+    left: -24px;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: rotate(180deg);
+    cursor: pointer;
+}
+
+.close-overlay-btn:hover {
+    background-color: $selected-color-support; 
+}
+
+
+.cta-button-holder {
+    position:relative;
+    background-color: $neutral-3;
+    border-radius: 999px;
+    border: 1px solid #FFF;
+    cursor: pointer;
+    margin: 12px 0 $gs-baseline;
+    height:36px;
+    width:180px;
+
+
+
+    @include mq(tablet){
+    
+        //margin: $gs-baseline 0 $gs-baseline $gs-gutter;
+    }
+
+    @include mq(leftCol){
+      // position:absolute;
+      //   bottom:36px;
+      //   left:470px;
+        //margin: 0 0 0 $gs-gutter;
+      
+    }
+    .cta-button {
+       display: inline-block;
+        width: auto;
+        height: 36px;
+        padding: 9px 36px 6px 18px;
+        color: $neutral-1;
+        font-family: "Guardian Text Sans Web", Helvetica, Arial, sans-serif;
+        font-weight: 200;
+        font-size: 14px;
+        line-height: -6px;
+        cursor: pointer;
+    }
+    .inline-arrow-white-right {
+        display: block;
+        float: right;
+        height: 6px;
+        padding: 3px 6px 0 0;
+        fill: #FFF;
+        
+    }
+
+    .inline-arrow-white-dark {
+        display: block;
+        float: right;
+        height: 6px;
+        padding: 3px 6px 0 0;
+        fill: #333;
+        
+    }
+ 
+}
+
+.cta-button-holder:hover{
+	background-color: $selected-color;
+}
+

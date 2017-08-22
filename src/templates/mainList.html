@@ -1,1 +1,26 @@
-<div>Hej</div>
+<!-- <div class="gv-detail-overlay" id="detailOverlay">
+
+        <div class="gv-detail-scroll-area" id="detailScroll"> -->
+      <div class="gv-right-wrapper">      
+        <div class="gv-right-standfirst">
+            <h1>Grenfell Tower Victims</h1>
+
+            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. </p>
+        </div>    
+
+            <div class="gv-detail-items-list" id="detailList">
+                {{#each floorSections}}
+                <div class="gv-section-bullet-wrapper" section-ref="{{sortOn}}">
+                    <div class="gv-section-bullet">{{sortOn}}</div>
+                </div>
+		                {{#each objArr}} 
+		                	{{> detailItem }}
+		                {{/each}} 
+
+                {{/each}}
+            </div>
+     </div>
+<!--         </div>
+        <div class="close-overlay-btn show-mobile"></div>
+    </div> -->
+

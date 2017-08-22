@@ -1,0 +1,223 @@
+.gv-right-render{
+    position:relative;
+    height:100%;
+    width:auto;
+
+
+}
+
+
+.gv-detail-overlay {
+
+    top: 0;
+    left: 100%;
+    width: calc( 100% - 40px );
+    height: 100%;
+    max-width: 400px;
+    // transform: translateX(50%);
+    z-index: 1050;
+    @include mq(desktop) {
+        display:block;
+        // position: absolute;
+        width: 320px;
+        height: 100%;
+        min-height: 400px;
+    }
+
+    @include mq(wide) {
+        width: 400px;
+        height: auto;
+        min-height: 360px;
+    }
+    &.opened {
+        transform: translateX(-100%);
+
+        @include mq(desktop){
+            display:block;
+        }
+    }
+    &.fix-pos{
+        position: fixed;
+    }
+
+    &.abs-pos{
+        position: absolute;
+    }
+}
+
+.gv-detail-overlay.opened:before {
+    width: 20px;
+    height: 100%;
+    display: block;
+    content: '';
+    position: absolute;
+    left: -20px;
+}
+
+.gv-detail-scroll-area {
+    position: absolute;
+    padding: 0 0 100% 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    background-color: #FFF;
+    box-shadow: -2px 0 6px rgba(0, 0, 0, 0.2);
+
+    @include mq(desktop) {
+        overflow: hidden;
+        box-shadow: none;
+        border-top: 1px solid $bullet-bg;
+        border-bottom: none;
+        padding: 0 0 0 10px;
+
+        &.add-border-bottom{
+            border-top: none;
+            // border-bottom: 1px solid $bullet-bg;
+        }
+    }
+}
+
+.gv-detail-items-list {
+    position:relative;
+    padding: 20px 10px 0 20px;
+    width: calc(100% - 30px);
+    
+    @include mq(desktop) {
+        width: 280px;
+    }
+    @include mq(wide) {
+        width: 600px;
+    }
+}
+
+.gv-detail-item {
+    display: block;
+    height: auto;
+    
+    margin: 0 0 24px;
+    padding-bottom:12px;
+    opacity: 0.7;
+    border-bottom: 1px dotted $neutral-4;
+    @include mq(desktop) {
+ 
+        border-bottom: none;
+    }
+    &.selected {
+        opacity: 1;
+        @include mq(desktop) {
+            padding-top: 0;
+            display: block;
+        }
+    }
+
+    &.no-border {
+        border:none;
+    }    
+}
+
+.gv-detail-item:first-child {
+    border: none;
+}
+
+.gv-detail-text1,
+.gv-detail-text2,
+.gv-detail-head-text {
+    @include fs-textSans(3);
+    h1 {
+        @include fs-header(3);
+    }
+}
+
+.gv-detail-head-text {
+    height: auto;
+    margin-left: 12px;
+    h1 {
+        @include fs-header(1);
+        color: $neutral-1;
+        @include mq(desktop) {
+            @include fs-header(4);
+        }
+    }
+    @include mq(desktop) {
+        margin-left: 0;
+    }
+    
+}
+
+.gv-detail-main {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    @include mq(desktop) {
+        height: auto;
+    }
+}
+
+.gv-detail-description {
+
+    @include fs-bodyCopy(1);
+    color: $neutral-2;
+    min-height:24px;
+    @include mq(desktop) {
+        
+        height:auto;
+    }
+}
+
+.gv-detail-list-wrapper{
+    ul {
+        margin: 0;
+        padding: 0;
+        li {
+            @include fs-textSans(3);
+            color: $neutral-3;
+            list-style: none;
+            padding: 0;
+            margin-right: 10px;
+            display: inline-block;
+            vertical-align: top;
+            
+            line-height: 1.4em;
+            
+            strong {
+                font-weight:600;
+                display: block;
+            }
+        }
+
+        li:before{
+            display:none !important;
+        }
+    }
+}
+
+.gv-detail-img {
+    width: 80px;
+    margin-right: 10px;
+    float: left;
+    padding-bottom: 80px;
+    background: #333;
+    background-size: cover;
+    background-position: center;
+    border: 3px solid $selected-color;
+    border-radius: 99999px;
+    -webkit-filter: grayscale(100%);
+    /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+    &.selected {
+        -webkit-filter: none;
+        /* Safari 6.0 - 9.0 */
+        filter: none;
+    }
+    @include mq(desktop) {
+        // display: none;
+    }
+}
+
+
+.gv-detail-text-wrapper{
+    position:relative;
+    // height:120px;
+}

@@ -1,5 +1,18 @@
 @import "mq";
 @import "fonts";
+@import "palette";
+
+$gs-baseline:12px;
+$gs-gutter:20px;
+$facewall-bg: $neutral-5;
+$header-support: $neutral-5;
+$bullet-bg: $neutral-2;
+$unselected-color: $neutral-3;
+$selected-color: $multimedia-main-2;
+$selected-color-support: $comment-main-2;
+
+@import "detailView";
+@import "uxItems";
 
 // Uncomment for embeds
 //@import "embed";
@@ -10,4 +23,19 @@
 .element-atom,
 .interactive-atom {
     margin: 0 !important;
+    background-color: $multimedia-support-4;
+}
+
+.gv-right-wrapper{
+	height:100%; 
+	//overflow:hidden;
+	width: 50%;
+	margin: 0 0 0 auto;
+	background-color:#FFF;
+
+}
+
+.gv-right-standfirst{
+	padding: 20px 10px 0 20px;
+	max-width:600px;
 }

@@ -9,14 +9,13 @@ import detailItemTemplate from '../templates/detailItem.html'
 
 
 xr.get('https://interactive.guim.co.uk/docsdata-test/1K896qTOpgJQhG2IfGAChZ1WZjQAYn7-i869tA5cKaVU.json').then((resp) => {
-    // let d = resp.data.sheets.Sheet1;
-    // var newObj = {};
-    // newObj.objArr = d;
-    // var compiledHTML = compileHTML(newObj);
 
-    console.log(resp)
 
-    //document.querySelector(".gv-interactive-container").innerHTML = compiledHTML;
+
+    var compiledHTML = compileHTML(resp.data.sheets.people);
+
+    
+    document.querySelector(".gv-right-view").innerHTML = compiledHTML;
 
     // addListeners();
 
@@ -27,31 +26,81 @@ xr.get('https://interactive.guim.co.uk/docsdata-test/1K896qTOpgJQhG2IfGAChZ1WZjQ
 });
 
 
+function formatData(dataIn){
+
+	var newObj = {};
+
+	dataIn.map((obj)=>{
+		if(!obj.floor){ obj.floor = "unknown"; }
+		if(!obj.age){ obj.age = "unknown"; }
+		if(!obj.status){ obj.status = "unknown"; }
+
+		obj.formatName = obj.name.split(",")[0];
+        obj.sortName = obj.family_name + obj.formatName;
+	})
+
+	let floorArr = groupBy(dataIn, 'floor');
+
+    floorArr = sortByKeys(floorArr);
+    floorArr.map((obj) => {
+        obj.count = obj.objArr.length;  
+
+    });
+
+    newObj.floorSections = floorArr;
+
+    
+
+    return newObj;
+}
+
+
 function compileHTML(dataIn) {   
-   // let data = dataFormatForHTML(dataIn);
+	var data = formatData(dataIn);
+	
+    Handlebars.registerHelper('html_decoder', function(text) {
+          var str = unescape(text).replace(/&amp;/g, '&');
+          return str; 
+    });
 
-    // Handlebars.registerHelper('html_decoder', function(text) {
-    //       var str = unescape(text).replace(/&amp;/g, '&');
-    //       return str; 
-    // });
+    Handlebars.registerPartial({
+        'gridPic': gridPicTemplate,
+        'detailItem': detailItemTemplate
+    });
 
-    // Handlebars.registerPartial({
-    //     'gridPic': gridPicTemplate,
-    //     'detailItem': detailItemTemplate
-    // });
+    var content = Handlebars.compile(
+        mainTemplate, {
+            compat: true
+        }
+    );
 
-    // var content = Handlebars.compile(
-    //     mainTemplate, {
-    //         compat: true
-    //     }
-    // );
-
-//     var newHTML = content(data);
-
-//     return newHTML
-	return "hej";
+	
+    var newHTML = content(data);
+	console.log(newHTML)
+    return newHTML
+	
  }
 
+
+
+function sortByKeys(obj) {
+    let keys = Object.keys(obj),
+    i, len = keys.length;
+
+    keys.sort();
+
+    var a = []
+
+    for (i = 0; i < len; i++) {
+        let k = keys[i];
+        let t = {}
+        t.sortOn = k;
+        t.objArr = obj[k]
+        a.push(t);
+    }
+
+    return a;
+}
 
 
 
