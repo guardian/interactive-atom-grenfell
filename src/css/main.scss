@@ -30,9 +30,13 @@ $selected-color-support: $comment-main-2;
     background-color: $multimedia-support-4;
 }
 
+
+.gv-right-view{
+	overflow:hidden;
+}
+
 .gv-right-wrapper{
 	height:100%; 
-	//overflow:hidden;
 	width: calc( 100% - 60px);
 	margin: 0 0 0 auto;
 	background-color:#FFF;
@@ -43,7 +47,22 @@ $selected-color-support: $comment-main-2;
 		width: 50%;
 	}
 
+	&.open{
+		transform: translateX(0);
+  		transition: transform  0.15s linear;
+	}
+	
+	&.close{
+		transform: translateX(100vw);
+  		transition: transform  0.15s linear;
+	}
 }
+
+.gv-right-container{
+	height:auto;
+
+
+	}
 
 .gv-right-standfirst{
 

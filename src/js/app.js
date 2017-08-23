@@ -45,12 +45,9 @@ function formatData(dataIn){
     floorArr = sortByKeys(floorArr);
     floorArr.map((obj) => {
         obj.count = obj.objArr.length;  
-
     });
 
     newObj.floorSections = floorArr;
-
-    
 
     return newObj;
 }
@@ -89,11 +86,14 @@ function addListeners(){
         shareEl.addEventListener('click',() => shareFn(network));
     });
 
-   // document.querySelector()
+   document.querySelector('.close-overlay-btn').addEventListener('click', hideRightView);
 }
 
 
-
+function hideRightView(){
+    document.querySelector('.gv-right-wrapper').classList.remove('open');
+    document.querySelector('.gv-right-wrapper').classList.add('close');
+}
 
 function sortByKeys(obj) {
     let keys = Object.keys(obj),
