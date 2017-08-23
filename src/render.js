@@ -15,7 +15,7 @@ export function render() {
         json: true
     }).then((data) => {
         var sheets = data.sheets;
-        console.log(sheets);
+        //console.log(sheets);
         //var html = Mustache.render(mainTemplate, sheets, partialTemplates);
         var html = mainTemplate;
         return html;
