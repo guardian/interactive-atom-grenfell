@@ -7,13 +7,12 @@ $gs-baseline:12px;
 .share-container {
     max-width:1260px;
     
-    padding: 0 10px 6px;
     //border-bottom: solid 1px $neutral-5;
     
     height:auto;
 
     @include mq(tablet){
-        margin: 0 10px;
+      
     }
 
 

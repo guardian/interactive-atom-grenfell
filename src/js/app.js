@@ -14,11 +14,8 @@ var shareFn = share('Grenfell Tower','https://gu.com/p/72vvx');
 
 xr.get('https://interactive.guim.co.uk/docsdata-test/1K896qTOpgJQhG2IfGAChZ1WZjQAYn7-i869tA5cKaVU.json').then((resp) => {
 
-
-
     var compiledHTML = compileHTML(resp.data.sheets.people);
 
-    
     document.querySelector(".gv-right-view").innerHTML = compiledHTML;
 
     addListeners();
@@ -91,6 +88,8 @@ function addListeners(){
 
         shareEl.addEventListener('click',() => shareFn(network));
     });
+
+   // document.querySelector()
 }
 
 

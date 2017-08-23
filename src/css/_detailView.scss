@@ -80,7 +80,6 @@
 
 .gv-detail-items-list {
     position:relative;
-    padding: 20px 10px 0 20px;
     width: calc(100% - 30px);
     
     @include mq(desktop) {
@@ -159,8 +158,11 @@
     }
 
     &:after {
-         border-bottom: none;
+        border-bottom: none;
         border-top: 1px solid $neutral-4;
+        @include mq(desktop){
+            padding-bottom: 2px;
+        }
     }
     
     //border-bottom: 1px solid $neutral-3;
@@ -179,11 +181,11 @@
 
 .gv-detail-description {
     margin-top: 12px;
-    @include fs-bodyCopy(2);
+    @include fs-bodyCopy(1);
     color: $neutral-1;
     min-height:24px;
     @include mq(desktop) {
-        
+        @include fs-bodyCopy(2);
         height:auto;
     }
 }
@@ -200,7 +202,7 @@
             margin-right: 10px;
             display: inline-block;
             vertical-align: top;
-            
+            min-width:60px;
             line-height: 1.4em;
             
             strong {

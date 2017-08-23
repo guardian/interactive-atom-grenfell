@@ -4,9 +4,9 @@
     background-color: $selected-color;;
     background-image: url('<%= path %>/assets/arrow.svg');
     border-radius: 9999px;
-    position: absolute;
-    bottom: 72px;
-    left: -24px;
+    position: fixed;
+    bottom: 90px;
+    left: 8px;
     background-size: 60%;
     background-repeat: no-repeat;
     background-position: center;

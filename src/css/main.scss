@@ -37,6 +37,7 @@ $selected-color-support: $comment-main-2;
 	margin: 0 0 0 auto;
 	background-color:#FFF;
 	overflow-x: hidden;
+	padding: 30px 0 0 30px;
 
 	@include mq(desktop){
 		width: 50%;
@@ -45,7 +46,7 @@ $selected-color-support: $comment-main-2;
 }
 
 .gv-right-standfirst{
-	padding: 20px 10px 0 20px;
+
 	max-width:600px;
 
 	h1{
@@ -67,4 +68,18 @@ $selected-color-support: $comment-main-2;
         border-bottom: 1px solid $bullet-bg;
 	}     
    
+}
+
+.show-mobile{
+	display:block;
+	@include mq(desktop){
+		display:none;
+	}
+}
+
+.show-desktop{
+	display:none;
+	@include mq(desktop){
+		display:block;
+	}
 }
