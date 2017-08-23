@@ -3,9 +3,13 @@
 import xr from 'xr'
 import Handlebars from 'handlebars/dist/handlebars'
 import { groupBy } from './libs/arrayObjectUtils.js'
+import { share } from './libs/share.js';
+
 import mainTemplate from '../templates/mainList.html'
 import gridPicTemplate from '../templates/gridPic.html'
 import detailItemTemplate from '../templates/detailItem.html'
+
+var shareFn = share('Grenfell Tower','https://gu.com/p/72vvx');
 
 
 xr.get('https://interactive.guim.co.uk/docsdata-test/1K896qTOpgJQhG2IfGAChZ1WZjQAYn7-i869tA5cKaVU.json').then((resp) => {
@@ -17,7 +21,7 @@ xr.get('https://interactive.guim.co.uk/docsdata-test/1K896qTOpgJQhG2IfGAChZ1WZjQ
     
     document.querySelector(".gv-right-view").innerHTML = compiledHTML;
 
-    // addListeners();
+    addListeners();
 
     updatePageDate();
 
@@ -80,6 +84,15 @@ function compileHTML(dataIn) {
     return newHTML
 	
  }
+
+function addListeners(){
+    [].slice.apply(document.querySelectorAll('.gv-share-container button')).forEach(shareEl => {
+        var network = shareEl.getAttribute('data-network');
+
+        shareEl.addEventListener('click',() => shareFn(network));
+    });
+}
+
 
 
 

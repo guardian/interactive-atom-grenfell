@@ -29,8 +29,6 @@
     height:36px;
     width:180px;
 
-
-
     @include mq(tablet){
     
         //margin: $gs-baseline 0 $gs-baseline $gs-gutter;
@@ -81,15 +79,16 @@
 
 
 .gv-section-bullet-wrapper{
-    width: 50vw;
+    width: 100vw;
     margin-top:12px;
-    margin-bottom:12px;
+    margin-bottom:6px;
     @include mq(tablet){
-        margin-bottom:24px;
+        margin-top:24px;
     }
 
     @include mq(leftCol){
-        margin-bottom:36px;
+        margin-top:36px;
+        width: 50vw;
     }
 }
 

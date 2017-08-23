@@ -96,7 +96,7 @@
     height: auto;
     margin: 0 0 24px;
     padding-bottom:12px;
-    border-bottom: 1px dotted $neutral-4;
+
     @include mq(desktop) {
  
         border-bottom: none;
@@ -132,7 +132,7 @@
     margin-left: 12px;
     h1 {
         color: $neutral-1;
-        @include fs-headline(4);
+        @include fs-headline(5);
         font-weight:200;
         
         @include mq(desktop) {
@@ -150,9 +150,12 @@
         display: block;
         top: 0;
         height: 1px;
-        width: 50vw;
+        width: 100vw;
         margin-left:90px;
         border-bottom: 1px solid $neutral-4;
+        @include mq(desktop){
+            width: 50vw;
+        }
     }
 
     &:after {

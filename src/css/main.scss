@@ -2,6 +2,8 @@
 @import "fonts";
 @import "palette";
 
+
+
 $gs-baseline:12px;
 $gs-gutter:20px;
 $facewall-bg: $neutral-5;
@@ -31,10 +33,14 @@ $selected-color-support: $comment-main-2;
 .gv-right-wrapper{
 	height:100%; 
 	//overflow:hidden;
-	width: 50%;
+	width: calc( 100% - 60px);
 	margin: 0 0 0 auto;
 	background-color:#FFF;
 	overflow-x: hidden;
+
+	@include mq(desktop){
+		width: 50%;
+	}
 
 }
 
