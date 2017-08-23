@@ -57,7 +57,6 @@ $gs-baseline:12px;
                  
                     @include mq(desktop){
                         margin: $gs-baseline 0 0;
-                        margin-left: 148px;
                         padding-bottom: gs-height(1);
  
                     }

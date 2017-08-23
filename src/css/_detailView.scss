@@ -18,7 +18,6 @@
     z-index: 1050;
     @include mq(desktop) {
         display:block;
-        // position: absolute;
         width: 320px;
         height: 100%;
         min-height: 400px;
@@ -95,10 +94,8 @@
 .gv-detail-item {
     display: block;
     height: auto;
-    
     margin: 0 0 24px;
     padding-bottom:12px;
-    opacity: 0.7;
     border-bottom: 1px dotted $neutral-4;
     @include mq(desktop) {
  
@@ -147,6 +144,24 @@
     @include mq(desktop) {
         margin-left: 0;
     }
+
+     &:before, &:after  {
+        content: '';
+        display: block;
+        top: 0;
+        height: 1px;
+        width: 50vw;
+        margin-left:90px;
+        border-bottom: 1px solid $neutral-4;
+    }
+
+    &:after {
+         border-bottom: none;
+        border-top: 1px solid $neutral-4;
+    }
+    
+    //border-bottom: 1px solid $neutral-3;
+
     
 }
 
@@ -160,9 +175,9 @@
 }
 
 .gv-detail-description {
-
-    @include fs-bodyCopy(1);
-    color: $neutral-2;
+    margin-top: 12px;
+    @include fs-bodyCopy(2);
+    color: $neutral-1;
     min-height:24px;
     @include mq(desktop) {
         
@@ -176,7 +191,7 @@
         padding: 0;
         li {
             @include fs-textSans(3);
-            color: $neutral-3;
+            color: $neutral-1;
             list-style: none;
             padding: 0;
             margin-right: 10px;
@@ -205,16 +220,15 @@
     background: #333;
     background-size: cover;
     background-position: center;
-    border: 3px solid $selected-color;
     border-radius: 99999px;
-    -webkit-filter: grayscale(100%);
-    /* Safari 6.0 - 9.0 */
-    filter: grayscale(100%);
-    &.selected {
-        -webkit-filter: none;
-        /* Safari 6.0 - 9.0 */
-        filter: none;
-    }
+    // -webkit-filter: grayscale(100%);
+    // /* Safari 6.0 - 9.0 */
+    // filter: grayscale(100%);
+    // &.selected {
+    //     -webkit-filter: none;
+    //     /* Safari 6.0 - 9.0 */
+    //     filter: none;
+    // }
     @include mq(desktop) {
         // display: none;
     }

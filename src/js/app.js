@@ -19,7 +19,7 @@ xr.get('https://interactive.guim.co.uk/docsdata-test/1K896qTOpgJQhG2IfGAChZ1WZjQ
 
     // addListeners();
 
-    // updatePageDate();
+    updatePageDate();
 
     // adjustView();
 
@@ -76,7 +76,7 @@ function compileHTML(dataIn) {
 
 	
     var newHTML = content(data);
-	console.log(newHTML)
+
     return newHTML
 	
  }
@@ -103,4 +103,27 @@ function sortByKeys(obj) {
 }
 
 
+function updatePageDate() {
+    document.querySelector(".time-stamp").innerHTML = " ";
 
+    let pubDate;
+
+    if (window.guardian.config.page.webPublicationDate) { pubDate = new Date(window.guardian.config.page.webPublicationDate) 
+        var d = new Date(window.guardian.config.page.webPublicationDate)
+        var n = d.getTimezoneOffset();
+        console.log(n/60)
+    let pubDateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' }; //, timeZone: 'UTC', timeZoneName: 'short'
+
+
+
+
+    let dateStr = pubDate.toLocaleDateString('en-GB', pubDateOptions).split(",").join(" ").split("  ").join(" ");
+
+    dateStr = dateStr+" GMT";
+
+    document.querySelector(".time-stamp").innerHTML = dateStr;
+    }
+  
+
+    //console.log(pubDate);
+}

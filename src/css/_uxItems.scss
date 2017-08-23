@@ -79,3 +79,42 @@
 	background-color: $selected-color;
 }
 
+
+.gv-section-bullet-wrapper{
+    width: 50vw;
+    margin-top:12px;
+    margin-bottom:12px;
+    @include mq(tablet){
+        margin-bottom:24px;
+    }
+
+    @include mq(leftCol){
+        margin-bottom:36px;
+    }
+}
+
+
+.gv-section-bullet{
+    background-color:$bullet-bg;
+    color:$neutral-1;
+    width:24px;
+    height:21px;
+    padding-top:3px;
+    @include fs-textSans(3);
+    text-align:center;
+    border-radius:999px;
+
+}
+
+
+.gv-section-bullet-wrapper::after { 
+    content: "";
+    display: block;
+    margin-top: -12px;
+    height: 12px;
+    width: calc(100% - 24px);
+    margin-left: 24px;
+    padding-bottom: 12px;
+    border-top: 1px solid $bullet-bg;
+}
+
