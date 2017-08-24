@@ -45,7 +45,11 @@ $background-grey: #333333;
             margin-left: -365px;
         }
 
-        #level-8 rect {
+        // #level-8 rect {
+        //     fill: $accent-yellow;
+        // }
+
+        .gv-level.gv-level-highlighted rect {
             fill: $accent-yellow;
         }
     }
