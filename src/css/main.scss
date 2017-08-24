@@ -23,6 +23,10 @@ $background-grey: #333333;
     background: $background-grey;
     height: auto;
     overflow: hidden;
+
+    @include mq(tablet) {
+        width: 50%;
+    }
 }
 
 
@@ -40,9 +44,9 @@ $background-grey: #333333;
         height: auto;
 
         @include mq(tablet) {
-            width: auto;
+            width: 130%;
            margin-top: 100px;
-            margin-left: -365px;
+            margin-left: -57%;
         }
 
         // #level-8 rect {
@@ -67,8 +71,9 @@ $background-grey: #333333;
 
     @include mq(tablet) {
         position: absolute;
-        left: 360px;
-        width: 300px;
+        left: 54%;
+        width: 44%;
+        max-width: 300px;
     }
 
 }
@@ -150,8 +155,9 @@ $background-grey: #333333;
     position: absolute;
 
     @include mq(tablet) {
-        display: none;
-        top: 680px; // arbitrary test value
+        //display: none;
+        display: block;
+        top: 600px; // arbitrary test value
         left: -40px;
         padding-left: 20px;
         width: 100%;
@@ -220,7 +226,8 @@ $background-grey: #333333;
         position: relative;
         z-index: 200;
         padding: 10px 20px;
-        display: none;
+        //display: none;
+        display:block;
         margin-top: -40px; // So overlaps gradient fade
 
         &:first-of-type {
