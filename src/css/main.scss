@@ -140,7 +140,7 @@ $background-grey: #333333;
     overflow: hidden;
 
     @include mq(tablet) {
-        width: 50%;
+        width: 100%;
     }
 }
 
