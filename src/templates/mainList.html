@@ -1,0 +1,52 @@
+
+      <div class="gv-right-wrapper">    
+      <div class="gv-right-container">  
+        <div class="gv-right-standfirst">
+            <h1>Grenfell Tower</h1>
+            <h3>Collating all victims of the Grenfell tower fire</h3>
+            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. </p>
+        </div>  
+
+        <div class="share-wrapper">
+            <div class="share-container">
+                
+                <div class="share-inner">
+
+                    <div class="share-inner-left"> 
+                        
+                    </div>
+                     <div class="share-inner-main"> 
+                          <p class="time-stamp">16 August 2017</p>
+                      <div class="gv-share-container">
+                            <button class="interactive-share" data-network="facebook"></button>
+                            <button class="interactive-share" data-network="twitter"></button>
+                            <button class="interactive-share" data-network="email"></button>
+                        </div>
+                    </div>
+
+                
+                </div>
+            </div>    
+        </div>  
+
+
+
+        <div class="gv-detail-items-list" id="detailList">
+            {{#each floorSections}}
+            <div class="gv-section-bullet-wrapper" section-ref="{{sortOn}}">
+                <div class="gv-section-bullet">{{sortOn}}</div>
+            </div>
+	                {{#each objArr}} 
+	                	{{> detailItem }}
+	                {{/each}} 
+
+            {{/each}}
+        </div>
+
+        <div class="close-overlay-btn show-mobile"></div>
+        </div>
+     </div>
+
+
+
+

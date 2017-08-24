@@ -1,5 +1,22 @@
 @import "mq";
 @import "fonts";
+@import "palette";
+
+
+
+$gs-baseline:12px;
+$gs-gutter:20px;
+$facewall-bg: $neutral-5;
+$header-support: $neutral-5;
+$bullet-bg: $multimedia-main-2;
+$unselected-color: $neutral-3;
+$selected-color: $multimedia-main-2;
+$selected-color-support: $comment-main-2;
+
+
+@import "detailView";
+@import "uxItems";
+@import "share";
 
 // Uncomment for embeds
 //@import "embed";
@@ -15,6 +32,80 @@ $background-grey: #333333;
 .element-atom,
 .interactive-atom {
     margin: 0 !important;
+    background-color: $multimedia-support-4;
+}
+
+
+.gv-right-view{
+	overflow:hidden;
+}
+
+.gv-right-wrapper{
+	height:100%; 
+	width: calc( 100% - 60px);
+	margin: 0 0 0 auto;
+	background-color:#FFF;
+	overflow-x: hidden;
+	padding: 30px 0 0 30px;
+
+	@include mq(desktop){
+		width: 50%;
+	}
+
+	&.open{
+		transform: translateX(0);
+  		transition: transform  0.15s linear;
+	}
+	
+	&.close{
+		transform: translateX(100vw);
+  		transition: transform  0.15s linear;
+	}
+}
+
+.gv-right-container{
+	height:auto;
+
+
+	}
+
+.gv-right-standfirst{
+
+	max-width:600px;
+
+	h1{
+		@include fs-headline(9);
+		font-weight:200;
+	}
+
+	h3{
+		@include fs-header(2);
+	}
+
+	p:before{
+		content: '';
+        display: block;
+        top: 0;
+        height: 12px;
+        width: 50vw;
+        margin-bottom:6px;
+        border-bottom: 1px solid $bullet-bg;
+	}     
+   
+}
+
+.show-mobile{
+	display:block;
+	@include mq(desktop){
+		display:none;
+	}
+}
+
+.show-desktop{
+	display:none;
+	@include mq(desktop){
+		display:block;
+	}
 }
 
 #gv-tower-graphic-pane {

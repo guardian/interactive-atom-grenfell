@@ -2,7 +2,6 @@ import Handlebars from 'handlebars/dist/handlebars'
 import rp from 'request-promise'
 import mainTemplate from './src/templates/main.html!text'
 
-
 // export async function render() {
 
 //     return mainTemplate;
@@ -21,3 +20,4 @@ export function render() {
         return html;
     });
 }
+
