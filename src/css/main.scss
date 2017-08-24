@@ -2,8 +2,6 @@
 @import "fonts";
 @import "palette";
 
-
-
 $gs-baseline:12px;
 $gs-gutter:20px;
 $facewall-bg: $neutral-5;
@@ -12,7 +10,6 @@ $bullet-bg: $multimedia-main-2;
 $unselected-color: $neutral-3;
 $selected-color: $multimedia-main-2;
 $selected-color-support: $comment-main-2;
-
 
 @import "detailView";
 @import "uxItems";
@@ -38,18 +35,25 @@ $background-grey: #333333;
 
 .gv-right-view{
 	overflow:hidden;
+    background-color:#FFF;
+    min-height: 100vh;
 }
 
 .gv-right-wrapper{
 	height:100%; 
 	width: calc( 100% - 60px);
 	margin: 0 0 0 auto;
-	background-color:#FFF;
+	
 	overflow-x: hidden;
 	padding: 30px 0 0 30px;
-
+    
 	@include mq(desktop){
-		width: 50%;
+        width: 100%;
+        margin-left: 0;
+        &.fixed{
+           margin-left: 50%; 
+        }
+		//
 	}
 
 	&.open{
@@ -65,9 +69,7 @@ $background-grey: #333333;
 
 .gv-right-container{
 	height:auto;
-
-
-	}
+}
 
 .gv-right-standfirst{
 
@@ -108,9 +110,31 @@ $background-grey: #333333;
 	}
 }
 
+
+
+
+.gv-tower-wrapper{
+    height: 100vh;
+    width: 50%;
+    float: left;
+    overflow:hidden;
+    &.fixed{
+        position:fixed;
+        top:0;
+    }
+}
+
+
+.gv-tower-wrapper{
+    height: auto;
+}
+
+
+
+
+
 #gv-tower-graphic-pane {
     position: relative;
-    width: 100%;
     background: $background-grey;
     height: auto;
     overflow: hidden;
@@ -140,7 +164,7 @@ $background-grey: #333333;
         //     fill: $accent-yellow;
         // }
 
-        .gv-level.gv-level-highlighted rect {
+        .gv-level.highlight rect {
             fill: $accent-yellow;
         }
     }
@@ -235,7 +259,6 @@ $background-grey: #333333;
         top: 100px;
     }
 
-
     .gv-tower-graphic-info-box-inner {
         padding: 10px 20px;
     }
@@ -295,10 +318,11 @@ $background-grey: #333333;
     height: 40px;
     top: -40px;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#333333+0,333333+100&0+0,1+98 */
-background: -moz-linear-gradient(top, rgba(51,51,51,0) 0%, rgba(51,51,51,1) 98%, rgba(51,51,51,1) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top, rgba(51,51,51,0) 0%,rgba(51,51,51,1) 98%,rgba(51,51,51,1) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom, rgba(51,51,51,0) 0%,rgba(51,51,51,1) 98%,rgba(51,51,51,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00333333', endColorstr='#333333',GradientType=0 ); /* IE6-*/
+
+    background: -moz-linear-gradient(top, rgba(51,51,51,0) 0%, rgba(51,51,51,1) 98%, rgba(51,51,51,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(51,51,51,0) 0%,rgba(51,51,51,1) 98%,rgba(51,51,51,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(51,51,51,0) 0%,rgba(51,51,51,1) 98%,rgba(51,51,51,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00333333', endColorstr='#333333',GradientType=0 ); /* IE6-*/
 
 
 }

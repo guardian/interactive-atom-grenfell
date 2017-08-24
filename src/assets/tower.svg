@@ -1,47 +1,4 @@
-<div class="gv-tower-wrapper">
-
-    <div class="gv-tower-container">
-
-            <div id="gv-tower-graphic-pane" class="gv-tower-graphic-pane">
-
-                <div id="gv-tower-graphic-info">
-
-                    <div id="gv-navs" class="gv-navs">
-                        <div class="gv-nav" id="gv-nav-up"></div>
-                        <div class="gv-nav" id="gv-nav-down"></div>
-                    </div>
-
-                    <div id="gv-tower-graphic-intro">
-                            <div class="gv-tower-graphic-intro-inner">
-                            <h1>Grenfell Tower</h1>
-                            <h2>All the victims of the Grenfell Tower fire</h2>
-                            <p>Intro text here ...</p>
-                            
-                            <div class="gv-continue-button">Continue</div>
-                
-                            </div>                            
-                    </div>
-
-                    <div id="gv-tower-graphic-info-box" class="gv-tower-graphic-info-box">
-
-                        <div class="gv-tower-graphic-info-box-inner">
-
-                            <h2 class="gv-tower-graphic-info-heading"><span>Heading</span> rest of heading here</h2>
-                            <h3 class="gv-tower-graphic-info-subheading">Subheading</h3>
-                            <div class="gv-tower-graphic-portrait-thumbs">
-                                <div class="gv-portrait-thumb"></div>
-                                <div class="gv-portrait-thumb"></div>
-                                <div class="gv-portrait-thumb"></div>
-                            </div>
-                            <p class="gv-tower-graphic-info-description">Description here</p>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div id="gv-tower-graphic" class="gv-tower-graphic">
-
-                    <!-- paste SVG here -->
+<!-- paste SVG here -->
 
 
         <svg width="839px" height="1763px" viewBox="0 0 839 1763" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -54,69 +11,69 @@
                     <g id="all" transform="translate(418.500000, 881.000000) scale(-1, 1) translate(-418.500000, -881.000000) translate(-0.000000, 0.000000)">
                         <g class="gv-level" id="level-0" transform="translate(146.000000, 1680.000000)">
                             <g id="Rectangle-2-Copy-67" transform="translate(180.000000, 0.000000)">
-                                <g id="path-31-link" >
+                                <g id="path-31-link" fill="#333333">
                                     <rect id="path-31" x="0" y="0" width="70" height="80"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="69" height="79"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-68" transform="translate(295.000000, 0.000000)">
-                                <g id="path-32-link" >
+                                <g id="path-32-link" fill="#333333">
                                     <rect id="path-32" x="0" y="0" width="70" height="80"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="69" height="79"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-69" transform="translate(254.000000, 0.000000)">
-                                <g id="path-33-link" >
+                                <g id="path-33-link" fill="#333333">
                                     <rect id="path-33" x="0" y="0" width="37" height="80"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="36" height="79"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-66" transform="translate(369.000000, 0.000000)">
-                                <g id="path-58-link" >
+                                <g id="path-58-link" fill="#333333">
                                     <rect id="path-58" x="0" y="0" width="185" height="80"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="79"></rect>
                             </g>
                             <g id="Rectangle-3-Copy" transform="translate(0.000000, 25.000000)">
-                                <g id="path-69-link" >
+                                <g id="path-69-link" fill="#333333">
                                     <rect id="path-69" x="0" y="0" width="30" height="55"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="29" height="54"></rect>
                             </g>
                         </g>
                         <g class="gv-level" id="level-1" transform="translate(326.000000, 1596.000000)">
-                            <g id="path-35-link" >
+                            <g id="path-35-link" fill="#333333">
                                 <rect id="path-35" x="0" y="0" width="374" height="80"></rect>
                             </g>
                             <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="373" height="79"></rect>
                         </g>
                         <g class="gv-level" id="level-2" transform="translate(326.000000, 1492.000000)">
-                            <g id="path-34-link" >
+                            <g id="path-34-link" fill="#333333">
                                 <rect id="path-34" x="0" y="0" width="374" height="100"></rect>
                             </g>
                             <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="373" height="99"></rect>
                         </g>
                         <g class="gv-level" id="level-3" transform="translate(137.000000, 1388.000000)">
                             <g id="Rectangle-2-Copy-60" transform="translate(-0.000000, -0.000000)">
-                                <g id="path-10-link" >
+                                <g id="path-10-link" fill="#333333">
                                     <rect id="path-10" x="0" y="0" width="185" height="100"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="99"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-61" transform="translate(189.000000, -0.000000)">
-                                <g id="path-30-link" >
+                                <g id="path-30-link" fill="#333333">
                                     <rect id="path-30" x="0" y="0" width="90.5" height="100"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="89.5" height="99"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-63" transform="translate(284.000000, -0.000000)">
-                                <g id="path-36-link" >
+                                <g id="path-36-link" fill="#333333">
                                     <rect id="path-36" x="0" y="0" width="90.5" height="100"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="89.5" height="99"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-62" transform="translate(378.000000, -0.000000)">
-                                <g id="path-57-link" >
+                                <g id="path-57-link" fill="#333333">
                                     <rect id="path-57" x="0" y="0" width="185" height="100"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="99"></rect>
@@ -124,19 +81,19 @@
                         </g>
                         <g class="gv-level" id="level-4" transform="translate(137.000000, 1324.000000)">
                             <g id="Rectangle-2-Copy-57" transform="translate(-0.000000, -0.000000)">
-                                <g id="path-9-link" >
+                                <g id="path-9-link" fill="#333333">
                                     <rect id="path-9" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-58" transform="translate(189.000000, -0.000000)">
-                                <g id="path-29-link" >
+                                <g id="path-29-link" fill="#333333">
                                     <rect id="path-29" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-59" transform="translate(378.000000, -0.000000)">
-                                <g id="path-56-link" >
+                                <g id="path-56-link" fill="#333333">
                                     <rect id="path-56" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
@@ -144,19 +101,19 @@
                         </g>
                         <g class="gv-level" id="level-5" transform="translate(137.000000, 1260.000000)">
                             <g id="Rectangle-2-Copy-33" transform="translate(-0.000000, -0.000000)">
-                                <g id="path-8-link" >
+                                <g id="path-8-link" fill="#333333">
                                     <rect id="path-8" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-42" transform="translate(189.000000, -0.000000)">
-                                <g id="path-28-link" >
+                                <g id="path-28-link" fill="#333333">
                                     <rect id="path-28" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-51" transform="translate(378.000000, -0.000000)">
-                                <g id="path-55-link" >
+                                <g id="path-55-link" fill="#333333">
                                     <rect id="path-55" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
@@ -164,19 +121,19 @@
                         </g>
                         <g class="gv-level" id="level-6" transform="translate(137.000000, 1196.000000)">
                             <g id="Rectangle-2-Copy-32" transform="translate(-0.000000, -0.000000)">
-                                <g id="path-6-link" >
+                                <g id="path-6-link" fill="#333333">
                                     <rect id="path-6" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-41" transform="translate(189.000000, -0.000000)">
-                                <g id="path-26-link" >
+                                <g id="path-26-link" fill="#333333">
                                     <rect id="path-26" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-50" transform="translate(378.000000, -0.000000)">
-                                <g id="path-53-link" >
+                                <g id="path-53-link" fill="#333333">
                                     <rect id="path-53" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
@@ -184,19 +141,19 @@
                         </g>
                         <g class="gv-level" id="level-7" transform="translate(137.000000, 1132.000000)">
                             <g id="Rectangle-2-Copy-31" transform="translate(-0.000000, -0.000000)">
-                                <g id="path-4-link" >
+                                <g id="path-4-link" fill="#333333">
                                     <rect id="path-4" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-40" transform="translate(189.000000, -0.000000)">
-                                <g id="path-24-link" >
+                                <g id="path-24-link" fill="#333333">
                                     <rect id="path-24" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-49" transform="translate(378.000000, -0.000000)">
-                                <g id="path-51-link" >
+                                <g id="path-51-link" fill="#333333">
                                     <rect id="path-51" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
@@ -204,19 +161,19 @@
                         </g>
                         <g class="gv-level" id="level-8" transform="translate(137.000000, 1068.000000)">
                             <g id="Rectangle-2-Copy-35" transform="translate(-0.000000, -0.000000)">
-                                <g id="path-14-link" >
+                                <g id="path-14-link" fill="#333333">
                                     <rect id="path-14" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-44" transform="translate(189.000000, -0.000000)">
-                                <g id="path-40-link" >
+                                <g id="path-40-link" fill="#333333">
                                     <rect id="path-40" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-53" transform="translate(378.000000, -0.000000)">
-                                <g id="path-62-link" >
+                                <g id="path-62-link" fill="#333333">
                                     <rect id="path-62" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
@@ -224,19 +181,19 @@
                         </g>
                         <g class="gv-level" id="level-9" transform="translate(137.000000, 1004.000000)">
                             <g id="Rectangle-2-Copy-37" transform="translate(-0.000000, -0.000000)">
-                                <g id="path-18-link" >
+                                <g id="path-18-link" fill="#333333">
                                     <rect id="path-18" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-46" transform="translate(189.000000, -0.000000)">
-                                <g id="path-44-link" >
+                                <g id="path-44-link" fill="#333333">
                                     <rect id="path-44" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-55" transform="translate(378.000000, -0.000000)">
-                                <g id="path-66-link" >
+                                <g id="path-66-link" fill="#333333">
                                     <rect id="path-66" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
@@ -244,19 +201,19 @@
                         </g>
                         <g class="gv-level" id="level-10" transform="translate(137.000000, 940.000000)">
                             <g id="Rectangle-2-Copy-38" transform="translate(-0.000000, -0.000000)">
-                                <g id="path-20-link" >
+                                <g id="path-20-link" fill="#333333">
                                     <rect id="path-20" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-47" transform="translate(189.000000, -0.000000)">
-                                <g id="path-47-link" >
+                                <g id="path-47-link" fill="#333333">
                                     <rect id="path-47" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-56" transform="translate(378.000000, -0.000000)">
-                                <g id="path-68-link" >
+                                <g id="path-68-link" fill="#333333">
                                     <rect id="path-68" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
@@ -264,19 +221,19 @@
                         </g>
                         <g class="gv-level" id="level-11" transform="translate(137.000000, 876.000000)">
                             <g id="Rectangle-2-Copy-30" transform="translate(-0.000000, 0.000000)">
-                                <g id="path-2-link" >
+                                <g id="path-2-link" fill="#333333">
                                     <rect id="path-2" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-39" transform="translate(189.000000, 0.000000)">
-                                <g id="path-22-link" >
+                                <g id="path-22-link" fill="#333333">
                                     <rect id="path-22" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-48" transform="translate(378.000000, 0.000000)">
-                                <g id="path-49-link" >
+                                <g id="path-49-link" fill="#333333">
                                     <rect id="path-49" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
@@ -284,19 +241,19 @@
                         </g>
                         <g class="gv-level" id="level-12" transform="translate(137.000000, 812.000000)">
                             <g id="Rectangle-2-Copy-34" transform="translate(-0.000000, 0.000000)">
-                                <g id="path-12-link" >
+                                <g id="path-12-link" fill="#333333">
                                     <rect id="path-12" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-43" transform="translate(189.000000, 0.000000)">
-                                <g id="path-38-link" >
+                                <g id="path-38-link" fill="#333333">
                                     <rect id="path-38" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-52" transform="translate(378.000000, 0.000000)">
-                                <g id="path-60-link" >
+                                <g id="path-60-link" fill="#333333">
                                     <rect id="path-60" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
@@ -304,19 +261,19 @@
                         </g>
                         <g class="gv-level" id="level-13" transform="translate(137.000000, 748.000000)">
                             <g id="Rectangle-2-Copy-36" transform="translate(-0.000000, 0.000000)">
-                                <g id="path-16-link" >
+                                <g id="path-16-link" fill="#333333">
                                     <rect id="path-16" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-45" transform="translate(189.000000, 0.000000)">
-                                <g id="path-42-link" >
+                                <g id="path-42-link" fill="#333333">
                                     <rect id="path-42" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-54" transform="translate(378.000000, 0.000000)">
-                                <g id="path-64-link" >
+                                <g id="path-64-link" fill="#333333">
                                     <rect id="path-64" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
@@ -324,19 +281,19 @@
                         </g>
                         <g class="gv-level" id="level-14" transform="translate(137.000000, 684.000000)">
                             <g id="Rectangle-2-Copy-27" transform="translate(-0.000000, 0.000000)">
-                                <g id="path-7-link" >
+                                <g id="path-7-link" fill="#333333">
                                     <rect id="path-7" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-28" transform="translate(189.000000, 0.000000)">
-                                <g id="path-27-link" >
+                                <g id="path-27-link" fill="#333333">
                                     <rect id="path-27" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-29" transform="translate(378.000000, 0.000000)">
-                                <g id="path-54-link" >
+                                <g id="path-54-link" fill="#333333">
                                     <rect id="path-54" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
@@ -344,19 +301,19 @@
                         </g>
                         <g class="gv-level" id="level-15" transform="translate(137.000000, 620.000000)">
                             <g id="Rectangle-2-Copy-24" transform="translate(-0.000000, 0.000000)">
-                                <g id="path-5-link" >
+                                <g id="path-5-link" fill="#333333">
                                     <rect id="path-5" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-25" transform="translate(189.000000, 0.000000)">
-                                <g id="path-25-link" >
+                                <g id="path-25-link" fill="#333333">
                                     <rect id="path-25" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-26" transform="translate(378.000000, 0.000000)">
-                                <g id="path-52-link" >
+                                <g id="path-52-link" fill="#333333">
                                     <rect id="path-52" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
@@ -364,19 +321,19 @@
                         </g>
                         <g class="gv-level" id="level-16" transform="translate(137.000000, 556.000000)">
                             <g id="Rectangle-2-Copy-12" transform="translate(-0.000000, 0.000000)">
-                                <g id="path-3-link" >
+                                <g id="path-3-link" fill="#333333">
                                     <rect id="path-3" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-16" transform="translate(189.000000, 0.000000)">
-                                <g id="path-23-link" >
+                                <g id="path-23-link" fill="#333333">
                                     <rect id="path-23" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-20" transform="translate(378.000000, 0.000000)">
-                                <g id="path-50-link" >
+                                <g id="path-50-link" fill="#333333">
                                     <rect id="path-50" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
@@ -384,19 +341,19 @@
                         </g>
                         <g class="gv-level" id="level-17" transform="translate(137.000000, 492.000000)">
                             <g id="Rectangle-2-Copy-13" transform="translate(-0.000000, 0.000000)">
-                                <g id="path-13-link" >
+                                <g id="path-13-link" fill="#333333">
                                     <rect id="path-13" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-17" transform="translate(189.000000, 0.000000)">
-                                <g id="path-39-link" >
+                                <g id="path-39-link" fill="#333333">
                                     <rect id="path-39" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-21" transform="translate(378.000000, 0.000000)">
-                                <g id="path-61-link" >
+                                <g id="path-61-link" fill="#333333">
                                     <rect id="path-61" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
@@ -404,19 +361,19 @@
                         </g>
                         <g class="gv-level" id="level-18" transform="translate(137.000000, 428.000000)">
                             <g id="Rectangle-2-Copy-14" transform="translate(-0.000000, 0.000000)">
-                                <g id="path-17-link" >
+                                <g id="path-17-link" fill="#333333">
                                     <rect id="path-17" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-18" transform="translate(189.000000, 0.000000)">
-                                <g id="path-43-link" >
+                                <g id="path-43-link" fill="#333333">
                                     <rect id="path-43" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-22" transform="translate(378.000000, 0.000000)">
-                                <g id="path-65-link" >
+                                <g id="path-65-link" fill="#333333">
                                     <rect id="path-65" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
@@ -424,19 +381,19 @@
                         </g>
                         <g class="gv-level" id="level-19" transform="translate(137.000000, 364.000000)">
                             <g id="Rectangle-2-Copy-15" transform="translate(-0.000000, 0.000000)">
-                                <g id="path-19-link" >
+                                <g id="path-19-link" fill="#333333">
                                     <rect id="path-19" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-19" transform="translate(189.000000, 0.000000)">
-                                <g id="path-46-link" >
+                                <g id="path-46-link" fill="#333333">
                                     <rect id="path-46" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-23" transform="translate(378.000000, 0.000000)">
-                                <g id="path-67-link" >
+                                <g id="path-67-link" fill="#333333">
                                     <rect id="path-67" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
@@ -444,19 +401,19 @@
                         </g>
                         <g class="gv-level" id="level-20" transform="translate(137.000000, 300.000000)">
                             <g id="Rectangle-2" transform="translate(-0.000000, 0.000000)">
-                                <g id="path-1-link" >
+                                <g id="path-1-link" fill="#333333">
                                     <rect id="path-1" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy" transform="translate(189.000000, 0.000000)">
-                                <g id="path-21-link" >
+                                <g id="path-21-link" fill="#333333">
                                     <rect id="path-21" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-2" transform="translate(378.000000, 0.000000)">
-                                <g id="path-48-link" >
+                                <g id="path-48-link" fill="#333333">
                                     <rect id="path-48" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
@@ -464,19 +421,19 @@
                         </g>
                         <g class="gv-level" id="level-21" transform="translate(137.000000, 236.000000)">
                             <g id="Rectangle-2-Copy-3" transform="translate(-0.000000, 0.000000)">
-                                <g id="path-11-link" >
+                                <g id="path-11-link" fill="#333333">
                                     <rect id="path-11" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-4" transform="translate(189.000000, 0.000000)">
-                                <g id="path-37-link" >
+                                <g id="path-37-link" fill="#333333">
                                     <rect id="path-37" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-5" transform="translate(378.000000, 0.000000)">
-                                <g id="path-59-link" >
+                                <g id="path-59-link" fill="#333333">
                                     <rect id="path-59" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
@@ -484,19 +441,19 @@
                         </g>
                         <g class="gv-level" id="level-22" transform="translate(137.000000, 172.000000)">
                             <g id="Rectangle-2-Copy-6" transform="translate(-0.000000, 0.000000)">
-                                <g id="path-15-link" >
+                                <g id="path-15-link" fill="#333333">
                                     <rect id="path-15" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-7" transform="translate(189.000000, 0.000000)">
-                                <g id="path-41-link" >
+                                <g id="path-41-link" fill="#333333">
                                     <rect id="path-41" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-8" transform="translate(378.000000, 0.000000)">
-                                <g id="path-63-link" >
+                                <g id="path-63-link" fill="#333333">
                                     <rect id="path-63" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
@@ -504,19 +461,19 @@
                         </g>
                         <g class="gv-level" id="level-23" transform="translate(137.000000, 108.000000)">
                             <g id="Rectangle-2-Copy-10" transform="translate(189.000000, 0.000000)">
-                                <g id="path-45-link" >
+                                <g id="path-45-link" fill="#333333">
                                     <rect id="path-45" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-11" transform="translate(378.000000, 0.000000)">
-                                <g id="path-105-link" >
+                                <g id="path-105-link" fill="#333333">
                                     <rect id="path-105" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
                             </g>
                             <g id="Rectangle-2-Copy-9" transform="translate(-0.000000, 0.000000)">
-                                <g id="path-109-link" >
+                                <g id="path-109-link" fill="#333333">
                                     <rect id="path-109" x="0" y="0" width="185" height="60"></rect>
                                 </g>
                                 <rect id="Rectangle-path" stroke="#979797" x="0.5" y="0.5" width="184" height="59"></rect>
@@ -573,211 +530,211 @@
                             <rect id="Rectangle-10-Copy-37" stroke="#979797" x="699.5" y="1258.5" width="11" height="64"></rect>
                             <rect id="Rectangle-10-Copy-39" stroke="#979797" x="699.5" y="1322.5" width="11" height="64"></rect>
                             <g id="Rectangle-9-Copy-2" transform="translate(134.000000, 222.000000)">
-                                <g id="path-70-link" >
+                                <g id="path-70-link" fill="#333333">
                                     <polyline id="path-70" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-20" transform="translate(134.000000, 798.000000)">
-                                <g id="path-71-link" >
+                                <g id="path-71-link" fill="#333333">
                                     <polyline id="path-71" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-3" transform="translate(134.000000, 286.000000)">
-                                <g id="path-72-link" >
+                                <g id="path-72-link" fill="#333333">
                                     <polyline id="path-72" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-21" transform="translate(134.000000, 862.000000)">
-                                <g id="path-73-link" >
+                                <g id="path-73-link" fill="#333333">
                                     <polyline id="path-73" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-4" transform="translate(134.000000, 350.000000)">
-                                <g id="path-74-link" >
+                                <g id="path-74-link" fill="#333333">
                                     <polyline id="path-74" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-22" transform="translate(134.000000, 926.000000)">
-                                <g id="path-75-link" >
+                                <g id="path-75-link" fill="#333333">
                                     <polyline id="path-75" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-5" transform="translate(134.000000, 478.000000)">
-                                <g id="path-76-link" >
+                                <g id="path-76-link" fill="#333333">
                                     <polyline id="path-76" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-23" transform="translate(134.000000, 1054.000000)">
-                                <g id="path-77-link" >
+                                <g id="path-77-link" fill="#333333">
                                     <polyline id="path-77" points="6 15 0 15 0 0 6 0 6 10.00334"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-8" transform="translate(134.000000, 414.000000)">
-                                <g id="path-78-link" >
+                                <g id="path-78-link" fill="#333333">
                                     <polyline id="path-78" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-24" transform="translate(134.000000, 990.000000)">
-                                <g id="path-79-link" >
+                                <g id="path-79-link" fill="#333333">
                                     <polyline id="path-79" points="6 15 0 15 0 0 6 0 6 10.00334"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-6" transform="translate(134.000000, 542.000000)">
-                                <g id="path-80-link" >
+                                <g id="path-80-link" fill="#333333">
                                     <polyline id="path-80" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-25" transform="translate(134.000000, 1118.000000)">
-                                <g id="path-81-link" >
+                                <g id="path-81-link" fill="#333333">
                                     <polyline id="path-81" points="6 15 0 15 0 0 6 0 6 10.00334"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-7" transform="translate(134.000000, 606.000000)">
-                                <g id="path-82-link" >
+                                <g id="path-82-link" fill="#333333">
                                     <polyline id="path-82" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-26" transform="translate(134.000000, 1182.000000)">
-                                <g id="path-83-link" >
+                                <g id="path-83-link" fill="#333333">
                                     <polyline id="path-83" points="6 15 0 15 0 0 6 0 6 10.00334"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-18" transform="translate(134.000000, 670.000000)">
-                                <g id="path-84-link" >
+                                <g id="path-84-link" fill="#333333">
                                     <polyline id="path-84" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-27" transform="translate(134.000000, 1246.000000)">
-                                <g id="path-85-link" >
+                                <g id="path-85-link" fill="#333333">
                                     <polyline id="path-85" points="6 15 0 15 0 0 6 0 6 10.00334"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-38" transform="translate(134.000000, 1310.000000)">
-                                <g id="path-86-link" >
+                                <g id="path-86-link" fill="#333333">
                                     <polyline id="path-86" points="6 15 0 15 0 0 6 0 6 10.00334"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-9" transform="translate(700.000000, 229.500000) scale(-1, 1) translate(-700.000000, -229.500000) translate(697.000000, 222.000000)">
-                                <g id="path-87-link" >
+                                <g id="path-87-link" fill="#333333">
                                     <polyline id="path-87" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-28" transform="translate(700.000000, 805.500000) scale(-1, 1) translate(-700.000000, -805.500000) translate(697.000000, 798.000000)">
-                                <g id="path-88-link" >
+                                <g id="path-88-link" fill="#333333">
                                     <polyline id="path-88" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-10" transform="translate(700.000000, 293.500000) scale(-1, 1) translate(-700.000000, -293.500000) translate(697.000000, 286.000000)">
-                                <g id="path-89-link" >
+                                <g id="path-89-link" fill="#333333">
                                     <polyline id="path-89" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-29" transform="translate(700.000000, 869.500000) scale(-1, 1) translate(-700.000000, -869.500000) translate(697.000000, 862.000000)">
-                                <g id="path-90-link" >
+                                <g id="path-90-link" fill="#333333">
                                     <polyline id="path-90" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-11" transform="translate(700.000000, 357.500000) scale(-1, 1) translate(-700.000000, -357.500000) translate(697.000000, 350.000000)">
-                                <g id="path-91-link" >
+                                <g id="path-91-link" fill="#333333">
                                     <polyline id="path-91" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-30" transform="translate(700.000000, 933.500000) scale(-1, 1) translate(-700.000000, -933.500000) translate(697.000000, 926.000000)">
-                                <g id="path-92-link" >
+                                <g id="path-92-link" fill="#333333">
                                     <polyline id="path-92" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-12" transform="translate(700.000000, 421.500000) scale(-1, 1) translate(-700.000000, -421.500000) translate(697.000000, 414.000000)">
-                                <g id="path-93-link" >
+                                <g id="path-93-link" fill="#333333">
                                     <polyline id="path-93" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-31" transform="translate(700.000000, 997.500000) scale(-1, 1) translate(-700.000000, -997.500000) translate(697.000000, 990.000000)">
-                                <g id="path-94-link" >
+                                <g id="path-94-link" fill="#333333">
                                     <polyline id="path-94" points="6 15 0 15 0 0 6 0 6 10.00334"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-13" transform="translate(700.000000, 485.500000) scale(-1, 1) translate(-700.000000, -485.500000) translate(697.000000, 478.000000)">
-                                <g id="path-95-link" >
+                                <g id="path-95-link" fill="#333333">
                                     <polyline id="path-95" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-32" transform="translate(700.000000, 1061.500000) scale(-1, 1) translate(-700.000000, -1061.500000) translate(697.000000, 1054.000000)">
-                                <g id="path-96-link" >
+                                <g id="path-96-link" fill="#333333">
                                     <polyline id="path-96" points="6 15 0 15 0 0 6 0 6 10.00334"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-14" transform="translate(700.000000, 549.500000) scale(-1, 1) translate(-700.000000, -549.500000) translate(697.000000, 542.000000)">
-                                <g id="path-97-link" >
+                                <g id="path-97-link" fill="#333333">
                                     <polyline id="path-97" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-33" transform="translate(700.000000, 1125.500000) scale(-1, 1) translate(-700.000000, -1125.500000) translate(697.000000, 1118.000000)">
-                                <g id="path-98-link" >
+                                <g id="path-98-link" fill="#333333">
                                     <polyline id="path-98" points="6 15 0 15 0 0 6 0 6 10.00334"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-15" transform="translate(700.000000, 613.500000) scale(-1, 1) translate(-700.000000, -613.500000) translate(697.000000, 606.000000)">
-                                <g id="path-99-link" >
+                                <g id="path-99-link" fill="#333333">
                                     <polyline id="path-99" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-34" transform="translate(700.000000, 1189.500000) scale(-1, 1) translate(-700.000000, -1189.500000) translate(697.000000, 1182.000000)">
-                                <g id="path-100-link" >
+                                <g id="path-100-link" fill="#333333">
                                     <polyline id="path-100" points="6 15 0 15 0 0 6 0 6 10.00334"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-19" transform="translate(700.000000, 677.500000) scale(-1, 1) translate(-700.000000, -677.500000) translate(697.000000, 670.000000)">
-                                <g id="path-101-link" >
+                                <g id="path-101-link" fill="#333333">
                                     <polyline id="path-101" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-35" transform="translate(700.000000, 1253.500000) scale(-1, 1) translate(-700.000000, -1253.500000) translate(697.000000, 1246.000000)">
-                                <g id="path-102-link" >
+                                <g id="path-102-link" fill="#333333">
                                     <polyline id="path-102" points="6 15 0 15 0 0 6 0 6 10.00334"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-39" transform="translate(700.000000, 1317.500000) scale(-1, 1) translate(-700.000000, -1317.500000) translate(697.000000, 1310.000000)">
-                                <g id="path-103-link" >
+                                <g id="path-103-link" fill="#333333">
                                     <polyline id="path-103" points="6 15 0 15 0 0 6 0 6 10.00334"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-41" transform="translate(700.000000, 1381.500000) scale(-1, 1) translate(-700.000000, -1381.500000) translate(697.000000, 1374.000000)">
-                                <g id="path-104-link" >
+                                <g id="path-104-link" fill="#333333">
                                     <polyline id="path-104" points="6 15 0 15 0 0 6 0 6 10.00334"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
@@ -791,37 +748,37 @@
                             <polygon id="Rectangle-12" stroke="#979797" stroke-width="2" points="132.270431 71 126.15612 113 139 113 139 71"></polygon>
                             <polygon id="Rectangle-12-Copy" stroke="#979797" stroke-width="2" transform="translate(704.421940, 92.000000) scale(-1, 1) translate(-704.421940, -92.000000) " points="704.114311 71 698 113 710.84388 113 710.84388 71"></polygon>
                             <g id="Rectangle-9-Copy" transform="translate(700.000000, 165.500000) scale(-1, 1) translate(-700.000000, -165.500000) translate(697.000000, 158.000000)">
-                                <g id="path-106-link" >
+                                <g id="path-106-link" fill="#333333">
                                     <polyline id="path-106" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-36" transform="translate(700.000000, 741.500000) scale(-1, 1) translate(-700.000000, -741.500000) translate(697.000000, 734.000000)">
-                                <g id="path-107-link" >
+                                <g id="path-107-link" fill="#333333">
                                     <polyline id="path-107" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-17" transform="translate(700.000000, 101.500000) scale(-1, 1) translate(-700.000000, -101.500000) translate(697.000000, 94.000000)">
-                                <g id="path-108-link" >
+                                <g id="path-108-link" fill="#333333">
                                     <polyline id="path-108" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9" transform="translate(134.000000, 94.000000)">
-                                <g id="path-110-link" >
+                                <g id="path-110-link" fill="#333333">
                                     <polyline id="path-110" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-16" transform="translate(134.000000, 158.000000)">
-                                <g id="path-111-link" >
+                                <g id="path-111-link" fill="#333333">
                                     <polyline id="path-111" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
                             </g>
                             <g id="Rectangle-9-Copy-37" transform="translate(134.000000, 734.000000)">
-                                <g id="path-112-link" >
+                                <g id="path-112-link" fill="#333333">
                                     <polyline id="path-112" points="6 15 0 15 0 0 6 0 6 10.003342"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
@@ -834,7 +791,7 @@
                             <circle id="Oval-6-Copy-3" stroke="#979797" cx="671.5" cy="84.5" r="6.5"></circle>
                             <rect id="Rectangle-10-Copy-41" stroke="#979797" x="126.5" y="1386.5" width="11" height="97"></rect>
                             <g id="Rectangle-9-Copy-40" transform="translate(134.000000, 1374.000000)">
-                                <g id="path-113-link" >
+                                <g id="path-113-link" fill="#333333">
                                     <polyline id="path-113" points="6 15 0 15 0 0 6 0 6 10.00334"></polyline>
                                 </g>
                                 <polygon id="Shape" stroke="#979797" points="5.5 14.5 5.5 0.5 0.5 0.5 0.5 14.5"></polygon>
@@ -884,20 +841,3 @@
         
       
         <!-- End SVG -->
-
-                    
-
-
-
-
-                </div>
-                <!-- close gv-tower-graphic -->
-
-            </div>
-            <!-- close gv-infographic-pane -->
-
-    </div>  <!-- close container -->
-
-</div> <!-- close wrapper -->
-
-<div class='gv-right-view'>rightRender</div>
