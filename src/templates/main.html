@@ -10,28 +10,37 @@
 
         <div id="gv-tower-graphic-intro">
                 <div class="gv-tower-graphic-intro-inner">
-                <h1>Grenfell Tower</h1>
-                <h2>All the victims of the Grenfell Tower fire</h2>
-                <p>Intro text here ...</p>
-                
+                {{#each IntroOutro}}​
+                <h1>{{Intro_title}}</h1>
+                <h2>{{Intro_subtitle}}</h2>
+                <p>{{Intro_paragraph}}</p>
+                {{/each}}
                 <div class="gv-continue-button">Continue</div>
     
                 </div>                            
         </div>
 
         <div id="gv-tower-graphic-info-box" class="gv-tower-graphic-info-box">
-
-            <div class="gv-tower-graphic-info-box-inner">
-
-                <h2 class="gv-tower-graphic-info-heading"><span>Heading</span> rest of heading here</h2>
-                <h3 class="gv-tower-graphic-info-subheading">Subheading</h3>
+                {{#each Floors}}​    
+            <div id="gv-tower-graphic-info-box-inner_{{Level_index}}" class="gv-tower-graphic-info-box-inner">
+                <h2 class="gv-tower-graphic-info-heading"><span>{{Floor}}</span> {{Victims_status}}</h2>
+                <h3 class="gv-tower-graphic-info-subheading">{{Time_standfirst}}</h3>
                 <div class="gv-tower-graphic-portrait-thumbs">
                     <div class="gv-portrait-thumb"></div>
                     <div class="gv-portrait-thumb"></div>
                     <div class="gv-portrait-thumb"></div>
                 </div>
-                <p class="gv-tower-graphic-info-description">Description here</p>
+                <p class="gv-tower-graphic-info-description">{{Summary}}</p>
             </div>
+            {{/each}}
+        </div>
+
+        <div id="gv-tower-graphic-info-pointer" class="gv-tower-graphic-info-pointer">
+            {{#each Floors}}​
+            <div id="gv-tower-graphic-info-pointer-inner_{{Level_index}}" class="gv-tower-graphic-info-pointer-inner" data-pointtolevel="{{Pointer_level_index}}">
+                <p class="gv-tower-graphic-info-pointer-text">{{Pointer_text}}</p>
+            </div>
+            {{/each}}
         </div>
 
     </div>

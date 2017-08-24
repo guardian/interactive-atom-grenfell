@@ -83,6 +83,7 @@ $background-grey: #333333;
     color: $mid-grey;
     z-index: 999;
     font-family: 'Guardian Egyptian Web', Georgia;
+    display: none;
 
     @include mq(tablet) {
         bottom: auto;
@@ -125,6 +126,57 @@ $background-grey: #333333;
 
 }
 
+#gv-tower-graphic-info-pointer {
+    display: none; // don't display for mobile
+    position: absolute;
+
+    @include mq(tablet) {
+        display: none;
+        top: 680px; // arbitrary test value
+        left: -40px;
+        padding-left: 20px;
+        width: 100%;
+        height: auto;
+        color: $mid-grey;
+        z-index: 9999;
+        font-family: 'Guardian Sans Web', Arial;
+        border-top: 1px solid $accent-yellow;
+        vertical-align: top;
+
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin-left: -12px;
+            margin-top: -7px;
+            display: block;
+            content: "";
+            width: 11px;
+            height: 11px;
+            border: 1px solid $accent-yellow;
+            border-radius: 50%;
+        }
+    }
+
+    .gv-tower-graphic-info-pointer-inner {
+        margin-top: -10px;
+        padding: 0 20px 0 40px;
+        vertical-align: top;
+    }
+
+    // .gv-tower-graphic-intro-inner {
+    //     padding: 10px 20px;
+    // }
+
+    p {
+        padding: 0;
+        margin: 0;
+        font-size: 18px;
+        display: block;
+    }
+
+}
+
 
 
 #gv-tower-graphic-info-box {
@@ -147,6 +199,11 @@ $background-grey: #333333;
 
     .gv-tower-graphic-info-box-inner {
         padding: 10px 20px;
+        display: none;
+
+        &:first-of-type {
+            display: block;
+        }
     }
 
     h2 {

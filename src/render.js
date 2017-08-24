@@ -2,6 +2,13 @@ import Handlebars from 'handlebars/dist/handlebars'
 import rp from 'request-promise'
 import mainTemplate from './src/templates/main.html!text'
 
+Handlebars.registerHelper("ifvalue", function(conditional, options) {
+    if (conditional == options.hash.equals) {
+        return options.fn(this);
+    } else {
+        return options.inverse(this);
+    }
+});
 
 // export async function render() {
 
@@ -17,7 +24,10 @@ export function render() {
         var sheets = data.sheets;
         //console.log(sheets);
         //var html = Mustache.render(mainTemplate, sheets, partialTemplates);
-        var html = mainTemplate;
+
+        var hbMainTemplate = Handlebars.compile(mainTemplate);
+        var compiled = hbMainTemplate(sheets);
+        var html = compiled;
         return html;
     });
 }
