@@ -138,6 +138,10 @@ $background-grey: #333333;
     background: $background-grey;
     height: auto;
     overflow: hidden;
+
+    @include mq(tablet) {
+        width: 50%;
+    }
 }
 
 
@@ -155,9 +159,9 @@ $background-grey: #333333;
         height: auto;
 
         @include mq(tablet) {
-            width: auto;
+            width: 130%;
            margin-top: 100px;
-            margin-left: -365px;
+            margin-left: -57%;
         }
 
         // #level-8 rect {
@@ -182,8 +186,9 @@ $background-grey: #333333;
 
     @include mq(tablet) {
         position: absolute;
-        left: 360px;
-        width: 300px;
+        left: 54%;
+        width: 44%;
+        max-width: 300px;
     }
 
 }
@@ -193,11 +198,12 @@ $background-grey: #333333;
     bottom: 0;
     left: 0px;
     width: 100%;
-    height: 400px;
+    height: 380px;
     background-color: $background-grey;
     color: $mid-grey;
     z-index: 999;
     font-family: 'Guardian Egyptian Web', Georgia;
+    
 
     @include mq(tablet) {
         bottom: auto;
@@ -206,22 +212,29 @@ $background-grey: #333333;
 
     .gv-tower-graphic-intro-inner {
         padding: 10px 20px;
+        position: relative;
+        z-index: 200;
+        margin-top: -50px;
+
+        @include mq(tablet) {
+            margin-top: 0;
+        }
     }
 
     h1 {
         color: #fff;
-        font-size: 40px;
+        font-size: 32px;
         font-weight: 300;
     }
 
     h2 {
         color: $accent-yellow;
-        font-size: 24px;
+        font-size: 16px;
         font-weight: 600;
     }
 
     p {
-        font-size: 18px;
+        font-size: 16px;
         display: block;
         border-top: 1px solid $dark-grey;
     }
@@ -229,13 +242,77 @@ $background-grey: #333333;
     .gv-continue-button {
         display: inline-block;
         border-radius: 20px;
-        padding: 5px 12px 5px 12px;
+        padding: 4px 12px 4px 12px;
         border: 1px solid $accent-yellow;
         color: $accent-yellow;
         font-family: 'Guardian Sans Web', Arial;
         font-weight: 600;
-        font-size: 16px;
+        font-size: 14px;
         cursor: pointer;
+
+        span {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+           vertical-align: middle;
+           margin-left: 2px;
+
+            svg path {
+                fill: $accent-yellow;
+            }
+        }
+    }
+
+}
+
+#gv-tower-graphic-info-pointer {
+    display: none; // don't display for mobile
+    position: absolute;
+
+    @include mq(tablet) {
+        //display: none;
+        display: block;
+        top: 600px; // arbitrary test value
+        left: -40px;
+        padding-left: 20px;
+        width: 100%;
+        height: auto;
+        color: $mid-grey;
+        z-index: 9999;
+        font-family: 'Guardian Sans Web', Arial;
+        border-top: 1px solid $accent-yellow;
+        vertical-align: top;
+
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin-left: -12px;
+            margin-top: -7px;
+            display: block;
+            content: "";
+            width: 11px;
+            height: 11px;
+            border: 1px solid $accent-yellow;
+            border-radius: 50%;
+        }
+    }
+
+    .gv-tower-graphic-info-pointer-inner {
+        margin-top: -10px;
+        padding: 0 20px 0 40px;
+        vertical-align: top;
+    }
+
+    // .gv-tower-graphic-intro-inner {
+    //     padding: 10px 20px;
+    // }
+
+    p {
+        padding: 0;
+        margin: 0;
+        font-size: 14px;
+        display: block;
     }
 
 }
@@ -247,7 +324,7 @@ $background-grey: #333333;
     bottom: 0;
     left: 0px;
     width: 100%;
-    height: 300px;
+    height: 330px;
     background-color: $background-grey;
     color: $mid-grey;
     z-index: 100;
@@ -260,14 +337,39 @@ $background-grey: #333333;
     }
 
     .gv-tower-graphic-info-box-inner {
+        position: relative;
+        z-index: 200;
         padding: 10px 20px;
+        //display: none;
+        display:block;
+        margin-top: -40px; // So overlaps gradient fade
+
+        &:first-of-type {
+            display: block;
+        }
+
+        @include mq(tablet) {
+            margin-top: 0; // Removes overlap on gradient fade
+        }
+    }
+
+    .gv-inline-clock-icon {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        vertical-align: top;
+        margin-top: 2px;
+
+        svg path {
+            fill: $mid-grey;
+        }
     }
 
     h2 {
         font-family: 'Guardian Sans Web', Arial;
         color: #fff;
         font-weight: 300;
-        font-size: 24px;
+        font-size: 17px;
         display: block;
         border-bottom: 1px solid $dark-grey;
         
@@ -281,14 +383,14 @@ $background-grey: #333333;
     h3 {
         font-family: 'Guardian Sans Web', Arial;
         font-weight: 300;
-        font-size: 18px;
+        font-size: 14px;
         display: block;
         border-bottom: 1px solid $dark-grey;
     }
 
     p {
         font-family: 'Guardian Sans Web', Arial;
-        font-size: 18px;
+        font-size: 14px;
         display: block;
     }
 
@@ -315,14 +417,19 @@ $background-grey: #333333;
     width: 100%;
     position: absolute;
     content:"";
-    height: 40px;
-    top: -40px;
+    height: 80px;
+    top: -80px;
+    z-index: 99;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#333333+0,333333+100&0+0,1+98 */
 
     background: -moz-linear-gradient(top, rgba(51,51,51,0) 0%, rgba(51,51,51,1) 98%, rgba(51,51,51,1) 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top, rgba(51,51,51,0) 0%,rgba(51,51,51,1) 98%,rgba(51,51,51,1) 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, rgba(51,51,51,0) 0%,rgba(51,51,51,1) 98%,rgba(51,51,51,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00333333', endColorstr='#333333',GradientType=0 ); /* IE6-*/
+
+@include mq(tablet) {
+    display: none;
+}
 
 
 }
@@ -346,6 +453,25 @@ $background-grey: #333333;
     cursor: pointer;
     border-radius: 50%;
     z-index:999;
+
+    svg {
+        position: absolute;
+        width: 70%;
+        top: 15%;
+        left: 15%;
+
+        path {
+            fill: $accent-yellow;
+        }
+    }
+
+    &.gv-button-disabled {
+        border: 1px solid $dark-grey;
+
+        svg path {
+            fill: $dark-grey;
+        }
+    }
 
 }
 
