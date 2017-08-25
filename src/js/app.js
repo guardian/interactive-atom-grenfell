@@ -8,6 +8,8 @@ import { share } from './libs/share.js';
 import mainTemplate from '../templates/mainList.html'
 import gridPicTemplate from '../templates/gridPic.html'
 import detailItemTemplate from '../templates/detailItem.html'
+import gridThumbTemplate from '../templates/thumbPic.html' 
+import thumbsTemplate from '../templates/thumbsGallery.html'
 
 var shareFn = share('Grenfell Tower','https://gu.com/p/72vvx');
 
@@ -15,22 +17,14 @@ let headerVisible = true;
 
 let globalLevel = 0;
 
-let step = 0;
 
 xr.get('https://interactive.guim.co.uk/docsdata-test/1K896qTOpgJQhG2IfGAChZ1WZjQAYn7-i869tA5cKaVU.json').then((resp) => {
-
-    var compiledHTML = compileHTML(resp.data.sheets.people);
-
+    var data = formatData(resp.data.sheets.people);
+    var compiledHTML = compileHTML(data);
     document.querySelector(".gv-right-view").innerHTML = compiledHTML;
-
     addListeners();
-
     updatePageDate();
-
-
-      //document.querySelector(".gv-tower-graphic").innerHTML = "load svg here"
-    // adjustView();
-
+    upDatePageView(data);
 });
 
 
@@ -63,7 +57,6 @@ function formatData(dataIn){
 
 
 function compileHTML(dataIn) {   
-	var data = formatData(dataIn);
 	
     Handlebars.registerHelper('html_decoder', function(text) {
           var str = unescape(text).replace(/&amp;/g, '&');
@@ -80,52 +73,82 @@ function compileHTML(dataIn) {
             compat: true
         }
     );
-
 	
-    var newHTML = content(data);
+    var newHTML = content(dataIn);
 
     return newHTML
 	
  }
 
+ function upDatePageView(data){
+   
+    data.floorSections.map((obj)=>{
+        if(!isNaN(obj.sortOn)){
+            var newThumbGallery = addThumbGallery(obj);
+            console.log( obj.sortOn-1, document.getElementById("thumbs-holder-"+(obj.sortOn-1)) )
+            document.getElementById("thumbs-holder-"+(obj.sortOn-1)).innerHTML = newThumbGallery;
+        }
+        
+        
+    })
+ }
+
+ function addThumbGallery(dataIn){
+    //console.log(dataIn);
+    Handlebars.registerPartial({
+        'gridThumb': gridThumbTemplate
+    });
+
+    var content = Handlebars.compile(
+        thumbsTemplate, {
+            compat: true
+        }
+    );
+
+    var newHTML = content(dataIn);
+
+    return newHTML
+
+ }
+
 function addListeners(){
     [].slice.apply(document.querySelectorAll('.gv-share-container button')).forEach(shareEl => {
         var network = shareEl.getAttribute('data-network');
-
         shareEl.addEventListener('click',() => shareFn(network));
     });
 
    document.querySelector('.close-overlay-btn').addEventListener('click', hideRightView);
    document.getElementById('gv-nav-up').addEventListener('click', function(){ navStep("fw")});
    document.getElementById('gv-nav-down').addEventListener('click',  function(){ navStep("bw")});
-
+   document.querySelector('.gv-continue-button').addEventListener('click', function(){ navStep("fw")});
    addScrollListeners();
+
 }
 
 
 function navStep(a){
-    if(a=="fw" && step<maxSteps){
-        step+=1;
-    }
+    let maxSteps = [].slice.apply(document.querySelectorAll('.gvInnerBOX'))[0].getAttribute("data-maxsteps");
 
-    if(a=="bw" && step>0){
-        step-=1;
-    }
+        if(a=="fw" && globalLevel<maxSteps){
+            globalLevel+=1;
+        }
 
-    let l = document.getElementById("level-"+step);
+        if(a=="bw" && globalLevel>0){
+            globalLevel-=1;
+        }
 
-   // console.log(l);
-    
+
+        updateLevelView(globalLevel);
+
 }
 
 
 function addScrollListeners(){
        document.addEventListener("scroll", function(evt) {
                 checkFixView();
-                checkLevelView();
+                checkLevelViewScroll(500);
         });
 
-       console.log(document.body.scrollTop)
 }
 
 
@@ -133,7 +156,6 @@ function addScrollListeners(){
 
 function isElementInViewport (el) {
     // https://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
-
     var rect = el.getBoundingClientRect();
 
     return (
@@ -158,35 +180,47 @@ function isElementInViewport (el) {
 // }
 
 
-function checkLevelView(){
+function checkLevelViewScroll(n){
 
-    var n = 500;
+   
 
     [].slice.apply(document.querySelectorAll('.gv-detail-text-wrapper')).forEach(el => {
-            if(isElementInViewport(el)){
-                
-                var level = Number(el.getAttribute('data-level'));
+            if(isElementInViewport(el)){                
+               var level = Number(el.getAttribute('data-level'));
+
                 if (level < n){ n = level }
-                globalLevel = n;
-              
-            }
-           
+                    globalLevel = n;
+                } 
+
     });
 
-    updateLevelView(n) 
+    globalLevel = n;
+    updateLevelView(n);
+
 }
 
 function updateLevelView(n){
+
+    if (n > 0){ 
+        document.querySelector(".gvLevelsBOXWRAPPER").classList.remove("gv-hide")  
+    }else if  (n == 0){ 
+        document.querySelector(".gvLevelsBOXWRAPPER").classList.add("gv-hide")  
+
+    }
+
+
+
     var t = document.getElementById("level-"+n);
 
-       [].slice.apply(document.querySelectorAll('.gv-level')).forEach(el => {
-           el.classList.remove("highlight")
-           
+    [].slice.apply(document.querySelectorAll('.gv-level')).forEach(el => {
+           el.classList.remove("highlight")   
     });
 
-    t.classList.add("highlight")   
+    t.classList.add("highlight");
 
-    console.log(n+", "+t.transform.baseVal.getItem(0).matrix.e + ", " + t.transform.baseVal.getItem(0).matrix.f)
+    updateInfoBox(n);
+
+    //console.log(n+", "+t.transform.baseVal.getItem(0).matrix.e + ", " + t.transform.baseVal.getItem(0).matrix.f)
 
     var y = 0 - t.transform.baseVal.getItem(0).matrix.f;
 
@@ -194,9 +228,20 @@ function updateLevelView(n){
 
 }
 
+function updateInfoBox(n){
+    //document.getElementById("gv-tower-graphic-intro").classList.add("gv-hide");
 
-function updateTowerLevel(n){
-    console.log(n)
+    [].slice.apply(document.querySelectorAll('.gvInnerBOX')).forEach(el => {
+        el.classList.add("gv-hide");
+        el.classList.remove("gv-show");
+        if (el.getAttribute("data-level")==n-1){ 
+                 el.classList.remove("gv-hide");
+                 el.classList.add("gv-show")
+             }
+        
+    });
+
+    
 }
 
 
@@ -257,7 +302,7 @@ function updatePageDate() {
     if (window.guardian.config.page.webPublicationDate) { pubDate = new Date(window.guardian.config.page.webPublicationDate) 
         var d = new Date(window.guardian.config.page.webPublicationDate)
         var n = d.getTimezoneOffset();
-        console.log(n/60)
+        
     let pubDateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' }; //, timeZone: 'UTC', timeZoneName: 'short'
 
     let dateStr = pubDate.toLocaleDateString('en-GB', pubDateOptions).split(",").join(" ").split("  ").join(" ");
