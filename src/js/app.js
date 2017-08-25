@@ -96,7 +96,6 @@ function addListeners(){
     });
 
    document.querySelector('.close-overlay-btn').addEventListener('click', hideRightView);
-
    document.getElementById('gv-nav-up').addEventListener('click', function(){ navStep("fw")});
    document.getElementById('gv-nav-down').addEventListener('click',  function(){ navStep("bw")});
 
@@ -178,7 +177,20 @@ function checkLevelView(){
 }
 
 function updateLevelView(n){
-    updateTowerLevel(n)
+    var t = document.getElementById("level-"+n);
+
+       [].slice.apply(document.querySelectorAll('.gv-level')).forEach(el => {
+           el.classList.remove("highlight")
+           
+    });
+
+    t.classList.add("highlight")   
+
+    console.log(n+", "+t.transform.baseVal.getItem(0).matrix.e + ", " + t.transform.baseVal.getItem(0).matrix.f)
+
+    var y = 0 - t.transform.baseVal.getItem(0).matrix.f;
+
+    document.getElementById("gv-tower-graphic").style = "transform:translateY("+y+"px)"
 
 }
 
