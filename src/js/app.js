@@ -15,7 +15,7 @@ var shareFn = share('Grenfell Tower','https://gu.com/p/72vvx');
 
 let headerVisible = true;
 
-let globalLevel = 0;
+let globalLevel = 23; // Index sets initial view to top of tower
 
 
 xr.get('https://interactive.guim.co.uk/docsdata-test/1K896qTOpgJQhG2IfGAChZ1WZjQAYn7-i869tA5cKaVU.json').then((resp) => {
@@ -166,6 +166,19 @@ function isElementInViewport (el) {
     );
 }
 
+function isElementFocusedInViewport (el) {
+    // https://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
+    var rect = el.getBoundingClientRect();
+
+    return (
+        rect.top >= 0 &&
+        rect.top < ((window.innerHeight / 2) || (document.documentElement.clientHeight / 2)) &&
+        rect.left >= 0 &&
+        // rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
+    );
+}
+
 // function onVisibilityChange(el, callback) {
 //     var old_visible;
 //     return function () {
@@ -182,9 +195,9 @@ function isElementInViewport (el) {
 
 function checkLevelViewScroll(n){
 
-   
+   // Below was '.gv-detail-text-wrapper'
 
-    [].slice.apply(document.querySelectorAll('.gv-detail-text-wrapper')).forEach(el => {
+    [].slice.apply(document.querySelectorAll('.gv-detail-item')).forEach(el => {
             if(isElementInViewport(el)){                
                var level = Number(el.getAttribute('data-level'));
 
@@ -194,7 +207,10 @@ function checkLevelViewScroll(n){
 
     });
 
-    globalLevel = n;
+    globalLevel = n + 1;
+
+    console.log(n);
+
     updateLevelView(n);
 
 }
@@ -208,9 +224,9 @@ function updateLevelView(n){
 
     }
 
+    var levelIndex = n + 1; // Floor index 1 more than level index
 
-
-    var t = document.getElementById("level-"+n);
+    var t = document.getElementById("level-"+levelIndex );
 
     [].slice.apply(document.querySelectorAll('.gv-level')).forEach(el => {
            el.classList.remove("highlight")   
@@ -224,7 +240,34 @@ function updateLevelView(n){
 
     var y = 0 - t.transform.baseVal.getItem(0).matrix.f;
 
-    document.getElementById("gv-tower-graphic").style = "transform:translateY("+y+"px)"
+    //var rect = t.getBoundingClientRect();
+
+    var svgWidth = "";
+
+    var svg   = document.getElementById("gv-tower-graphic-svg"); // or other selector like querySelector()
+    var rect = svg.getBoundingClientRect(); // get the bounding rectangle
+    
+    console.log( rect.width );
+
+    var scale = (rect.width / 839);
+
+    y *= scale;
+
+    //percY = y;
+
+    //svgheight = 1763;
+
+    //console.log( rect.height);
+
+    //console.log("rect");
+
+    //var rectTop = rect.top;
+    //y = -(window.pageYOffset + rectTop);
+    //document.getElementById("gv-tower-graphic").style = "margin-top:"+y+"px";
+
+    document.getElementById("gv-tower-graphic").style = "transform:translateY("+y+"px)";
+
+    //document.getElementById("gv-tower-graphic").style = "transform:translateY("+percY+"%)";
 
 }
 
