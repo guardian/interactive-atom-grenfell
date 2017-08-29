@@ -1,3 +1,22 @@
+.gv-open-overlay-btn{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: $accent-yellow;
+    border-radius: 50%;
+    margin-right: 6px;
+    background-image: url('<%= path %>/assets/arrow.svg');
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    @include mq(desktop){
+        display:none;
+    }
+
+}
+
+
 .close-overlay-btn {
     width: 44px;
     height: 44px;
@@ -5,13 +24,24 @@
     background-image: url('<%= path %>/assets/arrow.svg');
     border-radius: 9999px;
     position: fixed;
-    bottom: 90px;
+    top: calc(100% - 90px);
     left: 8px;
     background-size: 60%;
     background-repeat: no-repeat;
     background-position: center;
     transform: rotate(180deg);
-    cursor: pointer;
+    cursor: pointer;    
+    transform: translateX(100vw);
+    z-index: 1001;
+    &.open{
+        transform: translateX(0);
+        transition: transform  0.25s linear;
+    }
+    
+    &.close{
+        transform: translateX(100vw);
+        transition: transform  0.25s linear;
+    }
 }
 
 .close-overlay-btn:hover {

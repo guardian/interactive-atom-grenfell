@@ -11,9 +11,7 @@ $unselected-color: $neutral-3;
 $selected-color: $multimedia-main-2;
 $selected-color-support: $comment-main-2;
 
-@import "detailView";
-@import "uxItems";
-@import "share";
+
 
 // Uncomment for embeds
 //@import "embed";
@@ -21,37 +19,65 @@ $selected-color-support: $comment-main-2;
 // Uncomment for full screen (including immersive article main media)
 @import "fullscreen";
 
-$accent-yellow: #ffbc00;
+$accent-yellow: $multimedia-main-2;
 $mid-grey: #999999;
 $dark-grey: #505050;
 $background-grey: #333333;
+
+@import "detailView";
+@import "uxItems";
+@import "share";
 
 .element-atom,
 .interactive-atom {
     margin: 0 !important;
     background-color: $multimedia-support-4;
+    overflow: hidden;
 }
 
 
 .gv-right-view{
+    position: absolute;
+    left:30px;
+    top: 0;
 	overflow:hidden;
     background-color:#FFF;
     min-height: 100vh;
+    transform: translateX(100vw);
+    z-index: 1000;
+    &.open{
+        transform: translateX(0);
+        transition: transform  0.15s linear;
+    }
+    
+    &.close{
+        transform: translateX(100vw);
+        transition: transform  0.15s linear;
+    }
+
+
+    @include mq(desktop){
+        transform: translateX(0);
+        position:relative;
+        left:0;
+        margin-left: 50%;
+    }
 }
 
 .gv-right-wrapper{
-	height:100%; 
-	width: calc( 100% - 60px);
-	margin: 0 0 0 auto;
-	
+	height:100vh; 
+	width: calc( 100% - 60px);	
 	overflow-x: hidden;
-	padding: 30px 0 0 30px;
+    overflow-y:scroll;
     
 	@include mq(desktop){
         width: 100%;
-        margin-left: 0;
+        height:auto;
+        margin-left: auto;
+        padding: 30px 0 0 30px;
+        // margin: 0 0 0 auto; 
         &.fixed{
-           margin-left: 50%; 
+           margin-left: 0; 
         }
 		//
 	}
@@ -69,6 +95,12 @@ $background-grey: #333333;
 
 .gv-right-container{
 	height:auto;
+    width: calc(100% - 200px);
+    padding: 30px;
+    @include mq(desktop){
+        width:100%;
+        padding: 0;
+    }
 }
 
 .gv-right-standfirst{
@@ -113,9 +145,16 @@ $background-grey: #333333;
 
 .gv-tower-wrapper{
     height: 100vh;
-    width: 50%;
-    float: left;
+    width: 100%;
+    float: none;
     overflow:hidden;
+   
+
+    @include mq(desktop){
+        width: 50%;
+        float: left;
+    } 
+
     &.fixed{
         position:fixed;
         top:0;
@@ -125,6 +164,7 @@ $background-grey: #333333;
 
 .gv-tower-wrapper{
     height: auto;
+    z-index: 1;
 }
 
 
@@ -180,6 +220,7 @@ $background-grey: #333333;
     height: 100vh;
     //left: 360px;
     //width: 300px;
+        z-index: 1000;
 
     @include mq(tablet) {
         position: absolute;
@@ -338,12 +379,11 @@ $background-grey: #333333;
 
     .gv-tower-graphic-info-box-inner {
         position: relative;
-        z-index: 200;
-        padding: 10px 20px;
+        padding: 10px;
   
         display:block;
         margin-top: -40px; // So overlaps gradient fade
-
+         background-color: $background-grey;
         &:first-of-type {
            // display: block;
         }
@@ -352,6 +392,7 @@ $background-grey: #333333;
 
         @include mq(tablet) {
             margin-top: 0; // Removes overlap on gradient fade
+            padding: 10px 20px;
         }
     }
 
@@ -440,7 +481,7 @@ $background-grey: #333333;
 .gv-navs {
     position: absolute;
     bottom: 60px;
-    z-index:500;
+    z-index:100000;
 
     @include mq(tablet) {
         bottom: auto;

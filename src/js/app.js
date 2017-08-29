@@ -85,16 +85,37 @@ function compileHTML(dataIn) {
     data.floorSections.map((obj)=>{
         if(!isNaN(obj.sortOn)){
             var newThumbGallery = addThumbGallery(obj);
-            console.log( obj.sortOn-1, document.getElementById("thumbs-holder-"+(obj.sortOn-1)) )
+           // console.log( obj.sortOn-1, document.getElementById("thumbs-holder-"+(obj.sortOn-1)) )
             document.getElementById("thumbs-holder-"+(obj.sortOn-1)).innerHTML = newThumbGallery;
+
+            //console.log(document.querySelectorAll('.gv-open-overlay-btn'));
         }
-        
-        
     })
- }
+
+
+    document.querySelectorAll('.gv-open-overlay-btn').forEach(btnEl => {
+        btnEl.addEventListener('click',function(){ openRightView(btnEl.getAttribute('data-level')) });
+        // var level = btnEl.getAttribute('data-level');
+        // btnEl.addEventListener('click',() => levelFn(level));
+    });
+
+   
+    // [].slice.apply(document.querySelectorAll('.gv-open-overlay-btn')).forEach(shareEl => {
+    //     console.log(btn)
+    // });
+
+   
+}
+
+function levelFn(n){
+    globalLevel = n;
+    console.log(globalLevel,"---",n)
+    //updateLevelView(globalLevel)
+}
+
 
  function addThumbGallery(dataIn){
-    //console.log(dataIn);
+
     Handlebars.registerPartial({
         'gridThumb': gridThumbTemplate
     });
@@ -116,17 +137,19 @@ function addListeners(){
         var network = shareEl.getAttribute('data-network');
         shareEl.addEventListener('click',() => shareFn(network));
     });
-
+   
    document.querySelector('.close-overlay-btn').addEventListener('click', hideRightView);
    document.getElementById('gv-nav-up').addEventListener('click', function(){ navStep("fw")});
    document.getElementById('gv-nav-down').addEventListener('click',  function(){ navStep("bw")});
    document.querySelector('.gv-continue-button').addEventListener('click', function(){ navStep("fw")});
+
    addScrollListeners();
 
 }
 
 
 function navStep(a){
+
     let maxSteps = [].slice.apply(document.querySelectorAll('.gvInnerBOX'))[0].getAttribute("data-maxsteps");
 
         if(a=="fw" && globalLevel<maxSteps){
@@ -137,8 +160,7 @@ function navStep(a){
             globalLevel-=1;
         }
 
-
-        updateLevelView(globalLevel);
+    updateLevelView(globalLevel);
 
 }
 
@@ -146,7 +168,7 @@ function navStep(a){
 function addScrollListeners(){
        document.addEventListener("scroll", function(evt) {
                 checkFixView();
-                checkLevelViewScroll(500);
+                checkLevelViewScroll(500); // add this val for scroll
         });
 
 }
@@ -182,7 +204,6 @@ function isElementInViewport (el) {
 
 function checkLevelViewScroll(n){
 
-   
 
     [].slice.apply(document.querySelectorAll('.gv-detail-text-wrapper')).forEach(el => {
             if(isElementInViewport(el)){                
@@ -191,24 +212,23 @@ function checkLevelViewScroll(n){
                 if (level < n){ n = level }
                     globalLevel = n;
                 } 
-
+               
     });
 
+
     globalLevel = n;
-    updateLevelView(n);
+    updateLevelView(globalLevel);
 
 }
 
 function updateLevelView(n){
-
+ 
     if (n > 0){ 
         document.querySelector(".gvLevelsBOXWRAPPER").classList.remove("gv-hide")  
     }else if  (n == 0){ 
         document.querySelector(".gvLevelsBOXWRAPPER").classList.add("gv-hide")  
 
     }
-
-
 
     var t = document.getElementById("level-"+n);
 
@@ -224,24 +244,32 @@ function updateLevelView(n){
 
     var y = 0 - t.transform.baseVal.getItem(0).matrix.f;
 
-    document.getElementById("gv-tower-graphic").style = "transform:translateY("+y+"px)"
+    document.getElementById("gv-tower-graphic").style = "transform:translateY("+y+"px)";
+
+    
 
 }
 
+function openOverlay(el){
+    //console.log(el.getAttribute("data-level"))
+}
+
 function updateInfoBox(n){
-    //document.getElementById("gv-tower-graphic-intro").classList.add("gv-hide");
+
+    document.getElementById("gv-tower-graphic-intro").classList.add("gv-hide");
 
     [].slice.apply(document.querySelectorAll('.gvInnerBOX')).forEach(el => {
         el.classList.add("gv-hide");
         el.classList.remove("gv-show");
         if (el.getAttribute("data-level")==n-1){ 
                  el.classList.remove("gv-hide");
-                 el.classList.add("gv-show")
-             }
+                 el.classList.add("gv-show");
+                 
+                 
+        }
         
     });
 
-    
 }
 
 
@@ -270,8 +298,18 @@ function isScrolledIntoView(el) {
 
 
 function hideRightView(){
-    document.querySelector('.gv-right-wrapper').classList.remove('open');
-    document.querySelector('.gv-right-wrapper').classList.add('close');
+    document.querySelector('.gv-right-view').classList.remove('open');
+    document.querySelector('.gv-right-view').classList.add('close');
+    document.querySelector('.close-overlay-btn').classList.remove('open');
+    document.querySelector('.close-overlay-btn').classList.add('close');
+}
+
+function openRightView(n){
+    console.log(n)
+    document.querySelector('.gv-right-view').classList.remove('close');
+    document.querySelector('.gv-right-view').classList.add('open');
+    document.querySelector('.close-overlay-btn').classList.remove('close');
+    document.querySelector('.close-overlay-btn').classList.add('open');
 }
 
 function sortByKeys(obj) {
