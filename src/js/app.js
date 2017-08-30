@@ -138,10 +138,11 @@ function addListeners() {
         shareEl.addEventListener('click', () => shareFn(network));
     });
 
-    document.querySelector('.close-overlay-btn').addEventListener('click', hideRightView);
+    document.querySelector('.close-overlay-btn').addEventListener('click', hideRightView);  
+    document.querySelector('.gv-continue-button').addEventListener('click', function() { navStep("fw") });
+
     document.getElementById('gv-nav-up').addEventListener('click', function() { navStep("fw") });
     document.getElementById('gv-nav-down').addEventListener('click', function() { navStep("bw") });
-    document.querySelector('.gv-continue-button').addEventListener('click', function() { navStep("fw") });
 
     addScrollListeners();
 
@@ -151,7 +152,8 @@ function addListeners() {
 function navStep(a) {
 
     let maxSteps = [].slice.apply(document.querySelectorAll('.gvInnerBOX'))[0].getAttribute("data-maxsteps");
-
+    maxSteps = Number(maxSteps);
+ 
     if (a == "fw" && globalLevel < maxSteps) {
         globalLevel += 1;
     }
@@ -159,6 +161,24 @@ function navStep(a) {
     if (a == "bw" && globalLevel > 0) {
         globalLevel -= 1;
     }
+
+    if(globalLevel == 0){
+        document.getElementById('gv-nav-down').classList.add("disabled");
+    } else {
+        document.getElementById('gv-nav-down').classList.remove("disabled");
+    }
+
+    if(globalLevel == maxSteps-1){
+        document.getElementById('gv-nav-up').classList.add("disabled");
+    } else {
+        document.getElementById('gv-nav-up').classList.remove("disabled");
+    }
+
+
+    updateScrollView(globalLevel);
+
+
+    //disabled
 
     updateLevelView(globalLevel);
 
@@ -228,10 +248,32 @@ function checkLevelViewScroll(n) {
     });
 
     globalLevel = n + 1;
-
+    
+    
     updateLevelView(n);
 
 
+}
+
+function updateScrollView(n){
+
+    if(document.getElementById("section-bullet-"+n)){
+        let topEl = document.getElementById("section-bullet-"+n);
+        let topPos = topEl.offsetTop;
+        let standyH = document.querySelector('.gv-right-standfirst').offsetHeight;
+        document.getElementById('right-wrap').scrollTop = topPos + standyH;
+    }
+
+    console.log(n)
+
+    // [].slice.apply(document.querySelectorAll('.gv-section-bullet-wrapper')).forEach(el => {
+        
+    //         console.log(el.getAttribute("section-ref"));
+        
+    // });
+
+
+    
 }
 
 function updateLevelView(n) {

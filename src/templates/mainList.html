@@ -1,5 +1,5 @@
 
-      <div class="gv-right-wrapper">    
+      <div class="gv-right-wrapper" id="right-wrap">    
       <div class="gv-right-container">  
         <div class="gv-right-standfirst">
             <h1>Grenfell Tower</h1>
@@ -33,7 +33,7 @@
 
         <div class="gv-detail-items-list" id="detailList">
             {{#each floorSections}}
-            <div class="gv-section-bullet-wrapper" section-ref="{{sortOn}}">
+            <div class="gv-section-bullet-wrapper" section-ref="{{sortOn}}" id="section-bullet-{{sortOn}}">
                 <div class="gv-section-bullet">{{sortOn}}</div>
             </div>
 	                {{#each objArr}} 

@@ -29,18 +29,18 @@
     background-size: 60%;
     background-repeat: no-repeat;
     background-position: center;
-    transform: rotate(180deg);
+
     cursor: pointer;    
     transform: translateX(100vw);
     z-index: 1001;
     &.open{
-        transform: translateX(0);
-        transition: transform  0.25s linear;
+        transform: rotate(180deg) translateX(0);
+        transition: transform  0.15s linear;
     }
     
     &.close{
-        transform: translateX(100vw);
-        transition: transform  0.25s linear;
+        transform: rotate(180deg) translateX(100vw);
+        transition: transform  0.15s linear;
     }
 }
 

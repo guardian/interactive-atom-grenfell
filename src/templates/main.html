@@ -40,7 +40,7 @@
                     <div class="gv-tower-graphic-info-box-inner">
 
                             {{#each Floors}}​ 
-                                {{#if hasVictims}}
+                                
                                 <div id="gv-tower-graphic-info-box-inner_{{Level_index}}" class="gv-tower-graphic-info-box-inner gvInnerBOX gv-hide" data-level="{{Level_index}}" data-maxSteps="{{maxSteps}}">
                                     <h2 class="gv-tower-graphic-info-heading"><span>{{Floor}}</span> {{Victims_status}}</h2>
                                     <h3 class="gv-tower-graphic-info-subheading">
@@ -55,14 +55,16 @@
                                </svg>
                                 
                             </span> {{Time_standfirst}}</h3>
-                                    <div class="gv-tower-graphic-portrait-thumbs" id="thumbs-holder-{{Level_index}}">
+                                  {{#if hasVictims}}  <div class="gv-tower-graphic-portrait-thumbs" id="thumbs-holder-{{Level_index}}">
+                                        <!-- <div class="gv-portrait-thumb"></div>
                                         <div class="gv-portrait-thumb"></div>
-                                        <div class="gv-portrait-thumb"></div>
-                                        <div class="gv-portrait-thumb"></div>
+                                        <div class="gv-portrait-thumb"></div> -->
                                     </div>
+
                                     <p class="gv-tower-graphic-info-description">{{Summary}}</p>
+                                    {{/if}}
                                 </div>
-                                {{/if}} 
+                                 
                             {{/each}}
                         </div>
 
@@ -946,7 +948,7 @@
 
 
 
-<div class='gv-right-view'>rightRender</div>
+<div class='gv-right-view'> </div>
 
 <div class="close-overlay-btn show-mobile"></div>
 

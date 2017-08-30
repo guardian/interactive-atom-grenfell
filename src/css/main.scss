@@ -32,6 +32,10 @@ $background-grey: #333333;
 .interactive-atom {
     margin: 0 !important;
     background-color: $multimedia-support-4;
+    overflow:hidden;
+    @include mq(desktop){
+        overflow:visible;
+    }
 }
 
 
@@ -510,9 +514,9 @@ $background-grey: #333333;
         }
     }
 
-    &.gv-button-disabled {
+    &.disabled {
         border: 1px solid $dark-grey;
-
+        cursor: default;
         svg path {
             fill: $dark-grey;
         }
