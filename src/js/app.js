@@ -169,7 +169,7 @@ function addListeners() {
       resizeTimeout = setTimeout(updateViewAfterResize, 250);
     });
 
-    window.scrollTo(0, 0); //resets scroll on load
+    window.onbeforeunload = function(){ window.scrollTo(0,0); }
 
 }
 
