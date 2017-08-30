@@ -194,35 +194,39 @@ function navStep(a) {
         globalLevel -= 1;
     }
 
-// <<<<<<< HEAD
-//     if(globalLevel == 0){
-//         document.getElementById('gv-nav-down').classList.add("disabled");
-//     } else {
-//         document.getElementById('gv-nav-down').classList.remove("disabled");
-//     }
 
-//     if(globalLevel == maxSteps-1){
-//         document.getElementById('gv-nav-up').classList.add("disabled");
-//     } else {
-//         document.getElementById('gv-nav-up').classList.remove("disabled");
-//     }
+    // if(globalLevel == 0){
+    //     document.getElementById('gv-nav-down').classList.add("disabled");
+    // } else {
+    //     document.getElementById('gv-nav-down').classList.remove("disabled");
+    // }
 
-
-//     updateScrollView(globalLevel);
+    // if(globalLevel == maxSteps-1){
+    //     document.getElementById('gv-nav-up').classList.add("disabled");
+    // } else {
+    //     document.getElementById('gv-nav-up').classList.remove("disabled");
+    // }
 
 
-//     //disabled
-//=======
-    if (globalLevel >= 24) {
+
+    if (globalLevel >= maxSteps) {
         globalLevel = 0;
         document.querySelector("#gv-navs").classList.remove("gv-mobile-hide");
+        document.getElementById('gv-nav-down').classList.remove("disabled");
     } else if (globalLevel < 0) {
         globalLevel = 0;
+        
+    } 
+    if (globalLevel == 0) {
+        document.getElementById('gv-nav-down').classList.add("disabled");
+
+    }else if (globalLevel > 0) {
+        document.getElementById('gv-nav-down').classList.remove("disabled");
+
     }
-
+    
     console.log("globalLevel=" + globalLevel);
-// >>>>>>> garry-combined-view-new
-
+    updateScrollView(globalLevel);
     updateLevelView(globalLevel);
 
 }

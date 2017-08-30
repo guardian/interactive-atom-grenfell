@@ -202,8 +202,12 @@
             margin-right: 10px;
             display: inline-block;
             vertical-align: top;
-            min-width:60px;
+            min-width:30px;
             line-height: 1.4em;
+
+            @include mq(desktop){
+                min-width:60px;
+            }
             
             strong {
                 font-weight:600;
