@@ -205,7 +205,7 @@ $background-grey: #333333;
     @include mq(tablet) {
         bottom: auto;
         top: 100px;
-        display: none;
+        //display: none;
     }
 
     .gv-tower-graphic-intro-inner {

@@ -209,7 +209,7 @@ function checkLevelViewScroll(n){
 
     globalLevel = n + 1;
 
-    console.log(n);
+    //console.log(n);
 
     updateLevelView(n);
 
@@ -247,11 +247,11 @@ function updateLevelView(n){
     var svg   = document.getElementById("gv-tower-graphic-svg"); // or other selector like querySelector()
     var rect = svg.getBoundingClientRect(); // get the bounding rectangle
     
-    console.log( rect.width );
+    //console.log( rect.width );
 
-    var scale = (rect.width / 839);
+    var scale = (rect.width / 839); // initial width of svg
 
-    y *= scale;
+    y *= scale; // correct for svg resize
 
     //percY = y;
 
@@ -292,7 +292,12 @@ function updateInfoBox(n){
 function checkFixView(){
     let h = document.getElementById("bannerandheader").offsetHeight;
 
-    var pos_top = document.body.scrollTop;   
+    //var pos_top = document.body.scrollTop;
+
+    var pos_top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    
+    console.log("pos_top=" + pos_top);
+    console.log("h=" + h);
 
     if(pos_top > h){
        document.querySelector('.gv-tower-wrapper').classList.add('fixed');
