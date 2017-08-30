@@ -17,6 +17,23 @@ let headerVisible = true;
 
 let globalLevel = 23; // Index sets initial view to top of tower
 
+var resizeTimeout = false;
+
+window.scrollTo(0, 0); //resets scroll on load
+
+function isMobile() {
+    var dummy = document.querySelector("#gv-mobile-dummy");
+    if (getStyle(dummy) == 'block') {
+        return true;
+    } else {
+        return false;
+    }
+
+    function getStyle (element) {
+        return element.currentStyle ? element.currentStyle.display :
+        getComputedStyle(element, null).display;
+    }
+}
 
 xr.get('https://interactive.guim.co.uk/docsdata-test/1K896qTOpgJQhG2IfGAChZ1WZjQAYn7-i869tA5cKaVU.json').then((resp) => {
     var data = formatData(resp.data.sheets.people);
@@ -145,6 +162,19 @@ function addListeners() {
 
     addScrollListeners();
 
+    window.addEventListener('resize', function() {
+        // clear the timeout
+      clearTimeout(resizeTimeout);
+      // start timing for event "completion"
+      resizeTimeout = setTimeout(updateViewAfterResize, 250);
+    });
+
+}
+
+function updateViewAfterResize() {
+
+    checkFixView();
+    checkLevelViewScroll(500);
 }
 
 
@@ -159,6 +189,15 @@ function navStep(a) {
     if (a == "bw" && globalLevel > 0) {
         globalLevel -= 1;
     }
+
+    if (globalLevel >= 24) {
+        globalLevel = 0;
+        document.querySelector("#gv-navs").classList.remove("gv-mobile-hide");
+    } else if (globalLevel < 0) {
+        globalLevel = 0;
+    }
+
+    console.log("globalLevel=" + globalLevel);
 
     updateLevelView(globalLevel);
 
@@ -188,16 +227,16 @@ function isElementInViewport(el) {
     );
 }
 
-function isElementFocusedInViewport(el) {
+function isElementFocusedInViewport (el) {
     // https://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
     var rect = el.getBoundingClientRect();
 
     return (
         rect.top >= 0 &&
-        rect.top < ((window.innerHeight / 2) || (document.documentElement.clientHeight / 2)) &&
         rect.left >= 0 &&
-        // rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
+        (rect.top + 300) <= (window.innerHeight || document.documentElement.clientHeight) /*or $(window).height() */
+        //rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
+        //rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
     );
 }
 
@@ -218,7 +257,7 @@ function isElementFocusedInViewport(el) {
 function checkLevelViewScroll(n) {
 
     [].slice.apply(document.querySelectorAll('.gv-detail-item')).forEach(el => {
-        if (isElementInViewport(el)) {
+        if (isElementFocusedInViewport(el)) {
             var level = Number(el.getAttribute('data-level'));
 
             if (level < n) { n = level }
@@ -226,6 +265,10 @@ function checkLevelViewScroll(n) {
         }
 
     });
+
+    if (n < 0 || n > 23) {
+        n = 0;
+    }
 
     globalLevel = n + 1;
 
@@ -270,17 +313,12 @@ function updateLevelView(n) {
 
     y *= scale; // correct for svg resize
 
-    //percY = y;
+    if (isMobile()) {
+        y= y+70;
+        //console.log("TRUE")
+    }
 
-    //svgheight = 1763;
-
-    //console.log( rect.height);
-
-    //console.log("rect");
-
-    //var rectTop = rect.top;
-    //y = -(window.pageYOffset + rectTop);
-    //document.getElementById("gv-tower-graphic").style = "margin-top:"+y+"px";
+    
 
     document.getElementById("gv-tower-graphic").style = "transform:translateY(" + y + "px)";
 
