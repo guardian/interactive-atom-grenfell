@@ -17,6 +17,23 @@ let headerVisible = true;
 
 let globalLevel = 23; // Index sets initial view to top of tower
 
+var resizeTimeout = false;
+
+
+
+function isMobile() {
+    var dummy = document.querySelector("#gv-mobile-dummy");
+    if (getStyle(dummy) == 'block') {
+        return true;
+    } else {
+        return false;
+    }
+
+    function getStyle (element) {
+        return element.currentStyle ? element.currentStyle.display :
+        getComputedStyle(element, null).display;
+    }
+}
 
 xr.get('https://interactive.guim.co.uk/docsdata-test/1K896qTOpgJQhG2IfGAChZ1WZjQAYn7-i869tA5cKaVU.json').then((resp) => {
     var data = formatData(resp.data.sheets.people);
@@ -146,6 +163,21 @@ function addListeners() {
 
     addScrollListeners();
 
+    window.addEventListener('resize', function() {
+        // clear the timeout
+      clearTimeout(resizeTimeout);
+      // start timing for event "completion"
+      resizeTimeout = setTimeout(updateViewAfterResize, 250);
+    });
+
+    window.scrollTo(0, 0); //resets scroll on load
+
+}
+
+function updateViewAfterResize() {
+
+    checkFixView();
+    checkLevelViewScroll(500);
 }
 
 
@@ -162,23 +194,34 @@ function navStep(a) {
         globalLevel -= 1;
     }
 
-    if(globalLevel == 0){
-        document.getElementById('gv-nav-down').classList.add("disabled");
-    } else {
-        document.getElementById('gv-nav-down').classList.remove("disabled");
+// <<<<<<< HEAD
+//     if(globalLevel == 0){
+//         document.getElementById('gv-nav-down').classList.add("disabled");
+//     } else {
+//         document.getElementById('gv-nav-down').classList.remove("disabled");
+//     }
+
+//     if(globalLevel == maxSteps-1){
+//         document.getElementById('gv-nav-up').classList.add("disabled");
+//     } else {
+//         document.getElementById('gv-nav-up').classList.remove("disabled");
+//     }
+
+
+//     updateScrollView(globalLevel);
+
+
+//     //disabled
+//=======
+    if (globalLevel >= 24) {
+        globalLevel = 0;
+        document.querySelector("#gv-navs").classList.remove("gv-mobile-hide");
+    } else if (globalLevel < 0) {
+        globalLevel = 0;
     }
 
-    if(globalLevel == maxSteps-1){
-        document.getElementById('gv-nav-up').classList.add("disabled");
-    } else {
-        document.getElementById('gv-nav-up').classList.remove("disabled");
-    }
-
-
-    updateScrollView(globalLevel);
-
-
-    //disabled
+    console.log("globalLevel=" + globalLevel);
+// >>>>>>> garry-combined-view-new
 
     updateLevelView(globalLevel);
 
@@ -208,16 +251,24 @@ function isElementInViewport(el) {
     );
 }
 
-function isElementFocusedInViewport(el) {
+function isElementFocusedInViewport (el) {
     // https://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
     var rect = el.getBoundingClientRect();
 
     return (
-        rect.top >= 0 &&
+// <<<<<<< HEAD
+//         rect.top >= 0 &&
+//         rect.left >= 0 &&
+//         (rect.top + 300) <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
+//         //rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
+//         rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
+// =======
         rect.left >= 0 &&
-        (rect.top + 300) <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
+        rect.top >= 0 &&
+        (rect.top + 300) <= (window.innerHeight || document.documentElement.clientHeight)/*or $(window).height() */
         //rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
+        //rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
+// >>>>>>> garry-combined-view-new
     );
 }
 
@@ -238,13 +289,10 @@ function isElementFocusedInViewport(el) {
 function checkLevelViewScroll(n) {
 
     [].slice.apply(document.querySelectorAll('.gv-detail-item')).forEach(el => {
-// <<<<<<< HEAD
-//         if (isElementInViewport(el)) {
-//             var level = Number(el.getAttribute('data-level'));
-// =======
-            if(isElementFocusedInViewport(el)){                
-               var level = Number(el.getAttribute('data-level'));
-//>>>>>>> garry-combined-view
+
+        if (isElementFocusedInViewport(el)) {
+            var level = Number(el.getAttribute('data-level'));
+//>>>>>>> garry-combined-view-new
 
             if (level < n) { n = level }
             globalLevel = n;
@@ -252,11 +300,21 @@ function checkLevelViewScroll(n) {
 
     });
 
+    if (n == 500) {
+        n = globalLevel-1;
+    }
+
+    console.log("n=" + n);
+    console.log("g=" + globalLevel);
+
+    if (n < 0 || n > 23) {
+        n = 0;
+    }
+
     globalLevel = n + 1;
     
     
     updateLevelView(n);
-
 
 }
 
@@ -317,17 +375,12 @@ function updateLevelView(n) {
 
     y *= scale; // correct for svg resize
 
-    //percY = y;
+    if (isMobile()) {
+        y= y+70;
+        //console.log("TRUE")
+    }
 
-    //svgheight = 1763;
-
-    //console.log( rect.height);
-
-    //console.log("rect");
-
-    //var rectTop = rect.top;
-    //y = -(window.pageYOffset + rectTop);
-    //document.getElementById("gv-tower-graphic").style = "margin-top:"+y+"px";
+    
 
     document.getElementById("gv-tower-graphic").style = "transform:translateY(" + y + "px)";
 
