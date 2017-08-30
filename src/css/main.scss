@@ -131,19 +131,7 @@ $background-grey: #333333;
    
 }
 
-.show-mobile{
-	display:block;
-	@include mq(desktop){
-		display:none;
-	}
-}
 
-.show-desktop{
-	display:none;
-	@include mq(desktop){
-		display:block;
-	}
-}
 
 #gv-mobile-dummy {
     display: block;
@@ -559,3 +547,5 @@ left: 70px;
         display:block;
     }
 }
+
+
