@@ -214,9 +214,9 @@ function isElementFocusedInViewport(el) {
 
     return (
         rect.top >= 0 &&
-        rect.top < ((window.innerHeight / 2) || (document.documentElement.clientHeight / 2)) &&
         rect.left >= 0 &&
-        // rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
+        (rect.top + 300) <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
+        //rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
         rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
     );
 }
@@ -238,8 +238,13 @@ function isElementFocusedInViewport(el) {
 function checkLevelViewScroll(n) {
 
     [].slice.apply(document.querySelectorAll('.gv-detail-item')).forEach(el => {
-        if (isElementInViewport(el)) {
-            var level = Number(el.getAttribute('data-level'));
+// <<<<<<< HEAD
+//         if (isElementInViewport(el)) {
+//             var level = Number(el.getAttribute('data-level'));
+// =======
+            if(isElementFocusedInViewport(el)){                
+               var level = Number(el.getAttribute('data-level'));
+//>>>>>>> garry-combined-view
 
             if (level < n) { n = level }
             globalLevel = n;
