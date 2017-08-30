@@ -19,7 +19,7 @@ let globalLevel = 23; // Index sets initial view to top of tower
 
 var resizeTimeout = false;
 
-window.scrollTo(0, 0); //resets scroll on load
+
 
 function isMobile() {
     var dummy = document.querySelector("#gv-mobile-dummy");
@@ -169,6 +169,8 @@ function addListeners() {
       resizeTimeout = setTimeout(updateViewAfterResize, 250);
     });
 
+    window.scrollTo(0, 0); //resets scroll on load
+
 }
 
 function updateViewAfterResize() {
@@ -232,9 +234,9 @@ function isElementFocusedInViewport (el) {
     var rect = el.getBoundingClientRect();
 
     return (
-        rect.top >= 0 &&
         rect.left >= 0 &&
-        (rect.top + 300) <= (window.innerHeight || document.documentElement.clientHeight) /*or $(window).height() */
+        rect.top >= 0 &&
+        (rect.top + 300) <= (window.innerHeight || document.documentElement.clientHeight)/*or $(window).height() */
         //rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
         //rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
     );
@@ -266,6 +268,13 @@ function checkLevelViewScroll(n) {
 
     });
 
+    if (n == 500) {
+        n = globalLevel-1;
+    }
+
+    console.log("n=" + n);
+    console.log("g=" + globalLevel);
+
     if (n < 0 || n > 23) {
         n = 0;
     }
@@ -273,7 +282,6 @@ function checkLevelViewScroll(n) {
     globalLevel = n + 1;
 
     updateLevelView(n);
-
 
 }
 
