@@ -8,10 +8,10 @@ import { share } from './libs/share.js';
 import mainTemplate from '../templates/mainList.html'
 import gridPicTemplate from '../templates/gridPic.html'
 import detailItemTemplate from '../templates/detailItem.html'
-import gridThumbTemplate from '../templates/thumbPic.html' 
+import gridThumbTemplate from '../templates/thumbPic.html'
 import thumbsTemplate from '../templates/thumbsGallery.html'
 
-var shareFn = share('Grenfell Tower','https://gu.com/p/72vvx');
+var shareFn = share('Grenfell Tower', 'https://gu.com/p/72vvx');
 
 let headerVisible = true;
 
@@ -28,26 +28,26 @@ xr.get('https://interactive.guim.co.uk/docsdata-test/1K896qTOpgJQhG2IfGAChZ1WZjQ
 });
 
 
-function formatData(dataIn){
+function formatData(dataIn) {
 
-	var newObj = {};
+    var newObj = {};
 
-	dataIn.map((obj)=>{
-		if(!obj.floor){ obj.floor = "unknown"; }
-		if(!obj.age){ obj.age = "unknown"; }
-		if(!obj.status){ obj.status = "unknown"; }
+    dataIn.map((obj) => {
+        if (!obj.floor) { obj.floor = "unknown"; }
+        if (!obj.age) { obj.age = "unknown"; }
+        if (!obj.status) { obj.status = "unknown"; }
 
-		obj.formatName = obj.name.split(",")[0];
+        obj.formatName = obj.name.split(",")[0];
         obj.sortName = obj.family_name + obj.formatName;
-	})
+    })
 
-	let floorArr = groupBy(dataIn, 'floor');
+    let floorArr = groupBy(dataIn, 'floor');
 
     floorArr = sortByKeys(floorArr);
 
     floorArr.map((obj) => {
-        obj.count = obj.objArr.length;  
-       // console.log(obj)
+        obj.count = obj.objArr.length;
+        // console.log(obj)
     });
 
     newObj.floorSections = floorArr;
@@ -56,11 +56,11 @@ function formatData(dataIn){
 }
 
 
-function compileHTML(dataIn) {   
-	
+function compileHTML(dataIn) {
+
     Handlebars.registerHelper('html_decoder', function(text) {
-          var str = unescape(text).replace(/&amp;/g, '&');
-          return str; 
+        var str = unescape(text).replace(/&amp;/g, '&');
+        return str;
     });
 
     Handlebars.registerPartial({
@@ -73,20 +73,20 @@ function compileHTML(dataIn) {
             compat: true
         }
     );
-	
+
     var newHTML = content(dataIn);
 
     return newHTML
-	
- }
 
- function upDatePageView(data){
-   
-    data.floorSections.map((obj)=>{
-        if(!isNaN(obj.sortOn)){
+}
+
+function upDatePageView(data) {
+
+    data.floorSections.map((obj) => {
+        if (!isNaN(obj.sortOn)) {
             var newThumbGallery = addThumbGallery(obj);
-           // console.log( obj.sortOn-1, document.getElementById("thumbs-holder-"+(obj.sortOn-1)) )
-            document.getElementById("thumbs-holder-"+(obj.sortOn-1)).innerHTML = newThumbGallery;
+            // console.log( obj.sortOn-1, document.getElementById("thumbs-holder-"+(obj.sortOn-1)) )
+            document.getElementById("thumbs-holder-" + (obj.sortOn - 1)).innerHTML = newThumbGallery;
 
             //console.log(document.querySelectorAll('.gv-open-overlay-btn'));
         }
@@ -94,27 +94,27 @@ function compileHTML(dataIn) {
 
 
     document.querySelectorAll('.gv-open-overlay-btn').forEach(btnEl => {
-        btnEl.addEventListener('click',function(){ openRightView(btnEl.getAttribute('data-level')) });
+        btnEl.addEventListener('click', function() { openRightView(btnEl.getAttribute('data-level')) });
         // var level = btnEl.getAttribute('data-level');
         // btnEl.addEventListener('click',() => levelFn(level));
     });
 
-   
+
     // [].slice.apply(document.querySelectorAll('.gv-open-overlay-btn')).forEach(shareEl => {
     //     console.log(btn)
     // });
 
-   
+
 }
 
-function levelFn(n){
+function levelFn(n) {
     globalLevel = n;
-    console.log(globalLevel,"---",n)
-    //updateLevelView(globalLevel)
+    console.log(globalLevel, "---", n)
+        //updateLevelView(globalLevel)
 }
 
 
- function addThumbGallery(dataIn){
+function addThumbGallery(dataIn) {
 
     Handlebars.registerPartial({
         'gridThumb': gridThumbTemplate
@@ -130,53 +130,53 @@ function levelFn(n){
 
     return newHTML
 
- }
+}
 
-function addListeners(){
+function addListeners() {
     [].slice.apply(document.querySelectorAll('.gv-share-container button')).forEach(shareEl => {
         var network = shareEl.getAttribute('data-network');
-        shareEl.addEventListener('click',() => shareFn(network));
+        shareEl.addEventListener('click', () => shareFn(network));
     });
-   
-   document.querySelector('.close-overlay-btn').addEventListener('click', hideRightView);
-   document.getElementById('gv-nav-up').addEventListener('click', function(){ navStep("fw")});
-   document.getElementById('gv-nav-down').addEventListener('click',  function(){ navStep("bw")});
-   document.querySelector('.gv-continue-button').addEventListener('click', function(){ navStep("fw")});
 
-   addScrollListeners();
+    document.querySelector('.close-overlay-btn').addEventListener('click', hideRightView);
+    document.getElementById('gv-nav-up').addEventListener('click', function() { navStep("fw") });
+    document.getElementById('gv-nav-down').addEventListener('click', function() { navStep("bw") });
+    document.querySelector('.gv-continue-button').addEventListener('click', function() { navStep("fw") });
+
+    addScrollListeners();
 
 }
 
 
-function navStep(a){
+function navStep(a) {
 
     let maxSteps = [].slice.apply(document.querySelectorAll('.gvInnerBOX'))[0].getAttribute("data-maxsteps");
 
-        if(a=="fw" && globalLevel<maxSteps){
-            globalLevel+=1;
-        }
+    if (a == "fw" && globalLevel < maxSteps) {
+        globalLevel += 1;
+    }
 
-        if(a=="bw" && globalLevel>0){
-            globalLevel-=1;
-        }
+    if (a == "bw" && globalLevel > 0) {
+        globalLevel -= 1;
+    }
 
     updateLevelView(globalLevel);
 
 }
 
 
-function addScrollListeners(){
-       document.addEventListener("scroll", function(evt) {
-                checkFixView();
-                checkLevelViewScroll(500); // add this val for scroll
-        });
+function addScrollListeners() {
+    document.addEventListener("scroll", function(evt) {
+        checkFixView();
+        checkLevelViewScroll(500); // add this val for scroll
+    });
 
 }
 
 
 
 
-function isElementInViewport (el) {
+function isElementInViewport(el) {
     // https://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
     var rect = el.getBoundingClientRect();
 
@@ -188,7 +188,7 @@ function isElementInViewport (el) {
     );
 }
 
-function isElementFocusedInViewport (el) {
+function isElementFocusedInViewport(el) {
     // https://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
     var rect = el.getBoundingClientRect();
 
@@ -215,78 +215,55 @@ function isElementFocusedInViewport (el) {
 // }
 
 
-function checkLevelViewScroll(n){
-
-// <<<<<<< HEAD
-// =======
-//    // Below was '.gv-detail-text-wrapper'
-// >>>>>>> 2e6f46236aabe3ce95936cdf35601f7d9f3e43fc
+function checkLevelViewScroll(n) {
 
     [].slice.apply(document.querySelectorAll('.gv-detail-item')).forEach(el => {
-            if(isElementInViewport(el)){                
-               var level = Number(el.getAttribute('data-level'));
+        if (isElementInViewport(el)) {
+            var level = Number(el.getAttribute('data-level'));
 
-                if (level < n){ n = level }
-                    globalLevel = n;
-                } 
-               
+            if (level < n) { n = level }
+            globalLevel = n;
+        }
+
     });
 
-// <<<<<<< HEAD
-
-//     globalLevel = n;
-//     updateLevelView(globalLevel);
-// =======
     globalLevel = n + 1;
 
-    //console.log(n);
-
     updateLevelView(n);
-// >>>>>>> 2e6f46236aabe3ce95936cdf35601f7d9f3e43fc
+
 
 }
 
-function updateLevelView(n){
- 
-    if (n > 0){ 
-        document.querySelector(".gvLevelsBOXWRAPPER").classList.remove("gv-hide")  
-    }else if  (n == 0){ 
-        document.querySelector(".gvLevelsBOXWRAPPER").classList.add("gv-hide")  
+function updateLevelView(n) {
+
+    if (n > 0) {
+        document.querySelector(".gvLevelsBOXWRAPPER").classList.remove("gv-hide")
+    } else if (n == 0) {
+        document.querySelector(".gvLevelsBOXWRAPPER").classList.add("gv-hide")
 
     }
 
-// <<<<<<< HEAD
-//     var t = document.getElementById("level-"+n);
-// =======
-    var levelIndex = n + 1; // Floor index 1 more than level index
+    var levelIndex = n;
 
-    var t = document.getElementById("level-"+levelIndex );
-// >>>>>>> 2e6f46236aabe3ce95936cdf35601f7d9f3e43fc
+    var t = document.getElementById("level-" + levelIndex);
+
 
     [].slice.apply(document.querySelectorAll('.gv-level')).forEach(el => {
-           el.classList.remove("highlight")   
+        el.classList.remove("highlight")
     });
 
     t.classList.add("highlight");
 
     updateInfoBox(n);
 
-    //console.log(n+", "+t.transform.baseVal.getItem(0).matrix.e + ", " + t.transform.baseVal.getItem(0).matrix.f)
-
     var y = 0 - t.transform.baseVal.getItem(0).matrix.f;
 
-// <<<<<<< HEAD
-//     document.getElementById("gv-tower-graphic").style = "transform:translateY("+y+"px)";
-
-    
-// =======
-    //var rect = t.getBoundingClientRect();
 
     var svgWidth = "";
 
-    var svg   = document.getElementById("gv-tower-graphic-svg"); // or other selector like querySelector()
+    var svg = document.getElementById("gv-tower-graphic-svg"); // or other selector like querySelector()
     var rect = svg.getBoundingClientRect(); // get the bounding rectangle
-    
+
     //console.log( rect.width );
 
     var scale = (rect.width / 839); // initial width of svg
@@ -305,73 +282,67 @@ function updateLevelView(n){
     //y = -(window.pageYOffset + rectTop);
     //document.getElementById("gv-tower-graphic").style = "margin-top:"+y+"px";
 
-    document.getElementById("gv-tower-graphic").style = "transform:translateY("+y+"px)";
+    document.getElementById("gv-tower-graphic").style = "transform:translateY(" + y + "px)";
 
-    //document.getElementById("gv-tower-graphic").style = "transform:translateY("+percY+"%)";
-// >>>>>>> 2e6f46236aabe3ce95936cdf35601f7d9f3e43fc
 
 }
 
-function openOverlay(el){
+function openOverlay(el) {
     //console.log(el.getAttribute("data-level"))
 }
 
-function updateInfoBox(n){
+function updateInfoBox(n) {
 
     document.getElementById("gv-tower-graphic-intro").classList.add("gv-hide");
 
     [].slice.apply(document.querySelectorAll('.gvInnerBOX')).forEach(el => {
         el.classList.add("gv-hide");
         el.classList.remove("gv-show");
-        if (el.getAttribute("data-level")==n-1){ 
-                 el.classList.remove("gv-hide");
-                 el.classList.add("gv-show");
-                 
-                 
+        if (el.getAttribute("data-level") == n - 1) {
+            el.classList.remove("gv-hide");
+            el.classList.add("gv-show");
+
+
         }
-        
+
     });
 
 }
 
 
 
-function checkFixView(){
+function checkFixView() {
     let h = document.getElementById("bannerandheader").offsetHeight;
 
-    //var pos_top = document.body.scrollTop;
-
     var pos_top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    
+
     console.log("pos_top=" + pos_top);
     console.log("h=" + h);
 
-    if(pos_top > h){
-       document.querySelector('.gv-tower-wrapper').classList.add('fixed');
-       document.querySelector('.gv-right-wrapper').classList.add('fixed');
-    }
-
-    else if(pos_top < h){
-       document.querySelector('.gv-tower-wrapper').classList.remove('fixed');
-       document.querySelector('.gv-right-wrapper').classList.remove('fixed');
+    if (pos_top > h) {
+        document.querySelector('.gv-tower-wrapper').classList.add('fixed');
+        document.querySelector('.gv-right-wrapper').classList.add('fixed');
+    } else if (pos_top < h) {
+        document.querySelector('.gv-tower-wrapper').classList.remove('fixed');
+        document.querySelector('.gv-right-wrapper').classList.remove('fixed');
     }
 
 }
 
 function isScrolledIntoView(el) {
-  const { top, bottom } = el.getBoundingClientRect()
-  return top >= 0 && bottom <= window.innerHeight
+    const { top, bottom } = el.getBoundingClientRect()
+    return top >= 0 && bottom <= window.innerHeight
 }
 
 
-function hideRightView(){
+function hideRightView() {
     document.querySelector('.gv-right-view').classList.remove('open');
     document.querySelector('.gv-right-view').classList.add('close');
     document.querySelector('.close-overlay-btn').classList.remove('open');
     document.querySelector('.close-overlay-btn').classList.add('close');
 }
 
-function openRightView(n){
+function openRightView(n) {
     console.log(n)
     document.querySelector('.gv-right-view').classList.remove('close');
     document.querySelector('.gv-right-view').classList.add('open');
@@ -381,7 +352,7 @@ function openRightView(n){
 
 function sortByKeys(obj) {
     let keys = Object.keys(obj),
-    i, len = keys.length;
+        i, len = keys.length;
 
     keys.sort();
 
@@ -404,19 +375,20 @@ function updatePageDate() {
 
     let pubDate;
 
-    if (window.guardian.config.page.webPublicationDate) { pubDate = new Date(window.guardian.config.page.webPublicationDate) 
+    if (window.guardian.config.page.webPublicationDate) {
+        pubDate = new Date(window.guardian.config.page.webPublicationDate)
         var d = new Date(window.guardian.config.page.webPublicationDate)
         var n = d.getTimezoneOffset();
-        
-    let pubDateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' }; //, timeZone: 'UTC', timeZoneName: 'short'
 
-    let dateStr = pubDate.toLocaleDateString('en-GB', pubDateOptions).split(",").join(" ").split("  ").join(" ");
+        let pubDateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' }; //, timeZone: 'UTC', timeZoneName: 'short'
 
-    dateStr = dateStr+" GMT";
+        let dateStr = pubDate.toLocaleDateString('en-GB', pubDateOptions).split(",").join(" ").split("  ").join(" ");
 
-    document.querySelector(".time-stamp").innerHTML = dateStr;
+        dateStr = dateStr + " GMT";
+
+        document.querySelector(".time-stamp").innerHTML = dateStr;
     }
-  
+
 }
 
 function notShownY(el) {
