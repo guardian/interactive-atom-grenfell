@@ -17,7 +17,7 @@ let headerVisible = true;
 
 let globalLevel = 23; // Index sets initial view to top of tower
 
-var resizeTimeout = false;
+var resizeTimeout = false, scrollInterval = false, didScroll = false;
 
 
 
@@ -177,6 +177,7 @@ function updateViewAfterResize() {
 
     checkFixView();
     checkLevelViewScroll(500);
+    document.querySelector("#gv-navs").classList.remove("gv-mobile-hide"); // ADD TO MAIN COMBINED
 }
 
 
@@ -188,15 +189,15 @@ function navStep(a) {
         globalLevel += 1;
     }
 
-    if (a == "bw" && globalLevel > 0) {
+    if (a == "bw" && globalLevel > -1) {
         globalLevel -= 1;
     }
 
-    if (globalLevel >= 24) {
-        globalLevel = 0;
-        document.querySelector("#gv-navs").classList.remove("gv-mobile-hide");
-    } else if (globalLevel < 0) {
-        globalLevel = 0;
+    if (globalLevel >= 24) { // ADD TO MAIN COMBINED
+        globalLevel = 23; // ADD TO MAIN COMBINED
+        document.querySelector("#gv-navs").classList.remove("gv-mobile-hide"); 
+    } else if (globalLevel < -1) { // ADD TO MAIN COMBINED
+        globalLevel = -1; // ADD TO MAIN COMBINED
     }
 
     console.log("globalLevel=" + globalLevel);
@@ -207,14 +208,28 @@ function navStep(a) {
 
 
 function addScrollListeners() {
+
+    scrollInterval = setInterval(function() {
+        if ( didScroll ) {
+            didScroll = false;      
+            callScroll();  
+        }
+    }, 250);
+
+
     document.addEventListener("scroll", function(evt) {
-        checkFixView();
-        checkLevelViewScroll(500); // add this val for scroll
+        // checkFixView();
+        // checkLevelViewScroll(500); // add this val for scroll
+        didScroll = true; // ADD TO MAIN COMBINED
     });
 
 }
 
-
+function callScroll() { // ADD TO MAIN COMBINED
+    checkFixView();
+    checkLevelViewScroll(500); // add this val for scroll
+    console.log("scroll called");
+}
 
 
 function isElementInViewport(el) {
@@ -268,16 +283,16 @@ function checkLevelViewScroll(n) {
 
     });
 
-    if (n == 500) {
-        n = globalLevel-1;
-    }
+    if (n == 500) { // ADD TO MAIN COMBINED
+        n = globalLevel-1; // ADD TO MAIN COMBINED
+    } // ADD TO MAIN COMBINED
 
     console.log("n=" + n);
     console.log("g=" + globalLevel);
 
-    if (n < 0 || n > 23) {
-        n = 0;
-    }
+    if (n < -1 || n > 23) { // ADD TO MAIN COMBINED
+        n = -1; // ADD TO MAIN COMBINED
+    } // ADD TO MAIN COMBINED
 
     globalLevel = n + 1;
 
