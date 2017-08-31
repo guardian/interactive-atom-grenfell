@@ -217,6 +217,10 @@ $background-grey: #333333;
         .gv-level.highlight rect {
             fill: $accent-yellow;
         }
+
+        .gv-level.path-highlight {
+            stroke: $accent-yellow!important;
+        }
     }
 }
 
