@@ -50,10 +50,13 @@
     "fs": "0.0.1-security",
     "gulp": "^3.9.1",
     "handlebars": "^4.0.10",
+    "lodash.debounce": "^4.0.8",
+    "lodash.throttle": "^4.1.1",
     "magic-string": "^0.22.4",
     "request-promise": "^4.2.1",
     "request-promise-native": "^1.0.4",
     "rollup-plugin-node-builtins": "^2.1.2",
+    "scrolling": "^0.1.1",
     "svelte": "^1.30.0",
     "xr": "^0.3.0"
   }

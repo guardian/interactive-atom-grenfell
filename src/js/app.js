@@ -1,7 +1,9 @@
 //import 'svelte/ssr/register'
-
 import xr from 'xr'
 import Handlebars from 'handlebars/dist/handlebars'
+import Scrolling from 'scrolling';
+import throttle from 'lodash/throttle';
+import debounce from 'lodash/debounce';
 import { groupBy } from './libs/arrayObjectUtils.js'
 import { share } from './libs/share.js';
 
@@ -19,20 +21,23 @@ let globalLevel = 23; // Index sets initial view to top of tower
 
 var resizeTimeout = false;
 
+var scrollTimeout = false;
 
+
+ console.log(throttle)
 
 function isMobile() {
-    var dummy = document.querySelector("#gv-mobile-dummy");
+    var dummy = document.getElementById("gv-mobile-dummy");
     if (getStyle(dummy) == 'block') {
         return true;
     } else {
         return false;
-    }
+    } 
+}
 
-    function getStyle (element) {
-        return element.currentStyle ? element.currentStyle.display :
-        getComputedStyle(element, null).display;
-    }
+function getStyle (element) {
+    return element.currentStyle ? element.currentStyle.display :
+    getComputedStyle(element, null).display;
 }
 
 xr.get('https://interactive.guim.co.uk/docsdata-test/1K896qTOpgJQhG2IfGAChZ1WZjQAYn7-i869tA5cKaVU.json').then((resp) => {
@@ -64,7 +69,6 @@ function formatData(dataIn) {
 
     floorArr.map((obj) => {
         obj.count = obj.objArr.length;
-        // console.log(obj)
     });
 
     newObj.floorSections = floorArr;
@@ -132,7 +136,6 @@ function levelFn(n) {
 
 
 function addThumbGallery(dataIn) {
-
     Handlebars.registerPartial({
         'gridThumb': gridThumbTemplate
     });
@@ -142,11 +145,8 @@ function addThumbGallery(dataIn) {
             compat: true
         }
     );
-
     var newHTML = content(dataIn);
-
     return newHTML
-
 }
 
 function addListeners() {
@@ -164,7 +164,7 @@ function addListeners() {
     addScrollListeners();
 
     window.addEventListener('resize', function() {
-        // clear the timeout
+      // clear the timeout
       clearTimeout(resizeTimeout);
       // start timing for event "completion"
       resizeTimeout = setTimeout(updateViewAfterResize, 250);
@@ -175,13 +175,13 @@ function addListeners() {
 }
 
 function updateViewAfterResize() {
-
     checkFixView();
     checkLevelViewScroll(500);
 }
 
-
 function navStep(a) {
+
+    Scrolling.remove(window, updateViewAfterScroll);
 
     let maxSteps = [].slice.apply(document.querySelectorAll('.gvInnerBOX'))[0].getAttribute("data-maxsteps");
     maxSteps = Number(maxSteps);
@@ -194,54 +194,87 @@ function navStep(a) {
         globalLevel -= 1;
     }
 
-
-    // if(globalLevel == 0){
-    //     document.getElementById('gv-nav-down').classList.add("disabled");
-    // } else {
-    //     document.getElementById('gv-nav-down').classList.remove("disabled");
-    // }
-
-    // if(globalLevel == maxSteps-1){
-    //     document.getElementById('gv-nav-up').classList.add("disabled");
-    // } else {
-    //     document.getElementById('gv-nav-up').classList.remove("disabled");
-    // }
-
-
-
     if (globalLevel >= maxSteps) {
         globalLevel = 0;
         document.querySelector("#gv-navs").classList.remove("gv-mobile-hide");
         document.getElementById('gv-nav-down').classList.remove("disabled");
     } else if (globalLevel < 0) {
-        globalLevel = 0;
-        
-    } 
+        globalLevel = 0; 
+    }
+
     if (globalLevel == 0) {
         document.getElementById('gv-nav-down').classList.add("disabled");
+    }
 
-    }else if (globalLevel > 0) {
+    else if (globalLevel > 0) {
         document.getElementById('gv-nav-down').classList.remove("disabled");
-
     }
     
-    console.log("globalLevel=" + globalLevel);
-    updateScrollView(globalLevel);
-    updateLevelView(globalLevel);
+    let noVictims = (!document.getElementById("section-bullet-"+ globalLevel));
 
+    console.log(noVictims)
+
+    //this means victims
+    if(!noVictims) {
+        window.scrollTo(0,document.getElementById("section-bullet-"+ globalLevel).offsetTop)
+    }
+
+    // else if (isNaN(document.getElementById("section-bullet-"+ globalLevel).offsetTop) ){
+    //     console.log(globalLevel)
+    // }
+
+    //updateScrollView(globalLevel);
+    updateLevelView(globalLevel);
+    updateInfoBox(globalLevel);
+
+    //Scrolling(window, updateViewAfterScroll);
 }
 
 
 function addScrollListeners() {
-    document.addEventListener("scroll", function(evt) {
-        checkFixView();
-        checkLevelViewScroll(500); // add this val for scroll
-    });
+
+
+    Scrolling(window, updateViewAfterScroll);
+    // window.addEventListener('scroll', function() {
+    //   // clear the timeout
+    //   clearTimeout(scrollTimeout);
+    //   // start timing for event "completion"
+    //   scrollTimeout = setTimeout(updateViewAfterScroll, 250);
+    // });
 
 }
 
+function updateViewAfterScroll(){
+        checkFixView();
+        // bodyScroll();
+        checkLevelViewScroll(500); // PROBLEM add this val for scroll
+}
 
 
+// var timer = null;
+// window.addEventListener('scroll', function() {
+//     if(timer !== null) {
+//         clearTimeout(timer);        
+//     }
+//     timer = setTimeout(function() {
+//           //document.getElementById("right-wrap").style.backgroundColor = "red";
+//     }, 500);
+// }, false);
+
+// var scrollTimer = -1;
+
+//     function bodyScroll() {
+//         document.getElementById("right-wrap").style.backgroundColor = "white";
+
+//         if (scrollTimer != -1)
+//         clearTimeout(scrollTimer);
+
+//         scrollTimer = window.setTimeout(scrollFinished(), 500);
+//     }
+
+// function scrollFinished() {
+//         document.getElementById("right-wrap").style.backgroundColor = "red";
+// }
 
 function isElementInViewport(el) {
     // https://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
@@ -260,19 +293,12 @@ function isElementFocusedInViewport (el) {
     var rect = el.getBoundingClientRect();
 
     return (
-// <<<<<<< HEAD
-//         rect.top >= 0 &&
-//         rect.left >= 0 &&
-//         (rect.top + 300) <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
-//         //rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
-//         rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
-// =======
         rect.left >= 0 &&
         rect.top >= 0 &&
         (rect.top + 300) <= (window.innerHeight || document.documentElement.clientHeight)/*or $(window).height() */
         //rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
         //rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
-// >>>>>>> garry-combined-view-new
+
     );
 }
 
@@ -292,11 +318,12 @@ function isElementFocusedInViewport (el) {
 
 function checkLevelViewScroll(n) {
 
+    console.log(n);
+
     [].slice.apply(document.querySelectorAll('.gv-detail-item')).forEach(el => {
 
         if (isElementFocusedInViewport(el)) {
             var level = Number(el.getAttribute('data-level'));
-//>>>>>>> garry-combined-view-new
 
             if (level < n) { n = level }
             globalLevel = n;
@@ -308,39 +335,54 @@ function checkLevelViewScroll(n) {
         n = globalLevel-1;
     }
 
-    console.log("n=" + n);
-    console.log("g=" + globalLevel);
-
     if (n < 0 || n > 23) {
         n = 0;
     }
 
-    globalLevel = n + 1;
-    
-    
+    globalLevel = n + 1;    
     updateLevelView(n);
-
+    updateInfoBox(n);
 }
 
 function updateScrollView(n){
 
-    if(document.getElementById("section-bullet-"+n)){
-        let topEl = document.getElementById("section-bullet-"+n);
-        let topPos = topEl.offsetTop;
-        let standyH = document.querySelector('.gv-right-standfirst').offsetHeight;
-        document.getElementById('right-wrap').scrollTop = topPos + standyH;
+    let mobCheckEl = document.getElementById("continueBtn");
+    let scrollEl;
+    let standyH = 0;
+    let isMo;
+
+    if(getStyle(mobCheckEl)=="none"){
+        scrollEl = document.body;
+        standyH = document.querySelector('.gv-right-standfirst').offsetHeight;    
+        isMo = false;
     }
 
-    console.log(n)
+    if(getStyle(mobCheckEl)=="inline-block"){
+        scrollEl = document.getElementById('right-wrap');
+        standyH = document.querySelector('.gv-right-standfirst').offsetHeight;    
+        isMo = true;
+    }
 
-    // [].slice.apply(document.querySelectorAll('.gv-section-bullet-wrapper')).forEach(el => {
-        
-    //         console.log(el.getAttribute("section-ref"));
-        
+    if(document.getElementById("section-bullet-"+n) && isMo){
+        let topEl = document.getElementById("section-bullet-"+n);
+        let topPos = topEl.offsetTop;
+        scrollEl.scrollTop = topPos + standyH;
+    }
+
+    if(document.getElementById("section-bullet-"+n) && !isMo){
+        console.log("globalLevel", globalLevel)
+        let topEl = document.getElementById("section-bullet-"+n);
+        let topPos = topEl.offsetTop ;
+        scrollEl.scrollTop = topPos + standyH;
+        //scrollIt(topEl.offsetTop)
+    }
+
+    console.log(document.getElementById("section-bullet-"+n))
+
+    // [].slice.apply(document.querySelectorAll('.gv-section-bullet-wrapper')).forEach(el => {  
+    //         console.log(el.getAttribute("section-ref"));    
     // });
-
-
-    
+   
 }
 
 function updateLevelView(n) {
@@ -349,7 +391,6 @@ function updateLevelView(n) {
         document.querySelector(".gvLevelsBOXWRAPPER").classList.remove("gv-hide")
     } else if (n == 0) {
         document.querySelector(".gvLevelsBOXWRAPPER").classList.add("gv-hide")
-
     }
 
     var levelIndex = n;
@@ -363,10 +404,7 @@ function updateLevelView(n) {
 
     t.classList.add("highlight");
 
-    updateInfoBox(n);
-
     var y = 0 - t.transform.baseVal.getItem(0).matrix.f;
-
 
     var svgWidth = "";
 
@@ -384,10 +422,9 @@ function updateLevelView(n) {
         //console.log("TRUE")
     }
 
-    
+    // updateInfoBox(n);
 
     document.getElementById("gv-tower-graphic").style = "transform:translateY(" + y + "px)";
-
 
 }
 
@@ -405,7 +442,7 @@ function updateInfoBox(n) {
         if (el.getAttribute("data-level") == n - 1) {
             el.classList.remove("gv-hide");
             el.classList.add("gv-show");
-
+            //setTimeout(function() { updateScrollView(n); }, 1000);
 
         }
 
@@ -420,8 +457,8 @@ function checkFixView() {
 
     var pos_top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
-    console.log("pos_top=" + pos_top);
-    console.log("h=" + h);
+    // console.log("pos_top=" + pos_top);
+    // console.log("h=" + h);
 
     if (pos_top > h) {
         document.querySelector('.gv-tower-wrapper').classList.add('fixed');
@@ -447,7 +484,7 @@ function hideRightView() {
 }
 
 function openRightView(n) {
-    console.log(n)
+    // console.log(n)
     document.querySelector('.gv-right-view').classList.remove('close');
     document.querySelector('.gv-right-view').classList.add('open');
     document.querySelector('.close-overlay-btn').classList.remove('close');
@@ -497,4 +534,88 @@ function updatePageDate() {
 
 function notShownY(el) {
     return (el.offsetHeight * -1) > el.getBoundingClientRect().top;
+}
+
+
+
+
+function scrollIt(destination, duration = 200, easing = 'linear', callback) {
+
+// https://pawelgrzybek.com/page-scroll-in-vanilla-javascript/
+
+  const easings = {
+    linear(t) {
+      return t;
+    },
+    easeInQuad(t) {
+      return t * t;
+    },
+    easeOutQuad(t) {
+      return t * (2 - t);
+    },
+    easeInOutQuad(t) {
+      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    },
+    easeInCubic(t) {
+      return t * t * t;
+    },
+    easeOutCubic(t) {
+      return (--t) * t * t + 1;
+    },
+    easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+    },
+    easeInQuart(t) {
+      return t * t * t * t;
+    },
+    easeOutQuart(t) {
+      return 1 - (--t) * t * t * t;
+    },
+    easeInOutQuart(t) {
+      return t < 0.5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t;
+    },
+    easeInQuint(t) {
+      return t * t * t * t * t;
+    },
+    easeOutQuint(t) {
+      return 1 + (--t) * t * t * t * t;
+    },
+    easeInOutQuint(t) {
+      return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t;
+    }
+  };
+
+  const start = window.pageYOffset;
+  const startTime = 'now' in window.performance ? performance.now() : new Date().getTime();
+
+  const documentHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
+  const windowHeight = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
+  const destinationOffset = typeof destination === 'number' ? destination : destination.offsetTop;
+  const destinationOffsetToScroll = Math.round(documentHeight - destinationOffset < windowHeight ? documentHeight - windowHeight : destinationOffset);
+
+  if ('requestAnimationFrame' in window === false) {
+    window.scroll(0, destinationOffsetToScroll);
+    if (callback) {
+      callback();
+    }
+    return;
+  }
+
+  function scroll() {
+    const now = 'now' in window.performance ? performance.now() : new Date().getTime();
+    const time = Math.min(1, ((now - startTime) / duration));
+    const timeFunction = easings[easing](time);
+    window.scroll(0, Math.ceil((timeFunction * (destinationOffsetToScroll - start)) + start));
+
+    if (window.pageYOffset === destinationOffsetToScroll) {
+      if (callback) {
+        callback();
+      }
+      return;
+    }
+
+    requestAnimationFrame(scroll);
+  }
+
+  scroll();
 }

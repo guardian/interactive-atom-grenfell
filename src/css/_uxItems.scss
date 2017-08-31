@@ -24,23 +24,26 @@
     background-image: url('<%= path %>/assets/arrow.svg');
     border-radius: 9999px;
     position: fixed;
-    top: calc(100% - 70px);
+    top: calc(100% - 130px);
     left: 8px;
     background-size: 60%;
     background-repeat: no-repeat;
     background-position: center;
 
     cursor: pointer;    
-    transform: translateX(100vw);
+    transform: rotate(180deg) translateX(100vw);
+    
     z-index: 1001;
     &.open{
         transform: rotate(180deg) translateX(0);
         transition: transform  0.15s linear;
+        transition-delay: 0.15s;
     }
     
     &.close{
         transform: rotate(180deg) translateX(100vw);
         transition: transform  0.15s linear;
+       
     }
 }
 
