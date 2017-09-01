@@ -2,8 +2,7 @@
 import xr from 'xr'
 import Handlebars from 'handlebars/dist/handlebars'
 import Scrolling from 'scrolling';
-import throttle from 'lodash/throttle';
-import debounce from 'lodash/debounce';
+
 import { groupBy } from './libs/arrayObjectUtils.js'
 import { share } from './libs/share.js';
 
@@ -13,18 +12,25 @@ import detailItemTemplate from '../templates/detailItem.html'
 import gridThumbTemplate from '../templates/thumbPic.html'
 import thumbsTemplate from '../templates/thumbsGallery.html'
 
+import animateScrollTo from 'animated-scroll-to'; //https://www.npmjs.com/package/animated-scroll-to
+
 var shareFn = share('Grenfell Tower', 'https://gu.com/p/72vvx');
 
 let headerVisible = true;
-
 let globalLevel = 23; // Index sets initial view to top of tower
 
 var resizeTimeout = false;
-
 var scrollTimeout = false;
 
 
- console.log(throttle)
+xr.get('https://interactive.guim.co.uk/docsdata-test/1K896qTOpgJQhG2IfGAChZ1WZjQAYn7-i869tA5cKaVU.json').then((resp) => {
+    var data = formatData(resp.data.sheets.people);
+    var compiledHTML = compileHTML(data);
+    document.querySelector(".gv-right-view").innerHTML = compiledHTML;
+    addListeners();
+    updatePageDate();
+    upDatePageView(data);
+});
 
 function isMobile() {
     var dummy = document.getElementById("gv-mobile-dummy");
@@ -40,18 +46,8 @@ function getStyle (element) {
     getComputedStyle(element, null).display;
 }
 
-xr.get('https://interactive.guim.co.uk/docsdata-test/1K896qTOpgJQhG2IfGAChZ1WZjQAYn7-i869tA5cKaVU.json').then((resp) => {
-    var data = formatData(resp.data.sheets.people);
-    var compiledHTML = compileHTML(data);
-    document.querySelector(".gv-right-view").innerHTML = compiledHTML;
-    addListeners();
-    updatePageDate();
-    upDatePageView(data);
-});
-
 
 function formatData(dataIn) {
-
     var newObj = {};
 
     dataIn.map((obj) => {
@@ -102,51 +98,18 @@ function compileHTML(dataIn) {
 }
 
 function upDatePageView(data) {
-
     data.floorSections.map((obj) => {
         if (!isNaN(obj.sortOn)) {
             var newThumbGallery = addThumbGallery(obj);
             // console.log( obj.sortOn-1, document.getElementById("thumbs-holder-"+(obj.sortOn-1)) )
             document.getElementById("thumbs-holder-" + (obj.sortOn - 1)).innerHTML = newThumbGallery;
-
-            //console.log(document.querySelectorAll('.gv-open-overlay-btn'));
         }
     })
 
-
     document.querySelectorAll('.gv-open-overlay-btn').forEach(btnEl => {
         btnEl.addEventListener('click', function() { openRightView(btnEl.getAttribute('data-level')) });
-        // var level = btnEl.getAttribute('data-level');
-        // btnEl.addEventListener('click',() => levelFn(level));
     });
 
-
-    // [].slice.apply(document.querySelectorAll('.gv-open-overlay-btn')).forEach(shareEl => {
-    //     console.log(btn)
-    // });
-
-
-}
-
-function levelFn(n) {
-    globalLevel = n;
-    console.log(globalLevel, "---", n)
-        //updateLevelView(globalLevel)
-}
-
-
-function addThumbGallery(dataIn) {
-    Handlebars.registerPartial({
-        'gridThumb': gridThumbTemplate
-    });
-
-    var content = Handlebars.compile(
-        thumbsTemplate, {
-            compat: true
-        }
-    );
-    var newHTML = content(dataIn);
-    return newHTML
 }
 
 function addListeners() {
@@ -161,8 +124,6 @@ function addListeners() {
     document.getElementById('gv-nav-up').addEventListener('click', function() { navStep("fw") });
     document.getElementById('gv-nav-down').addEventListener('click', function() { navStep("bw") });
 
-    addScrollListeners();
-
     window.addEventListener('resize', function() {
       // clear the timeout
       clearTimeout(resizeTimeout);
@@ -172,109 +133,122 @@ function addListeners() {
 
     window.onbeforeunload = function(){ window.scrollTo(0,0); } //resets scroll on load
 
+    Scrolling(window, updateViewAfterScroll);  // method to add a scroll listener -- https://www.npmjs.com/package/scrolling
+
 }
 
 function updateViewAfterResize() {
     checkFixView();
-    checkLevelViewScroll(500);
-}
-
-function navStep(a) {
-
-    Scrolling.remove(window, updateViewAfterScroll);
-
-    let maxSteps = [].slice.apply(document.querySelectorAll('.gvInnerBOX'))[0].getAttribute("data-maxsteps");
-    maxSteps = Number(maxSteps);
- 
-    if (a == "fw" && globalLevel < maxSteps) {
-        globalLevel += 1;
-    }
-
-    if (a == "bw" && globalLevel > 0) {
-        globalLevel -= 1;
-    }
-
-    if (globalLevel >= maxSteps) {
-        globalLevel = 0;
-        document.querySelector("#gv-navs").classList.remove("gv-mobile-hide");
-        document.getElementById('gv-nav-down').classList.remove("disabled");
-    } else if (globalLevel < 0) {
-        globalLevel = 0; 
-    }
-
-    if (globalLevel == 0) {
-        document.getElementById('gv-nav-down').classList.add("disabled");
-    }
-
-    else if (globalLevel > 0) {
-        document.getElementById('gv-nav-down').classList.remove("disabled");
-    }
-    
-    let noVictims = (!document.getElementById("section-bullet-"+ globalLevel));
-
-    console.log(noVictims)
-
-    //this means victims
-    if(!noVictims) {
-        window.scrollTo(0,document.getElementById("section-bullet-"+ globalLevel).offsetTop)
-    }
-
-    // else if (isNaN(document.getElementById("section-bullet-"+ globalLevel).offsetTop) ){
-    //     console.log(globalLevel)
-    // }
-
-    //updateScrollView(globalLevel);
-    updateLevelView(globalLevel);
-    updateInfoBox(globalLevel);
-
-    //Scrolling(window, updateViewAfterScroll);
-}
-
-
-function addScrollListeners() {
-
-
-    Scrolling(window, updateViewAfterScroll);
-    // window.addEventListener('scroll', function() {
-    //   // clear the timeout
-    //   clearTimeout(scrollTimeout);
-    //   // start timing for event "completion"
-    //   scrollTimeout = setTimeout(updateViewAfterScroll, 250);
-    // });
-
+    checkLevelViewScroll(globalLevel);
 }
 
 function updateViewAfterScroll(){
-        checkFixView();
-        // bodyScroll();
-        checkLevelViewScroll(500); // PROBLEM add this val for scroll
+    checkFixView();
+    let lvl = getLevelFromScroll(globalLevel);
+
+    updateLevelView(lvl);
+    updateInfoBox(lvl);
+
+    console.log("globalLevel after scroll",globalLevel);
 }
 
+function updateViewAfterClick(){
+    checkFixView();
+    
+    var noVictims = (!document.getElementById("section-bullet-"+ globalLevel));
 
-// var timer = null;
-// window.addEventListener('scroll', function() {
-//     if(timer !== null) {
-//         clearTimeout(timer);        
-//     }
-//     timer = setTimeout(function() {
-//           //document.getElementById("right-wrap").style.backgroundColor = "red";
-//     }, 500);
-// }, false);
 
-// var scrollTimer = -1;
+    if (noVictims) { 
+        updateWithoutScroll();
 
-//     function bodyScroll() {
-//         document.getElementById("right-wrap").style.backgroundColor = "white";
+    } 
+    if (!noVictims){
+        upDateWithScroll();
+    }
 
-//         if (scrollTimer != -1)
-//         clearTimeout(scrollTimer);
+    console.log( "globalLevel afterClick", globalLevel, "no victims "+noVictims );
 
-//         scrollTimer = window.setTimeout(scrollFinished(), 500);
-//     }
+}
 
-// function scrollFinished() {
-//         document.getElementById("right-wrap").style.backgroundColor = "red";
-// }
+function updateWithoutScroll(){
+
+    updateLevelView(globalLevel);
+    updateInfoBox(globalLevel);
+}
+
+function upDateWithScroll(){
+
+    // default options
+        const options = {
+          // duration of the scroll per 1000px, default 500
+          speed: 500,
+         
+          // minimum duration of the scroll
+          minDuration: 250,
+         
+          // maximum duration of the scroll
+          maxDuration: 1500,
+         
+          // DOM element to scroll, default window
+          // Pass a reference to a DOM object
+          // Example: document.querySelector('#element-to-scroll'),
+          element: window,
+         
+          // should animated scroll be canceled on user scroll/keypress
+          // if set to "false" user input will be disabled until animated scroll is complete
+          cancelOnUserAction: false,
+         
+          // function that will be executed when the scroll animation is finished
+          onComplete: updateWithoutScroll()
+        };
+ 
+const desiredOffset = 1000;
+    animateScrollTo(document.getElementById("section-bullet-"+ globalLevel), options);
+   
+}
+
+function navStep(a) {
+    let maxSteps = [].slice.apply(document.querySelectorAll('.gvInnerBOX'))[0].getAttribute("data-maxsteps");
+    
+    maxSteps = Number(maxSteps);
+ 
+    if (a == "fw") {
+        globalLevel += 1;
+    }
+
+    if (a == "bw") {
+        globalLevel -= 1;
+    }
+
+    if (globalLevel < 0){
+        globalLevel = 0;
+    }
+
+    if (globalLevel > maxSteps){
+        globalLevel = maxSteps;
+    }
+
+    updateViewAfterClick();
+
+    // if (globalLevel == 1) {
+    //     document.getElementById('gv-nav-down').classList.add("disabled");
+    // }
+
+    // else if (globalLevel > 0) {
+    //     document.getElementById('gv-nav-down').classList.remove("disabled");
+    // }
+    
+    ////////
+    // let noVictims = (!document.getElementById("section-bullet-"+ globalLevel));
+
+    // if(!noVictims) {        
+    //     window.scrollTo(0,(document.getElementById("section-bullet-"+ globalLevel).offsetTop - document.getElementById("right-wrap").offsetTop))
+        
+    // }else {
+    //     // console.log("globalLevel"+globalLevel, "NO VICTIMS ON THIS FLOOR ="+noVictims)
+    //     updateLevelView(globalLevel);
+    // }
+}
 
 function isElementInViewport(el) {
     // https://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
@@ -316,9 +290,7 @@ function isElementFocusedInViewport (el) {
 // }
 
 
-function checkLevelViewScroll(n) {
-
-    console.log(n);
+function getLevelFromScroll(n) {
 
     [].slice.apply(document.querySelectorAll('.gv-detail-item')).forEach(el => {
 
@@ -331,72 +303,29 @@ function checkLevelViewScroll(n) {
 
     });
 
-    if (n == 500) {
-        n = globalLevel-1;
-    }
+    // if (n < 0 || n > 23) {
+    //     n = 0;
+    // }
 
-    if (n < 0 || n > 23) {
-        n = 0;
-    }
+
+    console.log(globalLevel, n)
 
     globalLevel = n + 1;    
-    updateLevelView(n);
-    updateInfoBox(n);
+
+    return n + 1;
+    
 }
 
-function updateScrollView(n){
 
-    let mobCheckEl = document.getElementById("continueBtn");
-    let scrollEl;
-    let standyH = 0;
-    let isMo;
-
-    if(getStyle(mobCheckEl)=="none"){
-        scrollEl = document.body;
-        standyH = document.querySelector('.gv-right-standfirst').offsetHeight;    
-        isMo = false;
-    }
-
-    if(getStyle(mobCheckEl)=="inline-block"){
-        scrollEl = document.getElementById('right-wrap');
-        standyH = document.querySelector('.gv-right-standfirst').offsetHeight;    
-        isMo = true;
-    }
-
-    if(document.getElementById("section-bullet-"+n) && isMo){
-        let topEl = document.getElementById("section-bullet-"+n);
-        let topPos = topEl.offsetTop;
-        scrollEl.scrollTop = topPos + standyH;
-    }
-
-    if(document.getElementById("section-bullet-"+n) && !isMo){
-        console.log("globalLevel", globalLevel)
-        let topEl = document.getElementById("section-bullet-"+n);
-        let topPos = topEl.offsetTop ;
-        scrollEl.scrollTop = topPos + standyH;
-        //scrollIt(topEl.offsetTop)
-    }
-
-    console.log(document.getElementById("section-bullet-"+n))
-
-    // [].slice.apply(document.querySelectorAll('.gv-section-bullet-wrapper')).forEach(el => {  
-    //         console.log(el.getAttribute("section-ref"));    
-    // });
-   
-}
 
 function updateLevelView(n) {
-
     if (n > 0) {
         document.querySelector(".gvLevelsBOXWRAPPER").classList.remove("gv-hide")
     } else if (n == 0) {
         document.querySelector(".gvLevelsBOXWRAPPER").classList.add("gv-hide")
     }
 
-    var levelIndex = n;
-
-    var t = document.getElementById("level-" + levelIndex);
-
+    var t = document.getElementById("level-" + n);
 
     [].slice.apply(document.querySelectorAll('.gv-level')).forEach(el => {
         el.classList.remove("highlight")
@@ -408,29 +337,21 @@ function updateLevelView(n) {
 
     var svgWidth = "";
 
-    var svg = document.getElementById("gv-tower-graphic-svg"); // or other selector like querySelector()
-    var rect = svg.getBoundingClientRect(); // get the bounding rectangle
-
-    //console.log( rect.width );
+    var svg = document.getElementById("gv-tower-graphic-svg"); 
+    var rect = svg.getBoundingClientRect(); 
 
     var scale = (rect.width / 839); // initial width of svg
 
     y *= scale; // correct for svg resize
 
     if (isMobile()) {
-        y= y+70;
-        //console.log("TRUE")
+        y= y+70; 
     }
-
-    // updateInfoBox(n);
 
     document.getElementById("gv-tower-graphic").style = "transform:translateY(" + y + "px)";
 
 }
 
-function openOverlay(el) {
-    //console.log(el.getAttribute("data-level"))
-}
 
 function updateInfoBox(n) {
 
@@ -442,14 +363,11 @@ function updateInfoBox(n) {
         if (el.getAttribute("data-level") == n - 1) {
             el.classList.remove("gv-hide");
             el.classList.add("gv-show");
-            //setTimeout(function() { updateScrollView(n); }, 1000);
-
         }
 
     });
 
 }
-
 
 
 function checkFixView() {
@@ -470,11 +388,6 @@ function checkFixView() {
 
 }
 
-function isScrolledIntoView(el) {
-    const { top, bottom } = el.getBoundingClientRect()
-    return top >= 0 && bottom <= window.innerHeight
-}
-
 
 function hideRightView() {
     document.querySelector('.gv-right-view').classList.remove('open');
@@ -483,6 +396,7 @@ function hideRightView() {
     document.querySelector('.close-overlay-btn').classList.add('close');
 }
 
+
 function openRightView(n) {
     // console.log(n)
     document.querySelector('.gv-right-view').classList.remove('close');
@@ -490,6 +404,7 @@ function openRightView(n) {
     document.querySelector('.close-overlay-btn').classList.remove('close');
     document.querySelector('.close-overlay-btn').classList.add('open');
 }
+
 
 function sortByKeys(obj) {
     let keys = Object.keys(obj),
@@ -513,7 +428,6 @@ function sortByKeys(obj) {
 
 function updatePageDate() {
     document.querySelector(".time-stamp").innerHTML = " ";
-
     let pubDate;
 
     if (window.guardian.config.page.webPublicationDate) {
@@ -532,90 +446,23 @@ function updatePageDate() {
 
 }
 
+
 function notShownY(el) {
     return (el.offsetHeight * -1) > el.getBoundingClientRect().top;
 }
 
 
+function addThumbGallery(dataIn) {
+    Handlebars.registerPartial({
+        'gridThumb': gridThumbTemplate
+    });
 
-
-function scrollIt(destination, duration = 200, easing = 'linear', callback) {
-
-// https://pawelgrzybek.com/page-scroll-in-vanilla-javascript/
-
-  const easings = {
-    linear(t) {
-      return t;
-    },
-    easeInQuad(t) {
-      return t * t;
-    },
-    easeOutQuad(t) {
-      return t * (2 - t);
-    },
-    easeInOutQuad(t) {
-      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-    },
-    easeInCubic(t) {
-      return t * t * t;
-    },
-    easeOutCubic(t) {
-      return (--t) * t * t + 1;
-    },
-    easeInOutCubic(t) {
-      return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-    },
-    easeInQuart(t) {
-      return t * t * t * t;
-    },
-    easeOutQuart(t) {
-      return 1 - (--t) * t * t * t;
-    },
-    easeInOutQuart(t) {
-      return t < 0.5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t;
-    },
-    easeInQuint(t) {
-      return t * t * t * t * t;
-    },
-    easeOutQuint(t) {
-      return 1 + (--t) * t * t * t * t;
-    },
-    easeInOutQuint(t) {
-      return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t;
-    }
-  };
-
-  const start = window.pageYOffset;
-  const startTime = 'now' in window.performance ? performance.now() : new Date().getTime();
-
-  const documentHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
-  const windowHeight = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
-  const destinationOffset = typeof destination === 'number' ? destination : destination.offsetTop;
-  const destinationOffsetToScroll = Math.round(documentHeight - destinationOffset < windowHeight ? documentHeight - windowHeight : destinationOffset);
-
-  if ('requestAnimationFrame' in window === false) {
-    window.scroll(0, destinationOffsetToScroll);
-    if (callback) {
-      callback();
-    }
-    return;
-  }
-
-  function scroll() {
-    const now = 'now' in window.performance ? performance.now() : new Date().getTime();
-    const time = Math.min(1, ((now - startTime) / duration));
-    const timeFunction = easings[easing](time);
-    window.scroll(0, Math.ceil((timeFunction * (destinationOffsetToScroll - start)) + start));
-
-    if (window.pageYOffset === destinationOffsetToScroll) {
-      if (callback) {
-        callback();
-      }
-      return;
-    }
-
-    requestAnimationFrame(scroll);
-  }
-
-  scroll();
+    var content = Handlebars.compile(
+        thumbsTemplate, {
+            compat: true
+        }
+    );
+    var newHTML = content(dataIn);
+    return newHTML
 }
+

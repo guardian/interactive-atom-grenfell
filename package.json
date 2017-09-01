@@ -47,12 +47,15 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
+    "animated-scroll-to": "^1.1.6",
     "fs": "0.0.1-security",
     "gulp": "^3.9.1",
     "handlebars": "^4.0.10",
+    "install": "^0.10.1",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "magic-string": "^0.22.4",
+    "npm": "^5.3.0",
     "request-promise": "^4.2.1",
     "request-promise-native": "^1.0.4",
     "rollup-plugin-node-builtins": "^2.1.2",
