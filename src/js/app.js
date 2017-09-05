@@ -303,17 +303,27 @@ function isElementFocusedInViewport (el) {
 
 
 function getLevelFromScroll(n) {
+    
 
+    var level = false;
     [].slice.apply(document.querySelectorAll('.gv-detail-item')).forEach(el => {
 
-        if (isElementFocusedInViewport(el)) {
-            var level = Number(el.getAttribute('data-level'));
+        if (isElementFocusedInViewport(el) && !level) {
+            level = Number(el.getAttribute('data-level'));
 
-            if (level < n) { n = level }
-            globalLevel = n;
+            console.log("level=" + level);
+
+            //if (level < n) { n = level }
+            //globalLevel = n;
         }
 
     });
+
+    console.log("LEVEL=" + level)
+
+    globalLevel = level;
+
+    //globalLevel = n + 1;
 
     // if (n < 0 || n > 23) {
     //     n = 0;
@@ -329,14 +339,14 @@ function getLevelFromScroll(n) {
 
     //console.log(globalLevel, n)
 
-    //globalLevel = n + 1;
-    globalLevel = n;
+    //globalLevel = n;
+    //globalLevel = n;
     
     //updateLevelView(n); Maybe uncomment this ???????
 
     //return n + 1;
 
-    return n;
+    return globalLevel;
     
 }
 
