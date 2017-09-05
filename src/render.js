@@ -18,7 +18,7 @@ export function render() {
         json: true
     }).then((data) => {
         var sheets = data.sheets;        
-        var maxSteps = sheets.Floors.length - 1;
+        var maxSteps = sheets.Floors.length;
 
         sheets.Floors.map((obj,k)=>{
             obj.maxSteps = maxSteps; //aded maxSteps ref for app.js

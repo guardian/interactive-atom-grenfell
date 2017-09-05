@@ -17,7 +17,7 @@ import animateScrollTo from 'animated-scroll-to'; //https://www.npmjs.com/packag
 var shareFn = share('Grenfell Tower', 'https://gu.com/p/72vvx');
 
 let headerVisible = true;
-let globalLevel = 23; // Index sets initial view to top of tower
+let globalLevel = -2; // Index sets initial view after intro to basement (-1) of tower
 
 var resizeTimeout = false;
 var scrollTimeout = false;
@@ -139,7 +139,8 @@ function addListeners() {
 
 function updateViewAfterResize() {
     checkFixView();
-    checkLevelViewScroll(globalLevel);
+    checkLevelViewScroll(globalLevel); // Could be 500
+    document.querySelector("#gv-navs").classList.remove("gv-hide"); // ADDED
 }
 
 function updateViewAfterScroll(){
@@ -220,23 +221,33 @@ function navStep(a) {
         globalLevel -= 1;
     }
 
-    if (globalLevel < 0){
-        globalLevel = 0;
+    if (globalLevel < -1){
+        globalLevel = -1;
     }
 
-    if (globalLevel > maxSteps){
-        globalLevel = maxSteps;
+    if (globalLevel > maxSteps - 2){
+        globalLevel = maxSteps - 2;
     }
 
     updateViewAfterClick();
 
-    // if (globalLevel == 1) {
-    //     document.getElementById('gv-nav-down').classList.add("disabled");
-    // }
+    document.querySelector("#gv-navs").classList.remove("gv-hide"); // ADDED
 
-    // else if (globalLevel > 0) {
-    //     document.getElementById('gv-nav-down').classList.remove("disabled");
-    // }
+    if (globalLevel <= -1) {
+        document.getElementById('gv-nav-down').classList.add("disabled");
+    }
+
+    else {
+        document.getElementById('gv-nav-down').classList.remove("disabled");
+    }
+
+    if (globalLevel >= maxSteps - 2) {
+        document.getElementById('gv-nav-up').classList.add("disabled");
+    }
+
+    else {
+        document.getElementById('gv-nav-up').classList.remove("disabled");
+    }
     
     ////////
     // let noVictims = (!document.getElementById("section-bullet-"+ globalLevel));
@@ -249,6 +260,7 @@ function navStep(a) {
     //     updateLevelView(globalLevel);
     // }
 }
+
 
 function isElementInViewport(el) {
     // https://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
@@ -307,21 +319,33 @@ function getLevelFromScroll(n) {
     //     n = 0;
     // }
 
+    console.log("n=" + n);
+    console.log("g=" + globalLevel);
 
-    console.log(globalLevel, n)
+    //if (n < -1 || n > 23) { // ADD TO MAIN COMBINED
+        //n = -1; // ADD TO MAIN COMBINED
+    //} // ADD TO MAIN COMBINED
 
-    globalLevel = n + 1;    
 
-    return n + 1;
+    //console.log(globalLevel, n)
+
+    //globalLevel = n + 1;
+    globalLevel = n;
+    
+    //updateLevelView(n); Maybe uncomment this ???????
+
+    //return n + 1;
+
+    return n;
     
 }
 
 
 
 function updateLevelView(n) {
-    if (n > 0) {
+    if (n >= -1) {
         document.querySelector(".gvLevelsBOXWRAPPER").classList.remove("gv-hide")
-    } else if (n == 0) {
+    } else if (n < -1) {
         document.querySelector(".gvLevelsBOXWRAPPER").classList.add("gv-hide")
     }
 
@@ -360,7 +384,7 @@ function updateInfoBox(n) {
     [].slice.apply(document.querySelectorAll('.gvInnerBOX')).forEach(el => {
         el.classList.add("gv-hide");
         el.classList.remove("gv-show");
-        if (el.getAttribute("data-level") == n - 1) {
+        if (el.getAttribute("data-level") == n) {
             el.classList.remove("gv-hide");
             el.classList.add("gv-show");
         }
