@@ -69,6 +69,8 @@ function formatData(dataIn) {
 
     newObj.floorSections = floorArr;
 
+    //console.log(newObj.floorSections);
+
     return newObj;
 }
 
@@ -102,7 +104,8 @@ function upDatePageView(data) {
         if (!isNaN(obj.sortOn)) {
             var newThumbGallery = addThumbGallery(obj);
             // console.log( obj.sortOn-1, document.getElementById("thumbs-holder-"+(obj.sortOn-1)) )
-            document.getElementById("thumbs-holder-" + (obj.sortOn - 1)).innerHTML = newThumbGallery;
+            //document.getElementById("thumbs-holder-" + (obj.sortOn - 1)).innerHTML = newThumbGallery;
+            document.getElementById("thumbs-holder-" + (obj.sortOn)).innerHTML = newThumbGallery;
         }
     })
 
@@ -311,7 +314,7 @@ function getLevelFromScroll(n) {
         if (isElementFocusedInViewport(el) && !level) {
             level = Number(el.getAttribute('data-level'));
 
-            console.log("level=" + level);
+            //console.log("level=" + level);
 
             //if (level < n) { n = level }
             //globalLevel = n;
@@ -319,9 +322,13 @@ function getLevelFromScroll(n) {
 
     });
 
-    console.log("LEVEL=" + level)
+    //console.log("LEVEL=" + level)
 
     globalLevel = level;
+
+    if (isNaN(globalLevel) || !globalLevel) {
+        globalLevel = 23;
+    }
 
     //globalLevel = n + 1;
 
@@ -353,6 +360,16 @@ function getLevelFromScroll(n) {
 
 
 function updateLevelView(n) {
+
+    if (n < -1) {
+        n = -1;
+    }
+
+    if (n > 23) {
+        n = 23;
+    }
+
+
     if (n >= -1) {
         document.querySelector(".gvLevelsBOXWRAPPER").classList.remove("gv-hide")
     } else if (n < -1) {
