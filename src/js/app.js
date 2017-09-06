@@ -22,6 +22,8 @@ let globalLevel = -2; // Index sets initial view after intro to basement (-1) of
 var resizeTimeout = false;
 var scrollTimeout = false;
 var rightPane = null;
+var navClicked = false, navClickTimeout;
+
 
 
 xr.get('https://interactive.guim.co.uk/docsdata-test/1K896qTOpgJQhG2IfGAChZ1WZjQAYn7-i869tA5cKaVU.json').then((resp) => {
@@ -151,24 +153,27 @@ function updateViewAfterResize() {
     //document.querySelector("#gv-navs").classList.remove("gv-hide"); // ADDED
 }
 
-function updateViewAfterScroll(){
-   
-    throttle(updateViewAfterScrollDeferred(), 200);
-}
 
-function updateViewAfterScrollDeferred(){
+
+function updateViewAfterScroll(){
+    
     checkFixView();
     let lvl = getLevelFromScroll(globalLevel);
-
+    if (!navClicked) {
     updateLevelView(lvl);
     updateInfoBox(lvl);
+    }
     
     console.log("globalLevel after scroll",globalLevel);
 
     document.querySelector("#gv-navs").classList.remove("gv-hide"); // ADDED
+
+    
+    
 }
 
 function updateViewAfterClick(){
+
     checkFixView();
     
     var noVictims = (!document.getElementById("section-bullet-"+ globalLevel));
@@ -186,12 +191,15 @@ function updateViewAfterClick(){
 }
 
 function updateWithoutScroll(){
-
+    //console.log ("navClick=" + navClick)
     updateLevelView(globalLevel);
     updateInfoBox(globalLevel);
+
 }
 
 function upDateWithScroll(){
+
+   
 
     var target;
 
@@ -232,8 +240,11 @@ const desiredOffset = 1000;
    
 }
 
+
 function navStep(a) {
     let maxSteps = [].slice.apply(document.querySelectorAll('.gvInnerBOX'))[0].getAttribute("data-maxsteps");
+
+    
     
     maxSteps = Number(maxSteps);
  
@@ -283,6 +294,18 @@ function navStep(a) {
     //     // console.log("globalLevel"+globalLevel, "NO VICTIMS ON THIS FLOOR ="+noVictims)
     //     updateLevelView(globalLevel);
     // }
+
+    navClicked = true;
+    
+        // clear the timeout
+        clearTimeout(navClickTimeout);
+        // start timing for event "completion"
+        navClickTimeout = setTimeout(resetNavClicked, 800);
+      
+}
+
+function resetNavClicked() {
+    navClicked = false;
 }
 
 
@@ -328,7 +351,7 @@ function isElementFocusedInViewport (el) {
 
 function getLevelFromScroll(n) {
     
-
+    
     var level = false;
     [].slice.apply(document.querySelectorAll('.gv-detail-item')).forEach(el => {
 
@@ -377,6 +400,8 @@ function getLevelFromScroll(n) {
     //updateLevelView(n); Maybe uncomment this ???????
 
     //return n + 1;
+
+    
 
     return globalLevel;
     
@@ -541,41 +566,3 @@ function addThumbGallery(dataIn) {
     var newHTML = content(dataIn);
     return newHTML
 }
-
-// Returns a function, that, when invoked, will only be triggered at most once
-// during a given window of time. Normally, the throttled function will run
-// as much as it can, without ever going more than once per `wait` duration;
-// but if you'd like to disable the execution on the leading edge, pass
-// `{leading: false}`. To disable execution on the trailing edge, ditto.
-function throttle(func, wait, options) {
-    var context, args, result;
-    var timeout = null;
-    var previous = 0;
-    if (!options) options = {};
-    var later = function() {
-      previous = options.leading === false ? 0 : Date.now();
-      timeout = null;
-      result = func.apply(context, args);
-      if (!timeout) context = args = null;
-    };
-    return function() {
-      var now = Date.now();
-      if (!previous && options.leading === false) previous = now;
-      var remaining = wait - (now - previous);
-      context = this;
-      args = arguments;
-      if (remaining <= 0 || remaining > wait) {
-        if (timeout) {
-          clearTimeout(timeout);
-          timeout = null;
-        }
-        previous = now;
-        result = func.apply(context, args);
-        if (!timeout) context = args = null;
-      } else if (!timeout && options.trailing !== false) {
-        timeout = setTimeout(later, remaining);
-      }
-      return result;
-    };
-  };
-

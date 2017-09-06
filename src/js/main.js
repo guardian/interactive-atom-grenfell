@@ -6,5 +6,3 @@ document.body.appendChild(el);
 
 //var floor = document.getElementById("level-1");
 
-
-console.log("hello44")
