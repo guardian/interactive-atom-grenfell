@@ -179,7 +179,7 @@ $background-grey: #333333;
 .gv-tower-wrapper{
     position:absolute;  //causes overflow in app view if not fixed
     height: 100vh;
-    z-index: 1;
+    //z-index: 1;
     //top: 0;
     width: 100%;
     float: none;
@@ -277,7 +277,7 @@ $background-grey: #333333;
     bottom: 0;
     left: 0px;
     width: 100%;
-    height: 380px;
+    height: 300px;
     background-color: $background-grey;
     color: $mid-grey;
     z-index: 999;
@@ -294,7 +294,7 @@ $background-grey: #333333;
         padding: 10px 20px;
         position: relative;
         z-index: 200;
-        margin-top: -50px;
+        margin-top: -20px;
         display:block;
 
         @include mq(desktop) {
@@ -418,16 +418,15 @@ $background-grey: #333333;
         bottom: auto;
         top: 100px;
         height: auto;
-        background-color: transparent;
     }
 
     .gv-tower-graphic-info-box-inner {
         position: relative;
         padding: 10px;
-  
+        z-index:99999;
         display:block;
-        margin-top: -40px; // So overlaps gradient fade
-         background-color: $background-grey;
+        margin-top: -20px; // So overlaps gradient fade
+       
         &:first-of-type {
            // display: block;
         }
@@ -436,8 +435,7 @@ $background-grey: #333333;
 
         @include mq(desktop) {
             margin-top: 0; // Removes overlap on gradient fade
-            margin: 10px 20px;
-            padding: 0;
+            padding: 10px 20px;
         }
     }
 
@@ -500,7 +498,7 @@ $background-grey: #333333;
 
 }
 
-#gv-tower-graphic-info-box-container:before, #gv-tower-graphic-intro:before {
+#gv-tower-graphic-info-box:before, #gv-tower-graphic-intro:before {
     display: block;
     width: 100%;
     position: absolute;
