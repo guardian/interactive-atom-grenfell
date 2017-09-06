@@ -21,6 +21,7 @@ let globalLevel = -2; // Index sets initial view after intro to basement (-1) of
 
 var resizeTimeout = false;
 var scrollTimeout = false;
+var rightPane = null;
 
 
 xr.get('https://interactive.guim.co.uk/docsdata-test/1K896qTOpgJQhG2IfGAChZ1WZjQAYn7-i869tA5cKaVU.json').then((resp) => {
@@ -138,6 +139,9 @@ function addListeners() {
 
     Scrolling(window, updateViewAfterScroll);  // method to add a scroll listener -- https://www.npmjs.com/package/scrolling
 
+    rightPane = document.getElementById("right-wrap");
+    Scrolling(rightPane, updateViewAfterScroll);
+
 }
 
 function updateViewAfterResize() {
@@ -153,7 +157,7 @@ function updateViewAfterScroll(){
 
     updateLevelView(lvl);
     updateInfoBox(lvl);
-
+    console.log("test");
     console.log("globalLevel after scroll",globalLevel);
 
     document.querySelector("#gv-navs").classList.remove("gv-hide"); // ADDED
@@ -167,7 +171,6 @@ function updateViewAfterClick(){
 
     if (noVictims) { 
         updateWithoutScroll();
-
     } 
     if (!noVictims){
         upDateWithScroll();
@@ -185,6 +188,14 @@ function updateWithoutScroll(){
 
 function upDateWithScroll(){
 
+    var target;
+
+    if (isMobile) {
+        target = rightPane;
+    } else {
+        target = window;
+    }
+
     // default options
         const options = {
           // duration of the scroll per 1000px, default 500
@@ -199,7 +210,7 @@ function upDateWithScroll(){
           // DOM element to scroll, default window
           // Pass a reference to a DOM object
           // Example: document.querySelector('#element-to-scroll'),
-          element: window,
+          element: target,
          
           // should animated scroll be canceled on user scroll/keypress
           // if set to "false" user input will be disabled until animated scroll is complete
@@ -330,7 +341,7 @@ function getLevelFromScroll(n) {
     globalLevel = level;
 
     if (isNaN(globalLevel) || !globalLevel) {
-        globalLevel = 23;
+        globalLevel = n;
     }
 
     //globalLevel = n + 1;
@@ -452,7 +463,7 @@ function hideRightView() {
 
 
 function openRightView(n) {
-    // console.log(n)
+    console.log("View=" + n)
     document.querySelector('.gv-right-view').classList.remove('close');
     document.querySelector('.gv-right-view').classList.add('open');
     document.querySelector('.close-overlay-btn').classList.remove('close');
