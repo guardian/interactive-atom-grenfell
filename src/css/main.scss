@@ -245,6 +245,10 @@ $background-grey: #333333;
         .gv-level.highlight rect {
             fill: $accent-yellow;
         }
+
+        .gv-level.path-highlight {
+            stroke: $accent-yellow!important;
+        }
     }
 }
 
@@ -413,6 +417,8 @@ $background-grey: #333333;
     @include mq(desktop) {
         bottom: auto;
         top: 100px;
+        height: auto;
+        background-color: transparent;
     }
 
     .gv-tower-graphic-info-box-inner {
@@ -430,7 +436,8 @@ $background-grey: #333333;
 
         @include mq(desktop) {
             margin-top: 0; // Removes overlap on gradient fade
-            padding: 10px 20px;
+            margin: 10px 20px;
+            padding: 0;
         }
     }
 

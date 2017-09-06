@@ -433,10 +433,16 @@ function updateLevelView(n) {
     var t = document.getElementById("level-" + n);
 
     [].slice.apply(document.querySelectorAll('.gv-level')).forEach(el => {
-        el.classList.remove("highlight")
+        el.classList.remove("highlight");
+        el.classList.remove("path-highlight"); // ADD TO MAIN COMBINED
     });
 
     t.classList.add("highlight");
+
+    if ( n == -1 ) { // ADD TO MAIN COMBINED
+        var t2 = document.getElementById("ground");
+        t2.classList.add("path-highlight");
+    }
 
     var y = 0 - t.transform.baseVal.getItem(0).matrix.f;
 
