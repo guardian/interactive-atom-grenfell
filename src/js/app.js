@@ -190,11 +190,13 @@ function upDateWithScroll(){
 
     var target;
 
-    if (isMobile) {
+    if (isMobile()) {
         target = rightPane;
     } else {
         target = window;
+        rightPane.scrollTop = 0;
     }
+
 
     // default options
         const options = {

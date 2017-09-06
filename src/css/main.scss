@@ -596,3 +596,13 @@ left: 70px;
         display:block !important;
     }
 }
+
+#gv-mobile-dummy {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    display: block;
+    @include mq(desktop){
+        display:none;
+    }
+}
