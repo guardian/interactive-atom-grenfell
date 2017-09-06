@@ -141,9 +141,10 @@ function addListeners() {
 }
 
 function updateViewAfterResize() {
-    checkFixView();
-    checkLevelViewScroll(globalLevel); // Could be 500
-    document.querySelector("#gv-navs").classList.remove("gv-hide"); // ADDED
+    //checkFixView();
+    //checkLevelViewScroll(globalLevel); // Could be 500
+    updateViewAfterScroll();
+    //document.querySelector("#gv-navs").classList.remove("gv-hide"); // ADDED
 }
 
 function updateViewAfterScroll(){
@@ -154,6 +155,8 @@ function updateViewAfterScroll(){
     updateInfoBox(lvl);
 
     console.log("globalLevel after scroll",globalLevel);
+
+    document.querySelector("#gv-navs").classList.remove("gv-hide"); // ADDED
 }
 
 function updateViewAfterClick(){
