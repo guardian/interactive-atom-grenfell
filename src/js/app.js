@@ -147,6 +147,10 @@ function addListeners() {
 }
 
 function updateViewAfterResize() {
+
+    if (globalLevel == -2) {
+        navStep("fw");
+    }
     //checkFixView();
     //checkLevelViewScroll(globalLevel); // Could be 500
     updateViewAfterScroll();
