@@ -23,6 +23,7 @@ var resizeTimeout = false;
 var scrollTimeout = false;
 var rightPane = null;
 var navClicked = false, navClickTimeout;
+var continueClicked = false;
 
 let maxSteps = [].slice.apply(document.querySelectorAll('.gvInnerBOX'))[0].getAttribute("data-maxsteps");
     maxSteps = Number(maxSteps);
@@ -155,17 +156,20 @@ function continueBtnClicked() {
     if (isMobile()) {
         window.scrollTo(0,document.body.scrollHeight);
     }
+    continueClicked = true;
 }
 
 function updateViewAfterResize() {
 
-    if (globalLevel == -2) {
-        navStep("fw");
-    }
+    if (globalLevel != -2) {
+        //navStep("fw");
+    
     //checkFixView();
     //checkLevelViewScroll(globalLevel); // Could be 500
     updateViewAfterScroll();
     //document.querySelector("#gv-navs").classList.remove("gv-hide"); // ADDED
+
+    }
 
     rightPane.scrollTop = 0;
 }
@@ -173,17 +177,24 @@ function updateViewAfterResize() {
 
 
 function updateViewAfterScroll(){
-    
+    var lvl;
     checkFixView();
-    let lvl = getLevelFromScroll(globalLevel);
-    if (!navClicked) {
+    if (continueClicked) {
+        lvl = globalLevel;
+        continueClicked = false;
+    } else {
+
+    lvl = getLevelFromScroll(globalLevel);
+    }
+    if (!navClicked ) {
     updateLevelView(lvl);
     updateInfoBox(lvl);
     }
     
     //console.log("globalLevel after scroll",globalLevel);
-
+if (globalLevel != - 2) {
     document.querySelector("#gv-navs").classList.remove("gv-hide"); // ADDED
+}
     
 }
 
@@ -209,7 +220,7 @@ function updateWithoutScroll(){
     //console.log ("navClick=" + navClick)
     updateLevelView(globalLevel);
     updateInfoBox(globalLevel);
-
+    checkNavs();
     if (isMobile()) {
         window.scrollTo(0,document.body.scrollHeight);
     }
@@ -259,22 +270,7 @@ const desiredOffset = 1000;
    
 }
 
-
-function navStep(a) {
- 
-    if (a == "fw") {
-        globalLevel += 1;
-    }
-
-    if (a == "bw") {
-        globalLevel -= 1;
-    }
-
-    globalLevel = checkWithinAllowedLimits(globalLevel);
-
-    updateViewAfterClick();
-
-
+function checkNavs() {
     if (globalLevel <= -1) {
         document.getElementById('gv-nav-down').classList.add("disabled");
     }
@@ -290,6 +286,25 @@ function navStep(a) {
     else {
         document.getElementById('gv-nav-up').classList.remove("disabled");
     }
+}
+
+
+function navStep(a) {
+ 
+    if (a == "fw") {
+        globalLevel += 1;
+    }
+
+    if (a == "bw") {
+        globalLevel -= 1;
+    }
+
+    globalLevel = checkWithinAllowedLimits(globalLevel);
+
+    updateViewAfterClick();
+
+    checkNavs();
+   
     
     ////////
     // let noVictims = (!document.getElementById("section-bullet-"+ globalLevel));
@@ -461,7 +476,7 @@ function updateLevelView(n) {
 }
 
     document.getElementById("gv-tower-graphic").style = "transform:translateY(" + y + "px)";
-
+    checkNavs();
 }
 
 function showIntro() {
