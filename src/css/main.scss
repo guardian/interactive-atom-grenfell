@@ -222,7 +222,7 @@ $background-grey: #333333;
     width: 100%;
     background: transparent;
     height: auto;
-    margin-top: 50px;
+    margin-top: 30px;
     transition: transform 0.5s ease 0s;
 
     svg {
@@ -253,7 +253,7 @@ $background-grey: #333333;
 }
 
 #gv-tower-graphic-info {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -275,9 +275,11 @@ $background-grey: #333333;
 #gv-tower-graphic-intro {
     position: absolute;
     bottom: 0;
+    padding-bottom: 20px;
     left: 0px;
     width: 100%;
-    height: 300px;
+    height: auto;
+    min-height: 300px;
     background-color: $background-grey;
     color: $mid-grey;
     z-index: 999;
@@ -408,7 +410,7 @@ $background-grey: #333333;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 330px;
+    min-height: 330px;
     background-color: $background-grey;
     color: $mid-grey;
     z-index: 1000;
@@ -504,8 +506,8 @@ $background-grey: #333333;
     width: 100%;
     position: absolute;
     content:"";
-    height: 80px;
-    top: -80px;
+    height: 70px;
+    top: -70px;
     z-index: 99;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#333333+0,333333+100&0+0,1+98 */
 

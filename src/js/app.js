@@ -24,6 +24,9 @@ var scrollTimeout = false;
 var rightPane = null;
 var navClicked = false, navClickTimeout;
 
+let maxSteps = [].slice.apply(document.querySelectorAll('.gvInnerBOX'))[0].getAttribute("data-maxsteps");
+    maxSteps = Number(maxSteps);
+
 
 
 xr.get('https://interactive.guim.co.uk/docsdata-test/1K896qTOpgJQhG2IfGAChZ1WZjQAYn7-i869tA5cKaVU.json').then((resp) => {
@@ -168,11 +171,9 @@ function updateViewAfterScroll(){
     updateInfoBox(lvl);
     }
     
-    console.log("globalLevel after scroll",globalLevel);
+    //console.log("globalLevel after scroll",globalLevel);
 
     document.querySelector("#gv-navs").classList.remove("gv-hide"); // ADDED
-
-    
     
 }
 
@@ -190,7 +191,7 @@ function updateViewAfterClick(){
         upDateWithScroll();
     }
 
-    console.log( "globalLevel afterClick", globalLevel, "no victims "+noVictims );
+    //console.log( "globalLevel afterClick", globalLevel, "no victims "+noVictims );
 
 }
 
@@ -246,11 +247,6 @@ const desiredOffset = 1000;
 
 
 function navStep(a) {
-    let maxSteps = [].slice.apply(document.querySelectorAll('.gvInnerBOX'))[0].getAttribute("data-maxsteps");
-
-    
-    
-    maxSteps = Number(maxSteps);
  
     if (a == "fw") {
         globalLevel += 1;
@@ -260,13 +256,7 @@ function navStep(a) {
         globalLevel -= 1;
     }
 
-    if (globalLevel < -1){
-        globalLevel = -1;
-    }
-
-    if (globalLevel > maxSteps - 2){
-        globalLevel = maxSteps - 2;
-    }
+    globalLevel = checkWithinAllowedLimits(globalLevel);
 
     updateViewAfterClick();
 
@@ -280,7 +270,7 @@ function navStep(a) {
         document.getElementById('gv-nav-down').classList.remove("disabled");
     }
 
-    if (globalLevel >= maxSteps - 2) {
+    if (globalLevel >= maxSteps - 1) {
         document.getElementById('gv-nav-up').classList.add("disabled");
     }
 
@@ -313,18 +303,6 @@ function resetNavClicked() {
 }
 
 
-function isElementInViewport(el) {
-    // https://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
-    var rect = el.getBoundingClientRect();
-
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
-    );
-}
-
 function isElementFocusedInViewport (el) {
     // https://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
     var rect = el.getBoundingClientRect();
@@ -338,19 +316,6 @@ function isElementFocusedInViewport (el) {
 
     );
 }
-
-// function onVisibilityChange(el, callback) {
-//     var old_visible;
-//     return function () {
-//         var visible = isElementInViewport(el);
-//         if (visible != old_visible) {
-//             old_visible = visible;
-//             if (typeof callback == 'function') {
-//                 callback();
-//             }
-//         }
-//     }
-// }
 
 
 function getLevelFromScroll(n) {
@@ -384,11 +349,11 @@ function getLevelFromScroll(n) {
     //     n = 0;
     // }
 
-    if (n < -1) {
-        n=-1;
-    }
+    // if (n < -1) {
+    //     n=-1;
+    // }
 
-    console.log("n=" + n);
+    console.log("=maxSteps" + maxSteps);
     console.log("g=" + globalLevel);
 
     //if (n < -1 || n > 23) { // ADD TO MAIN COMBINED
@@ -411,23 +376,38 @@ function getLevelFromScroll(n) {
     
 }
 
-
-
-function updateLevelView(n) {
+function checkWithinAllowedLimits(n) {
 
     if (n < -1) {
         n = -1;
     }
 
-    if (n > 23) {
-        n = 23;
+    if (n >= maxSteps) {
+        n = -2;
     }
 
+    return n;
+}
 
-    if (n >= -1) {
-        document.querySelector(".gvLevelsBOXWRAPPER").classList.remove("gv-hide")
-    } else if (n < -1) {
+
+
+function updateLevelView(n) {
+
+    // if (n < -1) {
+    //     n = -1;
+    // }
+
+    // if (n > 23) {
+    //     n = 23;
+    // }
+
+    n = checkWithinAllowedLimits(n);
+
+
+    if (n < -1 || n > maxSteps -2) {
         document.querySelector(".gvLevelsBOXWRAPPER").classList.add("gv-hide")
+    } else {
+        document.querySelector(".gvLevelsBOXWRAPPER").classList.remove("gv-hide")
     }
 
     var t = document.getElementById("level-" + n);
@@ -436,6 +416,8 @@ function updateLevelView(n) {
         el.classList.remove("highlight");
         el.classList.remove("path-highlight"); // ADD TO MAIN COMBINED
     });
+
+    if (t != null) { // Not intro
 
     t.classList.add("highlight");
 
@@ -456,17 +438,35 @@ function updateLevelView(n) {
     y *= scale; // correct for svg resize
 
     if (isMobile()) {
-        y= y+70; 
+        var offsetY = Math.round(100 * scale);
+        y += offsetY; 
     }
+} else {
+    
+    var y = 0;
+    showIntro();
+}
 
     document.getElementById("gv-tower-graphic").style = "transform:translateY(" + y + "px)";
 
 }
 
+function showIntro() {
+    document.querySelector("#gv-navs").classList.add("gv-hide"); // ADDED
+    
+    document.getElementById("gv-tower-graphic-intro").classList.remove("gv-hide");
+
+    globalLevel = -2;
+}
+
 
 function updateInfoBox(n) {
-
+    if (n > - 2) {
+    
     document.getElementById("gv-tower-graphic-intro").classList.add("gv-hide");
+
+    }
+   
 
     [].slice.apply(document.querySelectorAll('.gvInnerBOX')).forEach(el => {
         el.classList.add("gv-hide");
@@ -477,6 +477,8 @@ function updateInfoBox(n) {
         }
 
     });
+
+
 
 }
 
