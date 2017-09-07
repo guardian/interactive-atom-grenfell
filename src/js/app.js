@@ -128,7 +128,7 @@ function addListeners() {
     });
 
     document.querySelector('.close-overlay-btn').addEventListener('click', hideRightView);  
-    document.querySelector('.gv-continue-button').addEventListener('click', function() { navStep("fw") });
+    document.querySelector('.gv-continue-button').addEventListener('click', function() { continueBtnClicked() });
 
     document.getElementById('gv-nav-up').addEventListener('click', function() { navStep("fw") });
     document.getElementById('gv-nav-down').addEventListener('click', function() { navStep("bw") });
@@ -149,6 +149,14 @@ function addListeners() {
 
 }
 
+function continueBtnClicked() {
+    document.querySelector("#gv-navs").classList.remove("gv-hide"); // ADDED
+    navStep("fw");
+    if (isMobile()) {
+        window.scrollTo(0,document.body.scrollHeight);
+    }
+}
+
 function updateViewAfterResize() {
 
     if (globalLevel == -2) {
@@ -158,6 +166,8 @@ function updateViewAfterResize() {
     //checkLevelViewScroll(globalLevel); // Could be 500
     updateViewAfterScroll();
     //document.querySelector("#gv-navs").classList.remove("gv-hide"); // ADDED
+
+    rightPane.scrollTop = 0;
 }
 
 
@@ -199,6 +209,10 @@ function updateWithoutScroll(){
     //console.log ("navClick=" + navClick)
     updateLevelView(globalLevel);
     updateInfoBox(globalLevel);
+
+    if (isMobile()) {
+        window.scrollTo(0,document.body.scrollHeight);
+    }
 
 }
 
@@ -260,7 +274,6 @@ function navStep(a) {
 
     updateViewAfterClick();
 
-    document.querySelector("#gv-navs").classList.remove("gv-hide"); // ADDED
 
     if (globalLevel <= -1) {
         document.getElementById('gv-nav-down').classList.add("disabled");
@@ -457,6 +470,7 @@ function showIntro() {
     document.getElementById("gv-tower-graphic-intro").classList.remove("gv-hide");
 
     globalLevel = -2;
+    rightPane.scrollTop = 0;
 }
 
 
@@ -478,7 +492,7 @@ function updateInfoBox(n) {
 
     });
 
-
+    console.log("righttop=" + rightPane.scrollTop);
 
 }
 
