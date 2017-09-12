@@ -197,7 +197,10 @@ function updateViewAfterResize() {
 
     }
 
+    if (!isMobile()) {
     rightPane.scrollTop = 0;
+    document.querySelector('.gv-right-view').classList.remove('close');
+    }
 }
 
 
@@ -212,9 +215,12 @@ function updateViewAfterScroll(){
 
     lvl = getLevelFromScroll(globalLevel);
     }
+
+    
    
     updateLevelView(lvl);
     updateInfoBox(lvl);
+  
     
     
     //console.log("globalLevel after scroll",globalLevel);
@@ -406,7 +412,7 @@ function getLevelFromScroll(n) {
     //     n=-1;
     // }
 
-    scrollDirection = getScrollDirection();
+    
     console.log("direction=" + scrollDirection);
 
     console.log("=maxSteps" + maxSteps);
@@ -429,11 +435,13 @@ function getLevelFromScroll(n) {
 
     // BELOW: THESE CHECK TO SEE GLOBAL LEVEL REFLECTS DIRECTION OF ANY CURRENT SCROLL - STOPS FLICKER ANOMALLY IN LEFT VIEW INFO
 
-    if (globalLevel > lastLevel && direction != 1) {
+    scrollDirection= getScrollDirection();
+
+    if (globalLevel > lastLevel && scrollDirection != 1) {
         globalLevel = lastLevel;
     }
 
-     else if (globalLevel < lastLevel && direction != -1) {
+     else if (globalLevel < lastLevel && scrollDirection != -1) {
         globalLevel = lastLevel;
     }
 
@@ -457,14 +465,6 @@ function checkWithinAllowedLimits(n) {
 
 
 function updateLevelView(n) {
-
-    // if (n < -1) {
-    //     n = -1;
-    // }
-
-    // if (n > 23) {
-    //     n = 23;
-    // }
 
     n = checkWithinAllowedLimits(n);
 
