@@ -20,10 +20,12 @@ let headerVisible = true;
 let globalLevel = -2; // Index sets initial view after intro to basement (-1) of tower
 
 var resizeTimeout = false;
-var scrollTimeout = false;
+
 var rightPane = null;
-var navClicked = false, navClickTimeout;
+//var navClicked = false;
 var continueClicked = false;
+
+var lastScrollWindow = 0, lastScrollRightPane = 0, scrollDirection = 0;
 
 let maxSteps = [].slice.apply(document.querySelectorAll('.gvInnerBOX'))[0].getAttribute("data-maxsteps");
     maxSteps = Number(maxSteps);
@@ -150,6 +152,30 @@ function addListeners() {
 
 }
 
+function getScrollDirection() {
+
+    var direction = 0, moved;
+
+    if (isMobile()) {
+        moved = rightPane.scrollTop - lastScrollRightPane;
+    } else {
+        moved = window.scrollY - lastScrollWindow;
+    }
+
+    lastScrollWindow = window.scrollY;
+    lastScrollRightPane = rightPane.scrollTop;
+
+    if (moved < 0) {
+        direction = -1;
+    } else if (moved > 0) {
+        direction = 1;
+    } else {
+        direction = 0;
+    }
+
+    return direction;
+}
+
 function continueBtnClicked() {
     document.querySelector("#gv-navs").classList.remove("gv-hide"); // ADDED
     navStep("fw");
@@ -186,10 +212,10 @@ function updateViewAfterScroll(){
 
     lvl = getLevelFromScroll(globalLevel);
     }
-    if (!navClicked ) {
+   
     updateLevelView(lvl);
     updateInfoBox(lvl);
-    }
+    
     
     //console.log("globalLevel after scroll",globalLevel);
 if (globalLevel != - 2) {
@@ -228,9 +254,7 @@ function updateWithoutScroll(){
 }
 
 function upDateWithScroll(){
-
    
-
     var target;
 
     if (isMobile()) {
@@ -317,18 +341,18 @@ function navStep(a) {
     //     updateLevelView(globalLevel);
     // }
 
-    navClicked = true;
+    //navClicked = true;
     
         // clear the timeout
-        clearTimeout(navClickTimeout);
+        //clearTimeout(navClickTimeout);
         // start timing for event "completion"
-        navClickTimeout = setTimeout(resetNavClicked, 800);
+        //navClickTimeout = setTimeout(resetNavClicked, 800);
       
 }
 
-function resetNavClicked() {
-    navClicked = false;
-}
+// function resetNavClicked() {
+//     navClicked = false;
+// }
 
 
 function isElementFocusedInViewport (el) {
@@ -349,7 +373,8 @@ function isElementFocusedInViewport (el) {
 function getLevelFromScroll(n) {
     
     
-    var level = false;
+    var level = false, lastLevel = globalLevel;
+
     [].slice.apply(document.querySelectorAll('.gv-detail-item')).forEach(el => {
 
         if (isElementFocusedInViewport(el) && !level) {
@@ -381,6 +406,9 @@ function getLevelFromScroll(n) {
     //     n=-1;
     // }
 
+    scrollDirection = getScrollDirection();
+    console.log("direction=" + scrollDirection);
+
     console.log("=maxSteps" + maxSteps);
     console.log("g=" + globalLevel);
 
@@ -398,7 +426,16 @@ function getLevelFromScroll(n) {
 
     //return n + 1;
 
-    
+
+    // BELOW: THESE CHECK TO SEE GLOBAL LEVEL REFLECTS DIRECTION OF ANY CURRENT SCROLL - STOPS FLICKER ANOMALLY IN LEFT VIEW INFO
+
+    if (globalLevel > lastLevel && direction != 1) {
+        globalLevel = lastLevel;
+    }
+
+     else if (globalLevel < lastLevel && direction != -1) {
+        globalLevel = lastLevel;
+    }
 
     return globalLevel;
     
