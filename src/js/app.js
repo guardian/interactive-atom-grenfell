@@ -216,7 +216,7 @@ function updateViewAfterScroll(){
     lvl = getLevelFromScroll(globalLevel);
     }
 
-    
+    if (globalLevel != - 2) {
    
     updateLevelView(lvl);
     updateInfoBox(lvl);
@@ -224,7 +224,7 @@ function updateViewAfterScroll(){
     
     
     //console.log("globalLevel after scroll",globalLevel);
-if (globalLevel != - 2) {
+
     document.querySelector("#gv-navs").classList.remove("gv-hide"); // ADDED
 }
     
@@ -435,7 +435,7 @@ function getLevelFromScroll(n) {
 
     // BELOW: THESE CHECK TO SEE GLOBAL LEVEL REFLECTS DIRECTION OF ANY CURRENT SCROLL - STOPS FLICKER ANOMALLY IN LEFT VIEW INFO
 
-    scrollDirection= getScrollDirection();
+    scrollDirection = getScrollDirection();
 
     if (globalLevel > lastLevel && scrollDirection != 1) {
         globalLevel = lastLevel;
