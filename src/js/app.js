@@ -556,9 +556,7 @@ function updateInfoBox(n) {
 
 
 function checkFixView() {
-    let h = 0;
-
-    console.log("checkFixView")
+    let h = 60;
 
     if (document.getElementById("bannerandheader")){
         h = document.getElementById("bannerandheader").offsetHeight;
@@ -567,7 +565,7 @@ function checkFixView() {
     var pos_top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
     // console.log("pos_top=" + pos_top);
-    // console.log("h=" + h);
+    console.log("h=" + h);
 
     if (pos_top > h) {
         document.querySelector('.gv-tower-wrapper').classList.add('fixed');
@@ -576,6 +574,8 @@ function checkFixView() {
         document.querySelector('.gv-tower-wrapper').classList.remove('fixed');
         document.querySelector('.gv-right-wrapper').classList.remove('fixed');
     }
+
+    console.log("Knobs");
 
 }
 

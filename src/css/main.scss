@@ -11,8 +11,6 @@ $unselected-color: $neutral-3;
 $selected-color: $multimedia-main-2;
 $selected-color-support: $comment-main-2;
 
-
-
 // Uncomment for embeds
 //@import "embed";
 
@@ -284,7 +282,7 @@ $background-grey: #333333;
     background-color: $background-grey;
     color: $mid-grey;
     z-index: 999;
-    font-family: 'Guardian Egyptian Web', Georgia;
+    @include fs-headline(2);
     
 
     @include mq(desktop) {
@@ -321,7 +319,10 @@ $background-grey: #333333;
     p {
         font-size: 16px;
         display: block;
+        margin-top: 6px;
+        padding-top: 6px;
         border-top: 1px solid $dark-grey;
+
     }
 
     .gv-continue-button {
@@ -330,9 +331,9 @@ $background-grey: #333333;
         padding: 4px 12px 4px 12px;
         border: 1px solid red;
         color: $accent-yellow;
-        font-family: 'Guardian Sans Web', Arial;
+        @include fs-textSans(3);
         font-weight: 600;
-        font-size: 14px;
+
         cursor: pointer;
 
         span {
@@ -416,7 +417,7 @@ $background-grey: #333333;
     color: $mid-grey;
     z-index: 1000;
     //font-family: 'Guardian Egyptian Web', Georgia;
-    font-family: 'Guardian Sans Web', Arial;
+    @include fs-textSans(3);
 
     @include mq(desktop) {
         bottom: auto;

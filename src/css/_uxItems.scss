@@ -24,12 +24,11 @@
     background-image: url('<%= path %>/assets/arrow.svg');
     border-radius: 9999px;
     position: fixed;
-    top: calc(100% - 130px);
+    top: calc(100% - 70px);
     left: 8px;
     background-size: 60%;
     background-repeat: no-repeat;
     background-position: center;
-
     cursor: pointer;    
     transform: rotate(180deg) translateX(100vw);
     
