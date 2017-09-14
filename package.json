@@ -61,6 +61,7 @@
     "rollup-plugin-node-builtins": "^2.1.2",
     "scrolling": "^0.1.1",
     "svelte": "^1.30.0",
+    "webkit-assign": "^1.4.1",
     "xr": "^0.3.0"
   }
 }

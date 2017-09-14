@@ -477,42 +477,48 @@ function updateLevelView(n) {
 
     var t = document.getElementById("level-" + n);
 
-    [].slice.apply(document.querySelectorAll('.gv-level')).forEach(el => {
-        el.classList.remove("highlight");
-        el.classList.remove("path-highlight"); // ADD TO MAIN COMBINED
-    });
+        [].slice.apply(document.querySelectorAll('.gv-level')).forEach(el => {
+            el.classList.remove("highlight");
+            el.classList.remove("path-highlight"); // ADD TO MAIN COMBINED
+        });
 
-    if (t != null) { // Not intro
+        if (t != null) { // Not intro
 
-    t.classList.add("highlight");
+        t.classList.add("highlight");
 
-    if ( n == -1 ) { // ADD TO MAIN COMBINED
-        var t2 = document.getElementById("ground");
-        t2.classList.add("path-highlight");
-    }
+        if ( n == -1 ) { // ADD TO MAIN COMBINED// - rm1409  
+            var t2 = document.getElementById("ground");
+            t2.classList.add("path-highlight");
+        }
 
-    var y = 0 - t.transform.baseVal.getItem(0).matrix.f;
+        var y = 0 - t.transform.baseVal.getItem(0).matrix.f;
 
-    var svgWidth = "";
+        var svgWidth = "";
 
-    var svg = document.getElementById("gv-tower-graphic-svg"); 
-    var rect = svg.getBoundingClientRect(); 
+        var svg = document.getElementById("gv-tower-graphic-svg"); 
+        var rect = svg.getBoundingClientRect(); 
 
-    var scale = (rect.width / 839); // initial width of svg
+        var scale = (rect.width / 839); // initial width of svg
 
-    y *= scale; // correct for svg resize
+        y *= scale; // correct for svg resize
 
     if (isMobile()) {
         var offsetY = Math.round(100 * scale);
         y += offsetY; 
+        console.log("y -- ",offsetY)
     }
-} else {
-    
-    var y = 0;
-    showIntro();
-}
 
-    document.getElementById("gv-tower-graphic").style = "transform:translateY(" + y + "px)";
+    } else {
+        
+        var y = 0;
+        showIntro();
+    }
+
+
+
+    document.querySelector('#gv-tower-graphic').style.webkitTransform = "translateY(" + y + "px)"; 
+    document.querySelector('#gv-tower-graphic').style.MozTransform = "translateY(" + y + "px)"; 
+    document.querySelector('#gv-tower-graphic').style.transform = "translateY(" + y + "px)"; 
     checkNavs();
 }
 
@@ -550,7 +556,13 @@ function updateInfoBox(n) {
 
 
 function checkFixView() {
-    let h = document.getElementById("bannerandheader").offsetHeight;
+    let h = 0;
+
+    console.log("checkFixView")
+
+    if (document.getElementById("bannerandheader")){
+        h = document.getElementById("bannerandheader").offsetHeight;
+    }
 
     var pos_top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
