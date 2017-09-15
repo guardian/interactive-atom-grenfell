@@ -29,8 +29,17 @@ export function render() {
                 obj.hasVictims = false;
             }
 
-            console.log(obj.hasVictims);
+            if(obj.Time_standfirst){
+                obj.hasTimeCopy = true;
+            }else{
+                obj.hasTimeCopy = false;
+            }
 
+            if(obj.Summary){
+                obj.hasSummary = true;
+            }else{
+                obj.hasSummary = false;
+            }
 
         })
 

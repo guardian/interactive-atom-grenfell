@@ -31,7 +31,6 @@ let maxSteps = [].slice.apply(document.querySelectorAll('.gvInnerBOX'))[0].getAt
     maxSteps = Number(maxSteps);
 
 
-
 xr.get('https://interactive.guim.co.uk/docsdata-test/1K896qTOpgJQhG2IfGAChZ1WZjQAYn7-i869tA5cKaVU.json').then((resp) => {
     var data = formatData(resp.data.sheets.people);
     var compiledHTML = compileHTML(data);
@@ -78,8 +77,6 @@ function formatData(dataIn) {
 
     newObj.floorSections = floorArr;
 
-    //console.log(newObj.floorSections);
-
     return newObj;
 }
 
@@ -112,7 +109,6 @@ function upDatePageView(data) {
     data.floorSections.map((obj) => {
         if (!isNaN(obj.sortOn)) {
             var newThumbGallery = addThumbGallery(obj);
-            // console.log( obj.sortOn-1, document.getElementById("thumbs-holder-"+(obj.sortOn-1)) )
             //document.getElementById("thumbs-holder-" + (obj.sortOn - 1)).innerHTML = newThumbGallery;
             document.getElementById("thumbs-holder-" + (obj.sortOn)).innerHTML = newThumbGallery;
         }
@@ -178,10 +174,13 @@ function getScrollDirection() {
 
 function continueBtnClicked() {
     document.querySelector("#gv-navs").classList.remove("gv-hide"); // ADDED
+
     navStep("fw");
+
     if (isMobile()) {
         window.scrollTo(0,document.body.scrollHeight);
     }
+
     continueClicked = true;
 }
 
@@ -220,10 +219,6 @@ function updateViewAfterScroll(){
    
     updateLevelView(lvl);
     updateInfoBox(lvl);
-  
-    
-    
-    //console.log("globalLevel after scroll",globalLevel);
 
     document.querySelector("#gv-navs").classList.remove("gv-hide"); // ADDED
 }
@@ -244,12 +239,9 @@ function updateViewAfterClick(){
         upDateWithScroll();
     }
 
-    //console.log( "globalLevel afterClick", globalLevel, "no victims "+noVictims );
-
 }
 
 function updateWithoutScroll(){
-    //console.log ("navClick=" + navClick)
     updateLevelView(globalLevel);
     updateInfoBox(globalLevel);
     checkNavs();
@@ -269,7 +261,6 @@ function upDateWithScroll(){
         target = window;
         rightPane.scrollTop = 0;
     }
-
 
     // default options
         const options = {
@@ -295,7 +286,8 @@ function upDateWithScroll(){
           onComplete: updateWithoutScroll()
         };
  
-const desiredOffset = 1000;
+    const desiredOffset = 1000;
+
     animateScrollTo(document.getElementById("section-bullet-"+ globalLevel), options);
    
 }
@@ -331,6 +323,8 @@ function navStep(a) {
 
     globalLevel = checkWithinAllowedLimits(globalLevel);
 
+    console.log(globalLevel)
+
     updateViewAfterClick();
 
     checkNavs();
@@ -343,7 +337,6 @@ function navStep(a) {
     //     window.scrollTo(0,(document.getElementById("section-bullet-"+ globalLevel).offsetTop - document.getElementById("right-wrap").offsetTop))
         
     // }else {
-    //     // console.log("globalLevel"+globalLevel, "NO VICTIMS ON THIS FLOOR ="+noVictims)
     //     updateLevelView(globalLevel);
     // }
 
@@ -386,15 +379,12 @@ function getLevelFromScroll(n) {
         if (isElementFocusedInViewport(el) && !level) {
             level = Number(el.getAttribute('data-level'));
 
-            //console.log("level=" + level);
-
             //if (level < n) { n = level }
             //globalLevel = n;
         }
 
     });
 
-    //console.log("LEVEL=" + level)
 
     globalLevel = level;
 
@@ -412,18 +402,9 @@ function getLevelFromScroll(n) {
     //     n=-1;
     // }
 
-    
-    console.log("direction=" + scrollDirection);
-
-    console.log("=maxSteps" + maxSteps);
-    console.log("g=" + globalLevel);
-
     //if (n < -1 || n > 23) { // ADD TO MAIN COMBINED
         //n = -1; // ADD TO MAIN COMBINED
     //} // ADD TO MAIN COMBINED
-
-
-    //console.log(globalLevel, n)
 
     //globalLevel = n;
     //globalLevel = n;
@@ -468,7 +449,6 @@ function updateLevelView(n) {
 
     n = checkWithinAllowedLimits(n);
 
-
     if (n < -1 || n > maxSteps -2) {
         document.querySelector(".gvLevelsBOXWRAPPER").classList.add("gv-hide")
     } else {
@@ -476,7 +456,6 @@ function updateLevelView(n) {
     }
 
     var t = document.getElementById("level-" + n);
-
         [].slice.apply(document.querySelectorAll('.gv-level')).forEach(el => {
             el.classList.remove("highlight");
             el.classList.remove("path-highlight"); // ADD TO MAIN COMBINED
@@ -505,16 +484,12 @@ function updateLevelView(n) {
     if (isMobile()) {
         var offsetY = Math.round(100 * scale);
         y += offsetY; 
-        console.log("y -- ",offsetY)
     }
 
     } else {
-        
         var y = 0;
         showIntro();
     }
-
-
 
     document.querySelector('#gv-tower-graphic').style.webkitTransform = "translateY(" + y + "px)"; 
     document.querySelector('#gv-tower-graphic').style.MozTransform = "translateY(" + y + "px)"; 
@@ -550,22 +525,17 @@ function updateInfoBox(n) {
 
     });
 
-    console.log("righttop=" + rightPane.scrollTop);
-
 }
 
 
 function checkFixView() {
-    let h = 60;
+    let h = 0;
 
     if (document.getElementById("bannerandheader")){
         h = document.getElementById("bannerandheader").offsetHeight;
     }
 
     var pos_top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-
-    // console.log("pos_top=" + pos_top);
-    console.log("h=" + h);
 
     if (pos_top > h) {
         document.querySelector('.gv-tower-wrapper').classList.add('fixed');
@@ -574,8 +544,6 @@ function checkFixView() {
         document.querySelector('.gv-tower-wrapper').classList.remove('fixed');
         document.querySelector('.gv-right-wrapper').classList.remove('fixed');
     }
-
-    console.log("Knobs");
 
 }
 
@@ -589,7 +557,6 @@ function hideRightView() {
 
 
 function openRightView(n) {
-    console.log("View=" + n)
     document.querySelector('.gv-right-view').classList.remove('close');
     document.querySelector('.gv-right-view').classList.add('open');
     document.querySelector('.close-overlay-btn').classList.remove('close');
@@ -598,8 +565,7 @@ function openRightView(n) {
 
 
 function sortByKeys(obj) {
-    let keys = Object.keys(obj),
-        i, len = keys.length;
+    let keys = Object.keys(obj), i, len = keys.length;
 
     keys.sort();
 
