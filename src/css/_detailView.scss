@@ -82,9 +82,9 @@
     position:relative;
     width: calc(100% - 30px);
     
-    @include mq(desktop) {
-        width: 280px;
-    }
+    // @include mq(desktop) {
+    //     width: 280px;
+    // }
     @include mq(wide) {
         width: 600px;
     }
@@ -97,7 +97,6 @@
     padding-bottom:12px;
 
     @include mq(desktop) {
- 
         border-bottom: none;
     }
     &.selected {
