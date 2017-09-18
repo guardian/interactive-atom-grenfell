@@ -294,7 +294,8 @@ function upDateWithScroll(){
 
 function checkNavs() {
     if (globalLevel <= -1) {
-        document.getElementById('gv-nav-down').classList.add("disabled");
+        // showIntro();
+       //document.getElementById('gv-nav-down').classList.add("disabled");
     }
 
     else {
@@ -431,9 +432,9 @@ function getLevelFromScroll(n) {
 }
 
 function checkWithinAllowedLimits(n) {
-
-    if (n < -1) {
-        n = -1;
+    //in conditional below set n check to -1 and reinstate disabled button in checkNav fn
+    if (n < -2) {
+        n = -2;
     }
 
     if (n >= maxSteps) {
